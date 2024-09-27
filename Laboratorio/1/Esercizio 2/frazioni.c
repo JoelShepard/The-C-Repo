@@ -44,5 +44,6 @@ int main(){
         a = (a1 * b2) + (a2 * b1);
     }
 
+
     printf("la somma tra le tue frazioni è: %d / %d", a, b); 
 }
