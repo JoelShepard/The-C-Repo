@@ -13,6 +13,7 @@ int8_t two_comp = 127; //equivalent to c2 [-128, 127]
 uint8_t pos_int = 42; // equivalent to unsigned [0, 256]
 //8_t means 1 byte
 
+int32_t thirtytwo_bit= 355;
 
 int main(){
     int var3; //local variables
@@ -25,6 +26,10 @@ int main(){
     two_comp = two_comp +1;
     // two_comp +=1; equivalent
     // two_comp++; equivalent
-    printf("%d\n", two_comp); //overflow
+    printf("%d/n", two_comp); //overflow
+
+    // bash:"man ascii", ascii table
+    // ascii has 7bits but C compiler adds 1bit to reach 8bits
+    // unicode better than ascii cause it's ascii + other
 
 }
