@@ -3,7 +3,7 @@
 int main() {
     int num1, num2, mcd = 1, i = 1;
 
-    // Chiedere all'utente di inserire due numeri
+    // Chiedere all'utente di inserire due numeri i
     printf("Inserire il primo numero: ");
     scanf("%d", &num1);
     printf("Inserire il secondo numero: ");
