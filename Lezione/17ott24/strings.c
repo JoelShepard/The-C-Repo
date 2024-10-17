@@ -22,6 +22,11 @@ int main(){
     fgets(str2, DIM, stdin); // acquisisce n-1 caratteri da stdin, compresi gli spazi. Da problemi con le scanf
     printf("%s", str2);
     printf(strncpy(str2, str1, 6)); // sovrascrive str1 all'inizio di str2 per il numero di char indicato
+
+    int a[20][30]; //matrice bidimensionale 20x30. La rappresentazione in memoria resta comunque monodimensionale
+    a[14][23]=1231231;
+    a[0][0]=12082005;
+    printf("%d %d", a[0][0], a[14][23]);
 }
 
 /*
