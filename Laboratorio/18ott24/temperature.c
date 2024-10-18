@@ -52,8 +52,6 @@ int main() {
             }
         }
         
-
-        
     }
 
     printf("\n");

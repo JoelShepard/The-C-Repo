@@ -13,13 +13,13 @@ int main() {
         scanf("%f", &temperature[i]);
     }
     
-/*    //somma
+    //somma
     for (i = 0; i < NUMGIORNI; i++){
-        sum = (float) sum + temperature[i];
+        sum += temperature[i];
     }
     //media
-    avg = (float) sum / NUMGIORNI;
-    printf("\nLa temperatura media è: %.3f\n", avg);
+    avg = sum / (float) NUMGIORNI;
+
 
     //massimo
     for (i = 0; i < NUMGIORNI; i++){
@@ -29,7 +29,7 @@ int main() {
         }
 
     }
-    printf("Il massimo è: %.1f\n", max);
+
     
     //minimo
     for (i = 0; i < NUMGIORNI; i++){
@@ -39,7 +39,7 @@ int main() {
         }
 
     }
-    printf("Il minimo è: %.1f\n", min); */
+
     
     //Star count
     for (i = 0; i < NUMGIORNI; i++){
@@ -51,17 +51,34 @@ int main() {
         }
         asterischi[i]=aster; 
     }
-
     //massimo asterischi
     for (i = 0; i < NUMGIORNI; i++){
         if (maxast < asterischi[i]){
             maxast = asterischi[i];
         }
-        asterischi[i]=0;
-        printf("Il massimo è: %d\n", maxast);
     }
-   
+// stampa asterischi in colonne verticali
+    for (j = maxast; j >= 0; j--){
+        for (i = 0; i < NUMGIORNI; i++){
+            if (asterischi[i] >= j){
+                printf("*\t");
+            } else {
+                printf("\t");
+            }
+        }
+        printf("\n");
+    }
+
+// stampa temperatura in fondo
+    for (i = 0; i < NUMGIORNI; i++){
+        printf("%.1f\t", temperature[i]);
+    }
+    printf("\n");
+
+    printf("\nLa temperatura media è: %.1f\n", avg);
+    printf("Il minimo è: %.1f\n", min);
+    printf("Il massimo è: %.1f\n", max);
+
+
 }
 
-
-//da completare, buon punto ma va rivisto il ciclo di stampa degli asterischi in colonna. Molto COmplicato

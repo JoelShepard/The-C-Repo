@@ -25,4 +25,5 @@ int main(){
     }      
 
     printf("il risultato è: %d", c);
+    return 0;
 }
