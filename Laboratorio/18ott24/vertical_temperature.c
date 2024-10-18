@@ -64,4 +64,4 @@ int main() {
 }
 
 
-//da completare, buon punto ma va rivisto il ciclo di stampa degli asterischi in colonna
+//da completare, buon punto ma va rivisto il ciclo di stampa degli asterischi in colonna. Molto COmplicato
