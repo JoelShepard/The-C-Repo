@@ -29,7 +29,7 @@ int main() {
         }
 
     }
-
+    
     
     //minimo
     for (i = 0; i < NUMGIORNI; i++){
@@ -79,6 +79,6 @@ int main() {
     printf("Il minimo è: %.1f\n", min);
     printf("Il massimo è: %.1f\n", max);
 
-
+    return 0;
 }
 
