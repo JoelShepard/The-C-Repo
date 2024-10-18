@@ -57,9 +57,10 @@ int main() {
         if (maxast < asterischi[i]){
             maxast = asterischi[i];
         }
-
+        asterischi[i]=0;
+        printf("Il massimo è: %d\n", maxast);
     }
-    printf("Il massimo è: %d\n", maxast);   
+   
 }
 
 
