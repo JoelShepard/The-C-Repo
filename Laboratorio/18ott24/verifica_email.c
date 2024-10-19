@@ -50,4 +50,6 @@ int main(){
     
     
     printf("Formato email corretto :)\n");
+
+    return 0;
 }
