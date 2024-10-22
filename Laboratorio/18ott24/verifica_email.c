@@ -7,6 +7,7 @@ int main(){
     char email[MAXLEN];
     int real_len=0, i=0, position_at=0, position_full_stop=0;
 
+    printf("Inserisci una email: ");
     fgets(email, MAXLEN, stdin);
     real_len= strlen(email);
 
@@ -25,7 +26,6 @@ int main(){
         }
         if (email[i] == '.'){
             position_full_stop = i;
-            printf("full stop %d", position_full_stop);
         }
     }
     if (position_at == 0){
