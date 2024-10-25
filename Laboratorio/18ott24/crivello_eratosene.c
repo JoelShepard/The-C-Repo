@@ -4,7 +4,7 @@
 #define NUMERI 76
 
 int main(){
-    int setaccio[NUMERI-1] = {0}, i=0, incremento=0;
+    int setaccio[NUMERI-1] = {0}, i=0, j=0, incremento=0;
 
     for (i = 0; i < NUMERI-1; i++){
         if (i == 0){
@@ -16,9 +16,12 @@ int main(){
         }
     }
 
-    //setaccio
-
     
+    
+    for (i = 0; i < NUMERI-1; i++)
+    {
+        printf("%d ", setaccio[i]);
+    }
     
     
 }
