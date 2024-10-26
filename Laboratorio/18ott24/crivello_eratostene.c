@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define NUMERI 76
+#define NUMERI 10
 
 int main(){
     int setaccio[NUMERI-1] = {0}, i=0, j=0, incremento=0;
@@ -16,12 +16,19 @@ int main(){
         }
     }
 
-    
-    
-    for (i = 0; i < NUMERI-1; i++)
-    {
-        printf("%d ", setaccio[i]);
+    for(i=0;i<NUMERI-1;i++){
+        if(setaccio[i]!=0){
+            for(j=i+1;j<NUMERI-1;j++){
+                if(setaccio[j]%setaccio[i]==0){
+                    setaccio[j]=0;
+                }
+            }
+        }
     }
-    
-    
+
+    for (i = 0; i < NUMERI-1; i++){
+        if (setaccio[i]!=0) {
+        printf("%d ", setaccio[i]);
+        }
+    }
 }
