@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define NUMERI 200
+#define NUMERI 500
 
 int main(){
     int setaccio[NUMERI-1] = {0}, i=0, j=0, incremento=0;
