@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define NLEN 14
-#define N 3
+#define N 5
 
 typedef struct {
     char name[NLEN];
@@ -25,9 +25,7 @@ int main(){
     while (i<N){
         //name input
         printf("Inserisci il cognome del candidato %d: ", i+1);
-        fgets(allexams[i].name, NLEN, stdin);
-        lastchar = strlen(allexams[i].name);
-        allexams[i].name[lastchar - 1] = '\0';
+        scanf("%s", allexams[i].name);
         fprintf(mydb, "%s,", allexams[i].name);
 
         //code input
