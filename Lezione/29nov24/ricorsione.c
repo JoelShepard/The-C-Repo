@@ -65,4 +65,5 @@ int mystrlen(char str[]){
     }
 }
 
-/*Definire una funzione che calcola ricorsivamente la somma dei termini di un array*/
+/*Definire una funzione che calcola ricorsivamente la somma dei termini di un array.
+Ragiona come se stessi costruendo matriosche, funzione che richiama se stessa fino a ridursi al caso base, per poi trovare il resto a ristroso.*/
