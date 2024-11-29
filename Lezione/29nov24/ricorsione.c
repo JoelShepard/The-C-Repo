@@ -59,7 +59,7 @@ int mystrlen(char str[]){
     if (str[0] == '\0'){
         return 0;
     }
-    else (str[0] != '\0'){
+    else {
         return 1+mystrlen(str+1 /*o &str[1]*/);
 //sfrutta le stringhe non come array ma come puntatore al primo elemento. Con & sto dicendo alla funzione qual'è l'indirizzo del primo elemento della stringa che voglio considerare
     }
