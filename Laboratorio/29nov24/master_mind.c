@@ -86,7 +86,7 @@ int validation (int number){
 void game(){
     int myseq[4]={0};
     int gamerseq[4], win=0, invalid=0, mosse=MOSSE;
-    char display[5];
+    char display[5]={0};
 
     generator(myseq);
 
