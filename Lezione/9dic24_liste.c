@@ -68,7 +68,7 @@ int elem_data_check(List l, int val){
 
 
 int main(){
-    List L;
+    List l;
     l = int_list();
 }
 
