@@ -78,5 +78,5 @@ int main(){
     }
     int** res = matrix(lab);
 
-    printf("%d", solve(res, 0, 0, n));
+
 }
