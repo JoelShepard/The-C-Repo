@@ -1,0 +1,4 @@
+mela 10
+pera 6
+banana 5
+arancia 6
