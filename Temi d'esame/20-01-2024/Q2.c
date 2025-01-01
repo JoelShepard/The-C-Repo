@@ -41,18 +41,23 @@ void Ripulisci(FILE *fin, FILE *fout){
     }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     FILE *fin, *fout;
 
+    if (argc != 3) {
+        printf("Errore nei parametri del programma.\n");
+        return -1;
+    }
+
     // Apertura file di input
-    fin = fopen("prodotti.txt", "r");
+    fin = fopen(argv[1], "r");
     if (fin == NULL) {
         printf("Errore nell'apertura del file di input\n");
         return 1;
     }
 
     // Apertura file di output
-    fout = fopen("risultati.txt", "w");
+    fout = fopen(argv[2], "w");
     if (fout == NULL) {
         printf("Errore nell'apertura del file di output\n");
         fclose(fin);
