@@ -27,5 +27,5 @@ int main(){
     int a[]={2,3,4,5,2,3,4,6,2,3};
     int dim = 10;
 
-    printf("%d\n", itsfollowed(a, 3, 4, dim, 0));
+    printf("%d\n", itsfollowed(a, 7, 5, dim, 0));
 }
