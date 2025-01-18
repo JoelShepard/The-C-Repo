@@ -17,9 +17,9 @@ int advanced(int mat[][COL], int row_elem, int col_elem){
             }
         }
         if(l<k){
-            state=0;
-        } else {
             state=1;
+        } else {
+            state=0;
         }
     }
     return state;
@@ -27,12 +27,12 @@ int advanced(int mat[][COL], int row_elem, int col_elem){
 
 int main(){
     int mat[ROW][COL]= {
-        {3, 40, 1, 2},
-        {2, 10, 70, 5},
-        {5, 5, 20, 40},
+        {100, 40, 1, 2},
+        {2, 1760, 70, 5},
+        {5, 5, 2560, 40},
     };
 
-    if (!advanced(mat, COL, ROW)) {
+    if (advanced(mat, COL, ROW)) {
         printf("La matrice rispetta i parametri indicati\n");
     }else {
         printf("La matrice non rispetta i parametri indicati\n");
