@@ -6,3 +6,6 @@ int main(){
 
     printf("%d\n", *punt);
 }
+
+void dominante(int* mat[]){
+}
