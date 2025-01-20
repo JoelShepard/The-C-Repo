@@ -1,11 +1,13 @@
 #include <stdio.h>
+#include <string.h>
+
+void modify(char** str);
 
 int main(){
-    int count = 1243;
-    int*punt=&count;
-
-    printf("%d\n", *punt);
+    char *s= "Io sono bello e ";
+    modify(&s);
 }
 
-void dominante(int* mat[]){
+void modify(char** str){
+    strcat(*str, "Ciaooo");
 }
