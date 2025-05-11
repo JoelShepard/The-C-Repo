@@ -1,0 +1,9 @@
+mela 40
+pera 133
+banana 40
+arancia 28
+kiwi 26
+mango 16
+papaya 12
+pesca 12
+litchi 5
