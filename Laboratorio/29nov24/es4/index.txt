@@ -1,4 +1,0 @@
-fourseasons.txt
-plaza.txt
-bulgari.txt
-excelsior.txt
