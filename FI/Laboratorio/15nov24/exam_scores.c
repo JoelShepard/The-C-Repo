@@ -1,47 +1,91 @@
+/**
+ * File: exam_scores.c
+ * Descrizione: Programma per gestire i risultati di esami universitari
+ *              salva cognome, matricola e voto in un file binario CSV
+ * Autore: [Studente]
+ * Data: 15-11-2024
+ * Laboratorio: Gestione file binari e strutture dati per registrazione esami
+ * 
+ * Funzionalità:
+ * - Acquisizione dati di N candidati (nome, matricola, voto)
+ * - Salvataggio in formato CSV nel file "esiti.bin"
+ * - Validazione dell'apertura del file
+ */
+
 #include <stdio.h>
 #include <string.h>
 
-#define NLEN 14
-#define N 5
+#define NLEN 14                           // Lunghezza massima per il cognome
+#define N 5                               // Numero di candidati da registrare
 
+/**
+ * Struttura per rappresentare il risultato di un esame
+ */
 typedef struct {
-    char name[NLEN];
-    int code;
-    int score;
+    char name[NLEN];                      // Cognome del candidato
+    int code;                             // Numero di matricola universitaria
+    int score;                            // Voto dell'esame (0-30)
 } exam;
 
+/**
+ * Funzione principale per la registrazione degli esiti d'esame
+ * 
+ * Il programma acquisisce i dati di N candidati e li salva in un file CSV
+ * con formato: cognome,matricola,voto
+ */
 int main(){
-    FILE * mydb;
-    int i=0, lastchar=0;
-    exam allexams[N];
+    FILE * mydb;                          // Puntatore al file di database
+    int i = 0;                            // Contatore per il ciclo di input
+    exam allexams[N];                     // Array per memorizzare tutti gli esami
 
-    printf("Benvenuto!\n");
+    // INTESTAZIONE: benvenuto all'utente
+    printf("=== SISTEMA REGISTRAZIONE ESITI D'ESAME ===\n");
+    printf("Inserimento dati per %d candidati\n\n", N);
 
+    // APERTURA FILE: creazione del file di output in modalità scrittura
     mydb = fopen("esiti.bin", "w");
     if(mydb == NULL){
-        printf("Il file non è stato aperto correttamente."); return 0;
+        printf("ERRORE: Il file non è stato aperto correttamente.\n");
+        printf("Verificare i permessi di scrittura nella directory corrente.\n");
+        return 1;
     }
 
-    while (i<N){
-        //name input
+    // CICLO ACQUISIZIONE: raccolta dati per ogni candidato
+    while (i < N){
+        printf("--- CANDIDATO %d di %d ---\n", i+1, N);
+        
+        // INPUT COGNOME: acquisizione e scrittura su file
         printf("Inserisci il cognome del candidato %d: ", i+1);
         scanf("%s", allexams[i].name);
         fprintf(mydb, "%s,", allexams[i].name);
 
-        //code input
+        // INPUT MATRICOLA: acquisizione e scrittura su file
         printf("Inserisci il numero di matricola del candidato %d: ", i+1);
         scanf("%d", &allexams[i].code);
         fprintf(mydb, "%d,", allexams[i].code);
 
-        //score input
-        printf("Inserisci il voto del candidato %d: ", i+1);
+        // INPUT VOTO: acquisizione e scrittura su file
+        printf("Inserisci il voto del candidato %d (0-30): ", i+1);
         scanf("%d", &allexams[i].score);
-        fprintf(mydb, "%d,", allexams[i].score);
+        fprintf(mydb, "%d", allexams[i].score);     // Ultimo campo senza virgola
 
-        //newline + increase
+        // FINE RIGA: newline per separare i record
         fprintf(mydb, "\n");
-        i++;
+        
+        // CONFERMA: feedback per l'utente
+        printf("✓ Dati salvati: %s (Matr: %d) - Voto: %d\n\n", 
+               allexams[i].name, allexams[i].code, allexams[i].score);
+        
+        i++;                              // Incrementa il contatore
     }
+    
+    // CHIUSURA FILE: finalizzazione del salvataggio
     fclose(mydb);
+    
+    // MESSAGGIO FINALE: conferma completamento
+    printf("=== REGISTRAZIONE COMPLETATA ===\n");
+    printf("Tutti i %d esiti sono stati salvati nel file 'esiti.bin'\n", N);
+    printf("Formato: cognome,matricola,voto\n");
+    
     return 0;
 }

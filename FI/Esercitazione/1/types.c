@@ -1,35 +1,49 @@
+/*
+ * File: types.c
+ * Descrizione: Dimostrazione dei tipi di dati in C e delle loro caratteristiche
+ *              Include esempi di overflow, rappresentazione esadecimale e variabili globali/locali
+ * Autore: Studente FI
+ * Data: Esercitazione 1
+ */
+
 #include <stdio.h>
 #include <inttypes.h>
 
-// global variables
-int var=-154; // code type is C2
-unsigned var2=5; // positive integer variable, flag is %u
-// global vars occupies a piece of memory and it's r/w by every functions
-// max limit of memory for variables = 4 bytes
-// initialize vars is always good
-// the dimension of the int type depends on the platform used
+// === VARIABILI GLOBALI ===
+// Le variabili globali occupano memoria e sono accessibili da tutte le funzioni
+int var=-154;           // Tipo int con complemento a 2 (C2)
+unsigned var2=5;        // Variabile intera positiva, formato %u
+                        // Limite massimo memoria per variabili = 4 bytes
+                        // Inizializzare le variabili è sempre una buona pratica
+                        // La dimensione del tipo int dipende dalla piattaforma usata
 
-int8_t two_comp = 127; //equivalent to c2 [-128, 127]
-uint8_t pos_int = 42; // equivalent to unsigned [0, 256]
-//8_t means 1 byte
+int8_t two_comp = 127;  // Equivalente a C2 range [-128, 127] - 1 byte
+uint8_t pos_int = 42;   // Equivalente a unsigned range [0, 255] - 1 byte
+                        // _t significa tipo specifico con dimensione fissa
 
-int32_t thirtytwo_bit= 355;
+int32_t thirtytwo_bit= 355; // Tipo a 32 bit (4 bytes)
 
+/**
+ * Funzione principale che dimostra l'uso dei diversi tipi di dati
+ * e i fenomeni di overflow
+ */
 int main(){
-    int var3; //local variables
-    // the value of non declared variables depends on the assigned sector of memory
-    printf("var: %d\n", var);
-    printf("var2: %u\n", var2);
-    printf("var hex: %04X\n", var); // var in hex code
+    // === VARIABILI LOCALI ===
+    int var3; // Variabile locale (valore dipende dal settore di memoria assegnato)
+    
+    // === STAMPA VALORI E FORMATI ===
+    printf("var: %d\n", var);           // Stampa valore decimale
+    printf("var2: %u\n", var2);         // Stampa unsigned integer
+    printf("var hex: %04X\n", var);     // Stampa in formato esadecimale (4 cifre)
 
-    printf("%d\n", two_comp);
-    two_comp = two_comp +1;
-    // two_comp +=1; equivalent
-    // two_comp++; equivalent
-    printf("%d/n", two_comp); //overflow
+    // === DIMOSTRAZIONE OVERFLOW ===
+    printf("%d\n", two_comp);           // Valore iniziale: 127
+    two_comp = two_comp +1;             // Incremento che causa overflow
+    // Equivalenti: two_comp +=1; oppure two_comp++;
+    printf("%d/n", two_comp);           // Risultato: -128 (overflow da 127 a -128)
 
-    // bash:"man ascii", ascii table
-    // ascii has 7bits but C compiler adds 1bit to reach 8bits
-    // unicode better than ascii cause it's ascii + other
-
+    // === NOTE TECNICHE ===
+    // bash:"man ascii" -> per consultare la tabella ASCII
+    // ASCII usa 7 bit ma il compilatore C aggiunge 1 bit per raggiungere 8 bit
+    // Unicode è migliore di ASCII perché include ASCII + altri caratteri
 }

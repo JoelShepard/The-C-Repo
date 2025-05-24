@@ -1,25 +1,65 @@
+/**
+ * File: mcd_gpt.c
+ * Descrizione: Calcolo del Massimo Comune Divisore (MCD) tra due numeri
+ *              utilizzando il metodo di ricerca esaustiva con ciclo while
+ * Autore: [Docente/AI Assistant]
+ * Data: 03-10-2024
+ * Lezione: Algoritmi di base - MCD con approccio iterativo
+ * 
+ * Algoritmo: Metodo di forza bruta che testa tutti i possibili divisori
+ * da 1 fino al minimo tra i due numeri
+ */
+
 #include <stdio.h>
 
+/**
+ * Funzione principale per calcolare il MCD di due numeri interi
+ * 
+ * Metodo utilizzato: Ricerca esaustiva
+ * - Testa tutti i numeri da 1 al minimo tra num1 e num2
+ * - Per ogni numero i, verifica se divide entrambi i numeri
+ * - L'ultimo divisore comune trovato è il MCD
+ * 
+ * Complessità temporale: O(min(num1, num2))
+ */
 int main() {
-    int num1, num2, mcd = 1, i = 1;
+    // VARIABILI
+    int num1, num2;                       // I due numeri di input
+    int mcd = 1;                          // MCD inizializzato a 1 (sempre divisore)
+    int i = 1;                            // Contatore per testare i divisori
 
-    // Chiedere all'utente di inserire due numeri i
+    // INPUT: acquisizione dei due numeri
     printf("Inserire il primo numero: ");
     scanf("%d", &num1);
     printf("Inserire il secondo numero: ");
     scanf("%d", &num2);
+    
+    // Validazione input (numeri positivi)
+    if (num1 <= 0 || num2 <= 0) {
+        printf("Errore: inserire solo numeri positivi\n");
+        return 1;
+    }
 
-    // Ricerca del massimo comune divisore 
-    // senza usare cicli for
+    // ALGORITMO MCD: ricerca esaustiva di tutti i divisori comuni
+    // Continua finché i non supera il minimo tra i due numeri
     while (i <= num1 && i <= num2) {
+        // VERIFICA DIVISIBILITÀ: i deve dividere entrambi i numeri
         if (num1 % i == 0 && num2 % i == 0) {
-            mcd = i; // Aggiorna il MCD se i è un divisore comune
-            }
-        i++; // Incrementa i
+            mcd = i;                      // Aggiorna il MCD: i è un divisore comune
         }
+        i++;                              // Incrementa per testare il divisore successivo
+    }
 
-    // Visualizzare il risultato
-    printf("Il massimo comune divisore è: %d\n", mcd);
+    // OUTPUT: visualizzazione del risultato
+    printf("Il massimo comune divisore di %d e %d è: %d\n", num1, num2, mcd);
 
     return 0;
 }
+
+/*
+ * Note tecniche:
+ * - Questo algoritmo è semplice ma non efficiente per numeri grandi
+ * - L'algoritmo di Euclide sarebbe più efficiente: O(log(min(num1, num2)))
+ * - Il risultato è sempre corretto per numeri positivi
+ * - Il MCD di due numeri è sempre >= 1 (il numero 1 divide sempre tutto)
+ */

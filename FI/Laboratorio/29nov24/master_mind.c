@@ -1,32 +1,50 @@
+/*
+ * File: master_mind.c
+ * Descrizione: Implementazione del gioco Mastermind in C
+ *              Il giocatore deve indovinare una sequenza di 4 cifre generate casualmente
+ * Autore: Studente FI
+ * Data: 29 novembre 2024
+ */
+
 #include<stdio.h>
 #include<string.h>
 #include<time.h>
 #include<stdlib.h>
-#define MOSSE 10
 
-void game();
-void ui_refresh_input(int user[], char* display);
-int compare_same(int* usernum, int* gamenum);
-int compare_not_there(int* usernum, int game[]);
-void compare(int user[], int game[], char* display);
-void generator(int* genseq);
-int validation (int number);
+#define MOSSE 10  // Numero massimo di tentativi
 
+// === DICHIARAZIONE FUNZIONI ===
+void game();                                        // Gestisce il gioco principale
+void ui_refresh_input(int user[], char* display);  // Aggiorna l'interfaccia utente
+int compare_same(int* usernum, int* gamenum);      // Conta cifre nella posizione corretta
+int compare_not_there(int* usernum, int game[]);   // Conta cifre corrette ma in posizione sbagliata
+void compare(int user[], int game[], char* display); // Confronta la sequenza utente con quella segreta
+void generator(int* genseq);                       // Genera la sequenza segreta
+int validation (int number);                       // Valida l'input dell'utente
 
+/**
+ * Funzione principale - Menu di avvio del gioco
+ */
 int main(){
     int cmd;
     printf("Benvenuto in Mastermind. Seleziona uno dei comandi:\n 1 - Inizia la partita\n 2 - Esci dal gioco\n:");
     scanf("%d", &cmd);
 
     if (cmd == 2) {
-        return 0;
+        return 0;                // Esce dal programma
     } if (cmd == 1) {
-        game();
+        game();                  // Avvia il gioco
     } else {
         printf("Comando non valido");
     }
     return 0;
 }
+
+/**
+ * Funzione per aggiornare l'interfaccia utente con l'input corrente
+ * @param user[] Array contenente la sequenza inserita dall'utente
+ * @param display String per visualizzare i feedback precedenti
+ */
 
 void ui_refresh_input(int user[], char* display){
     if (display[4] == '\0') {
