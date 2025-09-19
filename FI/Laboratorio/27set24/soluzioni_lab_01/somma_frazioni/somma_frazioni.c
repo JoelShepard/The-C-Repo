@@ -1,3 +1,4 @@
+/* somma_frazioni.c - C source file. */
 #include <stdio.h>
 
 int main()

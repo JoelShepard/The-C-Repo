@@ -1,29 +1,19 @@
-/**
- * File: q2.c
- * Descrizione: Funzione ricorsiva che incrementa ogni cifra di un numero di 1,
- *              con gestione del wrap-around (9 diventa 0)
- * Autore: [Studente]
- * Data: 02-09-2024
- * Tema d'esame: Manipolazione ricorsiva delle cifre di un numero
- * 
- * Algoritmo: Per ogni cifra, se è 9 diventa 0, altrimenti si incrementa di 1
- * Esempio: 12302 → 23413, 999 → 000
- */
+/* q2.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Funzione ricorsiva che incrementa ogni cifra di un numero di 1
- * 
- * @param n  Numero intero da elaborare
- * @return   Nuovo numero con ogni cifra incrementata di 1 (9 → 0)
- * 
- * Strategia ricorsiva:
- * 1. Caso base: se n=0, ritorna 0
- * 2. Estrae l'ultima cifra (n%10)
- * 3. Incrementa la cifra (con wrap 9→0)
- * 4. Elabora ricorsivamente il resto del numero (n/10)
- * 5. Ricompone il risultato: resto_elaborato*10 + cifra_incrementata
+/* *
+Function recursive che increments ogni cifra di un numero di 1
+
+@param n  Numero intero da elaborare
+@return   Nuovo numero con ogni cifra incrementsta di 1 (9 → 0)
+
+Strategia recursive:
+1. Base case: se n=0, ritorna 0
+2. Estrae l'ultima cifra (n%10)
+3. Incrementa la cifra (con wrap 9→0)
+4. Elabora recursivemente il resto del numero (n/10)
+5. Ricompone il risultato: resto_elaborato*10 + cifra_incrementsta
  */
 int plusone(int n){
     // CASO BASE: numero vuoto
@@ -43,28 +33,28 @@ int plusone(int n){
         
         // RICORSIONE: elabora il resto del numero
         int resto = n / 10;                   // Rimuove l'ultima cifra
-        int nuovo = plusone(resto);           // Elabora ricorsivamente il resto
+        int nuovo = plusone(resto);           // Elabora recursivemente il resto
         
-        // RICOMPOSIZIONE: nuovo_resto * 10 + cifra_incrementata
+        // RICOMPOSIZIONE: nuovo_resto * 10 + cifra_incrementsta
         return nuovo * 10 + newultima;
     }
 }
 
-/**
- * Funzione principale per testare l'incremento ricorsivo delle cifre
- * 
- * Test case: 12302 dovrebbe diventare 23413
- * - 1 → 2
- * - 2 → 3  
- * - 3 → 4
- * - 0 → 1
- * - 2 → 3
+/* *
+Function principale per testare l'incremento ricorsivo delle cifre
+
+Test case: 12302 dovrebbe diventare 23413
+- 1 → 2
+- 2 → 3
+- 3 → 4
+- 0 → 1
+- 2 → 3
  */
 int main(){
     // INPUT: numero di test
     int numero = 12302;
     
-    // ELABORAZIONE E OUTPUT: incrementa ogni cifra e stampa il risultato
+    // ELABORAZIONE E OUTPUT: increments ogni cifra e prints il risultato
     printf("Numero originale: %d\n", numero);
     printf("Numero incrementato: %d\n", plusone(numero));
     

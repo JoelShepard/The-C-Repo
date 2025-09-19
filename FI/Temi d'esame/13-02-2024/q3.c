@@ -1,3 +1,4 @@
+/* q3.c - C source file. */
 #include <stdio.h>
 #include <string.h>
 

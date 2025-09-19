@@ -1,3 +1,4 @@
+/* shift.c - C source file. */
 #include <stdio.h>
 
 int main()
@@ -21,7 +22,7 @@ int main()
 	b = a;
 	a = temp;
 
-	// Stampa il risultato dello shift
+	// Prints il risultato dello shift
 	printf("\nIl valore di a e': %d", a);
 	printf("\nIl valore di b e': %d", b);
 	printf("\nIl valore di c e': %d \n", c);

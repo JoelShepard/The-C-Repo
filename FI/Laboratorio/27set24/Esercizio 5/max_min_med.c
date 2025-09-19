@@ -1,38 +1,11 @@
-/**
- * ================================================================
- * CALCOLATORE STATISTICHE DI BASE (MEDIA, MASSIMO, MINIMO)
- * ================================================================
- * 
- * Descrizione:
- *   Programma per il calcolo delle statistiche di base (media aritmetica,
- *   valore massimo e valore minimo) di 6 numeri interi positivi inseriti
- *   dall'utente. Utilizza un algoritmo di ricerca lineare per trovare
- *   i valori estremi.
- * 
- * Funzionalità:
- *   - Acquisizione di 6 numeri interi positivi
- *   - Validazione che tutti i valori siano positivi
- *   - Calcolo della media aritmetica con precisione floating-point
- *   - Ricerca del valore massimo tramite decremento dalla somma
- *   - Ricerca del valore minimo tramite incremento da zero
- *   - Visualizzazione di tutti i risultati calcolati
- *
- * Autore: Joel (Laboratorio del 27 settembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Algoritmo di ricerca max/min poco efficiente O(somma) invece di O(n)
- *   - Utilizzo di float per media con divisione per 6.0f
- *   - Validazione input per garantire valori positivi
- * ================================================================
- */
+/* max_min_med.c - C source file. */
 
 #include <stdio.h>  // Per printf, scanf
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - CALCOLO STATISTICHE
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - CALCOLO STATISTICHE
+================================================================
  */
 int main() {
 
@@ -73,7 +46,7 @@ int main() {
     // FASE 4: RICERCA DEL VALORE MASSIMO
     // ================================================================
     // Algoritmo: parte dalla somma totale e decrementa fino a trovare un match
-    // Nota: algoritmo inefficiente O(somma) invece di semplice confronto O(1)
+    // Note: algoritmo inefficiente O(somma) invece di semplice confronto O(1)
     tmp = a + b + c + d + e + f;  // Inizia dalla somma totale
     
     while (tmp >= a && tmp >= b && tmp >= c && tmp >= d && tmp >= e && tmp >= f) {
@@ -89,8 +62,8 @@ int main() {
     // ================================================================
     // FASE 5: RICERCA DEL VALORE MINIMO
     // ================================================================
-    // Algoritmo: parte da zero e incrementa fino a trovare un match
-    // Nota: simile approccio inefficiente per il minimo
+    // Algoritmo: parte da zero e increments fino a trovare un match
+    // Note: simile approccio inefficiente per il minimo
     while (tmp2 <= a && tmp2 <= b && tmp2 <= c && tmp2 <= d && tmp2 <= e && tmp2 <= f) {
         // Controlla se il valore corrente corrisponde a uno dei numeri inseriti
         if (tmp2 == a || tmp2 == b || tmp2 == c || tmp2 == d || tmp2 == e || tmp2 == f) {

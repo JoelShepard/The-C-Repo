@@ -1,20 +1,10 @@
-/**
- * File: q3.c
- * Descrizione: Implementazione di una funzione per filtrare liste concatenate
- *              rimuovendo elementi secondo un criterio specifico
- * Autore: [Studente]
- * Data: 02-09-2024
- * Tema d'esame: Manipolazione di liste concatenate con filtri
- * 
- * Commento originale: "le liste sono brutte e cattive"
- * Nota: Il codice presenta alcune problematiche nella logica di filtraggio
- */
+/* q3.c - C source file. */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-/**
- * Struttura per rappresentare un nodo della lista concatenata
+/* *
+Struttura per rappresentare un nodo della lista concatenata
  */
 typedef struct nd {
     int valore;                    // Valore memorizzato nel nodo
@@ -23,16 +13,16 @@ typedef struct nd {
 
 typedef Nodo* Lista;
 
-/**
- * Funzione per filtrare una lista concatenata secondo un criterio specifico
- * 
- * @param lis  Puntatore alla lista da filtrare
- * @return     Puntatore alla lista filtrata
- * 
- * ATTENZIONE: La logica di filtraggio in questa implementazione presenta
- * alcuni problemi e comportamenti non chiari. Il codice sembra tentare
- * di confrontare nodi adiacenti e rimuovere quelli che non soddisfano
- * certe condizioni, ma la logica è incompleta e potenzialmente buggata.
+/* *
+Function per filtrare una lista concatenata secondo un criterio specifico
+
+@param lis  Puntatore alla lista da filtrare
+@return     Puntatore alla lista filtrata
+
+WARNING: La logica di filtraggio in questa implementazione presenta
+alcuni problemi e comportamenti non chiari. Il codice sembra tentare
+di confrontare nodi adiacenti e rimuovere quelli che non soddisfano
+certe condizioni, ma la logica è incompleta e potenzialmente buggata.
  */
 Lista filtra(Lista lis){
     // INIZIALIZZAZIONE: tre puntatori per navigare la lista
@@ -55,7 +45,7 @@ Lista filtra(Lista lis){
         if (prev->valore == curr->valore) {
             return prev;           // Mantiene il primo se uguali
         } else {
-            return curr;           // ATTENZIONE: memory leak! prev non viene liberato
+            return curr;           // WARNING: memory leak! prev non viene liberato
             free(prev);            // Codice irraggiungibile
         }
     }
@@ -94,11 +84,11 @@ Lista filtra(Lista lis){
         return lis;
 }
 
-/**
- * Funzione di utilità per creare un nuovo nodo
- * 
- * @param val  Valore da memorizzare nel nodo
- * @return     Puntatore al nuovo nodo creato
+/* *
+Function di utilità per creare un nuovo nodo
+
+@param val  Valore da memorizzare nel nodo
+@return     Puntatore al nuovo nodo creato
  */
 Nodo* creaNodo(int val) {
     Nodo* nuovo = (Nodo*)malloc(sizeof(Nodo));
@@ -107,10 +97,10 @@ Nodo* creaNodo(int val) {
     return nuovo;
 }
 
-/**
- * Funzione di utilità per stampare tutti gli elementi di una lista
- * 
- * @param l  Puntatore alla lista da stampare
+/* *
+Function di utilità per printsre tutti gli elementi di una lista
+
+@param l  Puntatore alla lista da printsre
  */
 void stampaLista(Lista l) {
     while(l != NULL) {
@@ -120,11 +110,11 @@ void stampaLista(Lista l) {
     printf("\n");
 }
 
-/**
- * Funzione principale per testare il filtraggio di liste
- * 
- * Crea una lista di test e applica la funzione filtra
- * Test case: 5 → 3 → 7 → 2
+/* *
+Function principale per testare il filtraggio di liste
+
+Crea una lista di test e applica la funzione filtra
+Test case: 5 → 3 → 7 → 2
  */
 int main() {
     // CREAZIONE: lista di test con valori misti
@@ -147,10 +137,10 @@ int main() {
     return 0;
 }
 
-/*
- * Note tecniche:
- * - La funzione filtra() presenta problemi di logica e potenziali memory leak
- * - Il criterio di filtraggio non è chiaramente definito
- * - Alcuni percorsi del codice potrebbero causare accessi a memoria non valida
- * - È necessaria una revisione completa dell'algoritmo di filtraggio
+/* 
+Note tecniche:
+- La funzione filtra() presenta problemi di logica e potenziali memory leak
+- Il criterio di filtraggio non è chiaramente definito
+- Alcuni percorsi del codice potrebbero causare accessi a memoria non valida
+- È necessaria una revisione completa dell'algoritmo di filtraggio
  */

@@ -1,18 +1,4 @@
-/**
- * File: q3.c
- * Descrizione: Simulatore di percorso in un labirinto 3x3 con sequenza di mosse predefinite
- *              Verifica se un percorso è valido evitando gli ostacoli
- * Autore: [Studente]
- * Data: 28-08-2023
- * Tema d'esame: Navigazione in labirinto con controllo collisioni
- * 
- * Commento originale: "Complicatuccio"
- * 
- * Struttura labirinto:
- * - 0 = casella libera (percorribile)
- * - 1 = ostacolo (muro)
- * - Partenza sempre da posizione (0,0)
- */
+/* q3.c - C source file. */
 
 #include <stdio.h>
 
@@ -20,35 +6,35 @@
 #define N 3                               // Altezza del labirinto
 #define M 3                               // Larghezza del labirinto
 
-/**
- * Struttura per rappresentare coordinate 2D nel labirinto
+/* *
+Struttura per rappresentare coordinate 2D nel labirinto
  */
 typedef struct {
-    int x;                                // Coordinata verticale (riga)
-    int y;                                // Coordinata orizzontale (colonna)
+    int x;                                // Coordinata verticale (row)
+    int y;                                // Coordinata orizzontale (column)
 } Coo;
 
 // VARIABILI GLOBALI
 Coo mosse[MOSSE];                         // Array delle mosse da eseguire
 int mylab[N][M];                          // Matrice del labirinto
 
-/**
- * Verifica se una sequenza di mosse è valida nel labirinto
- * 
- * @param mylab    Matrice del labirinto (0=libero, 1=ostacolo)
- * @param mosse    Array delle mosse da eseguire
- * @return         1 se il percorso è valido, -1 se incontra ostacoli
- * 
- * Algoritmo:
- * - Parte dalla posizione (0,0)
- * - Per ogni mossa, controlla se la destinazione è libera
- * - Se trova un ostacolo (valore 1), ritorna -1
- * - Se completa tutte le mosse senza ostacoli, ritorna 1
- * 
- * ATTENZIONE: Il codice presenta diversi problemi:
- * - Non controlla i limiti del labirinto (bounds checking)
- * - La sintassi del parametro mylab[][] è incorretta
- * - Mancano controlli per uscire dai confini della matrice
+/* *
+Verifica se una sequenza di mosse è valida nel labirinto
+
+@param mylab    Matrice del labirinto (0=libero, 1=ostacolo)
+@param mosse    Array delle mosse da eseguire
+@return         1 se il percorso è valido, -1 se incontra ostacoli
+
+Algoritmo:
+- Parte dalla posizione (0,0)
+- Per ogni mossa, controlla se la destinazione è libera
+- Se trova un ostacolo (valore 1), ritorna -1
+- Se completa tutte le mosse senza ostacoli, ritorna 1
+
+WARNING: Il codice presenta diversi problemi:
+- Non controlla i limiti del labirinto (bounds checking)
+- La sintassi del parametro mylab[][] è incorretta
+- Mancano controlli per uscire dai confini della matrix
  */
 int solve(int mylab[][], Coo mosse[]){
     // POSIZIONE INIZIALE: partenza sempre da (0,0)
@@ -59,7 +45,7 @@ int solve(int mylab[][], Coo mosse[]){
     // ESECUZIONE MOSSE: elabora ogni mossa nell'array
     for (int k = 0; k < MOSSE; k++) {
         
-        // MOVIMENTO ORIZZONTALE: solo lungo l'asse Y (destra/sinistra)
+        // MOVIMENTO ORIZZONTALE: solo lungo l'asse Y (right/left)
         if (mosse[k].x == 0) {
             // CONTROLLO OSTACOLO: verifica se la destinazione è libera
             if (mylab[tmp.x][tmp.y + mosse[k].y] != 0) {
@@ -84,10 +70,10 @@ int solve(int mylab[][], Coo mosse[]){
     return 1;
 }
 
-/**
- * Funzione principale per testare la navigazione nel labirinto
- * 
- * Crea un labirinto 3x3 con un percorso specifico e testa una sequenza di mosse
+/* *
+Function principale per testare la navigazione nel labirinto
+
+Crea un labirinto 3x3 con un percorso specifico e testa una sequenza di mosse
  */
 int main(){
     int i, j, ris;
@@ -192,25 +178,25 @@ int main(){
     return 0;
 }
 
-/*
- * Note tecniche e problemi del codice:
- * 
- * 1. SINTASSI ERRATA: int mylab[][] non è valido in C
- *    Dovrebbe essere int mylab[N][M] o int (*mylab)[M]
- * 
- * 2. MANCANZA BOUNDS CHECKING: non verifica se le coordinate rimangono nei limiti
- *    Può causare segmentation fault se si esce dalla matrice
- * 
- * 3. LOGICA MOVIMENTO: permette solo movimenti orizzontali O verticali, non diagonali
- *    Se una mossa ha sia x che y diversi da 0, viene ignorata
- * 
- * 4. INIZIALIZZAZIONE: l'array mosse non viene inizializzato, può contenere valori casuali
- * 
- * 5. PERCORSO TEST: la prima mossa va subito su un ostacolo, quindi fallisce immediatamente
- * 
- * Miglioramenti suggeriti:
- * - Aggiungere controlli sui limiti della matrice
- * - Correggere la sintassi del parametro della funzione
- * - Inizializzare correttamente l'array delle mosse
- * - Aggiungere visualizzazione del labirinto e del percorso
+/* 
+Note tecniche e problemi del codice:
+
+1. SINTASSI ERRATA: int mylab[][] non è valido in C
+Dovrebbe essere int mylab[N][M] o int (*mylab)[M]
+
+2. MANCANZA BOUNDS CHECKING: non verifica se le coordinate rimangono nei limiti
+Può causare segmentation fault se si esce dalla matrix
+
+3. LOGICA MOVIMENTO: permette solo movimenti orizzontali O verticali, non diagonali
+Se una mossa ha sia x che y diversi da 0, viene ignorata
+
+4. INIZIALIZZAZIONE: l'array mosse non viene inizializzato, può contenere valori casuali
+
+5. PERCORSO TEST: la prima mossa va subito su un ostacolo, quindi fallisce immediatamente
+
+Miglioramenti suggeriti:
+- Aggiungere controlli sui limiti della matrix
+- Correggere la sintassi del parametro della funzione
+- Inizializzare correttamente l'array delle mosse
+- Aggiungere visualizzazione del labirinto e del percorso
  */

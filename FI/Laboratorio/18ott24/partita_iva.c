@@ -1,63 +1,34 @@
-/*
- * =============================================================================
- * VALIDATORE PARTITA IVA ITALIANA - ALGORITMO DI CONTROLLO
- * =============================================================================
- * 
- * Descrizione:
- * Implementazione dell'algoritmo di validazione per le partite IVA italiane
- * secondo le specifiche ufficiali. L'algoritmo calcola un codice di controllo
- * basato su posizioni pari e dispari per verificare la correttezza formale
- * del codice fiscale.
- * 
- * Autore: Studente FI
- * Data: 18 ottobre 2024
- * Corso: Fondamenti di Informatica - Laboratorio
- * 
- * Algoritmo di validazione:
- * 1. Separa cifre in posizioni pari e dispari
- * 2. Moltiplica per 2 le cifre in posizione pari
- * 3. Somma tutte le cifre in posizione dispari
- * 4. Se somma dispari >= 10, somma le cifre del risultato
- * 5. Somma finale: (pari + dispari_processate) mod 10 deve essere 0
- * 
- * Formato input: 11 cifre numeriche
- * 
- * Note tecniche:
- * - Il commento finale indica possibili problemi nell'implementazione
- * - L'algoritmo potrebbe non essere completo rispetto alle specifiche ufficiali
- * 
- * =============================================================================
- */
+/* partita_iva.c - C source file. */
 
 #include <stdio.h>
 #include <string.h>
 
 #define PIVALEN 11  // Lunghezza standard partita IVA italiana
 
-/*
- * Esempi di test forniti:
- * P.IVA non valida: 04657384957
- * P.IVA valida (Agenzia delle entrate): 06363391001
- * P.IVA valida, secondo le istruzioni fornite: 04657384955
+/* 
+Esempi di test forniti:
+P.IVA non valida: 04657384957
+P.IVA valida (Agenzia delle entrate): 06363391001
+P.IVA valida, secondo le istruzioni fornite: 04657384955
  */
 
-/*
- * Funzione principale per la validazione della partita IVA
+/* 
+Function principale per la validazione della partita IVA
  */
 int main(){
-    char partita_iva[PIVALEN+1];  // +1 per terminatore stringa
+    char partita_iva[PIVALEN+1];  // +1 per terminatestore string
     int i=0, j=0, pari[5]={0}, sum_pari=0, dispari[6]={0}, sum_dispari=0;
     int decine=0, unità=0, code_dispari=0, final_code=1;
 
     // ===============================================
-    // SEZIONE 1: INPUT PARTITA IVA
+    // SECTION 1: INPUT PARTITA IVA
     // ===============================================
     
     printf("Inserisci la partita iva: ");
     fgets(partita_iva, PIVALEN+1, stdin);  // Lettura sicura con limite
 
     // ===============================================
-    // SEZIONE 2: ELABORAZIONE CIFRE PARI
+    // SECTION 2: ELABORAZIONE CIFRE PARI
     // ===============================================
     
     // Estrazione cifre in posizione pari (1, 3, 5, 7, 9)
@@ -72,7 +43,7 @@ int main(){
     //printf("Somma x2 delle cifre pari:%d\n", sum_pari);  // Debug
 
     // ===============================================
-    // SEZIONE 3: ELABORAZIONE CIFRE DISPARI
+    // SECTION 3: ELABORAZIONE CIFRE DISPARI
     // ===============================================
     
     // Estrazione cifre in posizione dispari (0, 2, 4, 6, 8, 10)
@@ -88,7 +59,7 @@ int main(){
     //printf("Somma delle cifre dispari: %d\n", sum_dispari);  // Debug
 
     // ===============================================
-    // SEZIONE 4: GESTIONE SOMMA DISPARI >= 10
+    // SECTION 4: GESTIONE SOMMA DISPARI >= 10
     // ===============================================
     
     // Se somma dispari >= 10, somma le cifre del risultato
@@ -100,7 +71,7 @@ int main(){
     }
     
     // ===============================================
-    // SEZIONE 5: CONTROLLO FINALE E VALIDAZIONE
+    // SECTION 5: CONTROLLO FINALE E VALIDAZIONE
     // ===============================================
     
     // Calcolo codice di controllo finale
@@ -121,23 +92,23 @@ int main(){
 
     return 0;
     
-    /*
-     * NOTE SULL'IMPLEMENTAZIONE:
-     * 
-     * PROBLEMA IDENTIFICATO:
-     * Il commento originale indica che l'algoritmo implementato
-     * non riconosce correttamente partite IVA valide, suggerendo
-     * che le istruzioni potrebbero essere incomplete o non corrette.
-     * 
-     * POSSIBILI CAUSE:
-     * 1. L'algoritmo ufficiale della partita IVA italiana è più complesso
-     * 2. Potrebbero mancare controlli aggiuntivi (lunghezza, formato)
-     * 3. La gestione delle cifre >= 10 potrebbe essere diversa
-     * 
-     * MIGLIORAMENTI SUGGERITI:
-     * - Validazione input (solo cifre, lunghezza corretta)
-     * - Implementazione algoritmo ufficiale Agenzia delle Entrate
-     * - Gestione errori più robusta
-     * - Test con più casi di esempio
-     */
+/* 
+NOTE SULL'IMPLEMENTAZIONE:
+
+PROBLEMA IDENTIFICATO:
+Il commento originale indica che l'algoritmo implementato
+non riconosce correttamente partite IVA valide, suggerendo
+che le istruzioni potrebbero essere incomplete o non corrette.
+
+POSSIBILI CAUSE:
+1. L'algoritmo ufficiale della partita IVA italiana è più complesso
+2. Potrebbero mancare controlli aggiuntivi (lunghezza, formato)
+3. La gestione delle cifre >= 10 potrebbe essere diversa
+
+MIGLIORAMENTI SUGGERITI:
+- Validazione input (solo cifre, lunghezza corretta)
+- Implementazione algoritmo ufficiale Agenzia delle Entrate
+- Gestione errori più robusta
+- Test con più casi di esempio
+ */
 }

@@ -1,10 +1,4 @@
-/*
- * File: master_mind.c
- * Descrizione: Implementazione del gioco Mastermind in C
- *              Il giocatore deve indovinare una sequenza di 4 cifre generate casualmente
- * Autore: Studente FI
- * Data: 29 novembre 2024
- */
+/* master_mind.c - C source file. */
 
 #include<stdio.h>
 #include<string.h>
@@ -22,8 +16,8 @@ void compare(int user[], int game[], char* display); // Confronta la sequenza ut
 void generator(int* genseq);                       // Genera la sequenza segreta
 int validation (int number);                       // Valida l'input dell'utente
 
-/**
- * Funzione principale - Menu di avvio del gioco
+/* *
+Function principale - Menu di avvio del gioco
  */
 int main(){
     int cmd;
@@ -40,10 +34,10 @@ int main(){
     return 0;
 }
 
-/**
- * Funzione per aggiornare l'interfaccia utente con l'input corrente
- * @param user[] Array contenente la sequenza inserita dall'utente
- * @param display String per visualizzare i feedback precedenti
+/* *
+Function per aggiornare l'interfaccia utente con l'input corrente
+@param user[] Array contenente la sequenza inserita dall'utente
+@param display String per visualizzare i feedback precedenti
  */
 
 void ui_refresh_input(int user[], char* display){

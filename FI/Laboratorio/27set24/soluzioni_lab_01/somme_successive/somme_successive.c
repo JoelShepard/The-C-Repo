@@ -1,3 +1,4 @@
+/* somme_successive.c - C source file. */
 #include <stdio.h>
 
 int main()

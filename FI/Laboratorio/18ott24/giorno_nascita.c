@@ -1,28 +1,13 @@
-/*
- * File: giorno_nascita.c
- * Descrizione: Laboratorio del 18 ottobre 2024 - Calcolo giorno della settimana
- *              Implementa l'Algoritmo di Zeller per determinare il giorno della settimana
- *              di una data specifica
- * Autore: Studente FI
- * Data: 18 ottobre 2024
- * Contesto: Fondamenti di Informatica - Algoritmi matematici e validazione dati
- * 
- * Algoritmo di Zeller:
- * Formula per calcolare il giorno della settimana di una data qualsiasi
- * Funziona per date dal 15 ottobre 1582 (adozione calendario gregoriano)
- * 
- * Formula: h = (q + ⌊26(m+1)/10⌋ + K + ⌊K/4⌋ + ⌊J/4⌋ - 2J) mod 7
- * dove: q=giorno, m=mese, K=anno del secolo, J=secolo
- */
+/* giorno_nascita.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Funzione principale che implementa l'algoritmo di Zeller
+/* *
+Function principale che implementa l'algoritmo di Zeller
  */
 int main(){
     // === DICHIARAZIONE VARIABILI ===
-    int day=0, month=0, year=0;                    // Data di input
+    int day=0, month=0, year=0;                    // Date di input
     int year_ok=0, month_ok=0, day_ok=0;          // Flag di validazione
     int day_week=0, century_year=0, century=0;    // Variabili per algoritmo Zeller
 

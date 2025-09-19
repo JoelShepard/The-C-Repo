@@ -1,22 +1,9 @@
-/**
- * File: delorean_time_calculator.c
- * Descrizione: Calcolatore di viaggi nel tempo ispirato alla DeLorean di "Ritorno al Futuro"
- *              Calcola la differenza temporale tra una data di partenza e di arrivo
- * Autore: [Studente]
- * Data: 15-11-2024
- * Laboratorio: Manipolazione di date e calcoli temporali complessi
- * 
- * Funzionalità:
- * - Calcolo differenze temporali complete (anni, mesi, giorni, ore, minuti)
- * - Gestione anni bisestili e mesi con giorni diversi
- * - Supporto viaggi nel passato e nel futuro
- * - Riferimenti cinematografici alla saga "Back to the Future"
- */
+/* delorean_time_calculator.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Struttura per rappresentare una data e ora completa
+/* *
+Struttura per rappresentare una data e ora completa
  */
 typedef struct {
     int day;                              // Giorno del mese (1-31)
@@ -34,14 +21,14 @@ int hour(int* hour_dep, int* hour_arr, int* day_dep);
 int min(int* min_dep, int* min_arr, int* hour_dep);
 int compare_date(data dep, data arr);
 
-/**
- * Confronta due date per determinare l'ordine cronologico
- * 
- * @param dep  Data di partenza
- * @param arr  Data di arrivo
- * @return     1 se dep < arr (viaggio nel futuro)
- *             0 se dep = arr (stesso momento)
- *            -1 se dep > arr (viaggio nel passato)
+/* *
+Confronta due date per determinatesre l'ordine cronologico
+
+@param dep  Date di partenza
+@param arr  Date di arrivo
+@return     1 se dep < arr (viaggio nel futuro)
+0 se dep = arr (stesso momento)
+-1 se dep > arr (viaggio nel passato)
  */
 int compare_date(data dep, data arr){
     // Confronto per anno
@@ -68,13 +55,13 @@ int compare_date(data dep, data arr){
     return 0;
 }
 
-/**
- * Calcola la differenza in minuti con gestione del riporto alle ore
- * 
- * @param min_dep   Puntatore ai minuti di partenza
- * @param min_arr   Puntatore ai minuti di arrivo
- * @param hour_dep  Puntatore alle ore di partenza (modificato se riporto necessario)
- * @return          Differenza in minuti (0-59)
+/* *
+Calcola la differenza in minuti con gestione del riporto alle ore
+
+@param min_dep   Puntatore ai minuti di partenza
+@param min_arr   Puntatore ai minuti di arrivo
+@param hour_dep  Puntatore alle ore di partenza (modificato se riporto necessario)
+@return          Differenza in minuti (0-59)
  */
 int min(int* min_dep, int* min_arr, int* hour_dep){
     int simple_sum = *min_arr - *min_dep;
@@ -87,13 +74,13 @@ int min(int* min_dep, int* min_arr, int* hour_dep){
     return simple_sum;
 }
 
-/**
- * Calcola la differenza in ore con gestione del riporto ai giorni
- * 
- * @param hour_dep  Puntatore alle ore di partenza
- * @param hour_arr  Puntatore alle ore di arrivo
- * @param day_dep   Puntatore ai giorni di partenza (modificato se riporto necessario)
- * @return          Differenza in ore (0-23)
+/* *
+Calcola la differenza in ore con gestione del riporto ai giorni
+
+@param hour_dep  Puntatore alle ore di partenza
+@param hour_arr  Puntatore alle ore di arrivo
+@param day_dep   Puntatore ai giorni di partenza (modificato se riporto necessario)
+@return          Differenza in ore (0-23)
  */
 int hour(int* hour_dep, int* hour_arr, int* day_dep){
     int simple_sum = *hour_arr - *hour_dep;
@@ -106,14 +93,14 @@ int hour(int* hour_dep, int* hour_arr, int* day_dep){
     return simple_sum;
 }
 
-/**
- * Calcola la differenza in giorni con gestione del riporto ai mesi
- * 
- * @param dep  Puntatore alla data di partenza (modificata se riporto necessario)
- * @param arr  Puntatore alla data di arrivo
- * @return     Differenza in giorni del mese
- * 
- * ATTENZIONE: La logica dei mesi presenta alcuni problemi nella implementazione
+/* *
+Calcola la differenza in giorni con gestione del riporto ai mesi
+
+@param dep  Puntatore alla data di partenza (modificata se riporto necessario)
+@param arr  Puntatore alla data di arrivo
+@return     Differenza in giorni del mese
+
+WARNING: La logica dei mesi presenta alcuni problemi nella implementazione
  */
 int day(data* dep, data* arr){
     int simple_sum = (*arr).day - (*dep).day;
@@ -143,12 +130,12 @@ int day(data* dep, data* arr){
     return simple_sum;
 }
 
-/**
- * Calcola la differenza in mesi con gestione del riporto agli anni
- * 
- * @param dep  Puntatore alla data di partenza (modificata se riporto necessario)
- * @param arr  Puntatore alla data di arrivo
- * @return     Differenza in mesi (0-11)
+/* *
+Calcola la differenza in mesi con gestione del riporto agli anni
+
+@param dep  Puntatore alla data di partenza (modificata se riporto necessario)
+@param arr  Puntatore alla data di arrivo
+@return     Differenza in mesi (0-11)
  */
 int month(data* dep, data* arr){
     int simple_sum = (*arr).month - (*dep).month;
@@ -161,12 +148,12 @@ int month(data* dep, data* arr){
     return simple_sum;
 }
 
-/**
- * Calcola la differenza in anni (sempre positiva)
- * 
- * @param dep  Puntatore alla data di partenza
- * @param arr  Puntatore alla data di arrivo
- * @return     Differenza assoluta in anni
+/* *
+Calcola la differenza in anni (sempre positiva)
+
+@param dep  Puntatore alla data di partenza
+@param arr  Puntatore alla data di arrivo
+@return     Differenza assoluta in anni
  */
 int year(data* dep, data* arr){
     int simple_sum = (*arr).year - (*dep).year;
@@ -178,13 +165,13 @@ int year(data* dep, data* arr){
     return simple_sum;
 }
 
-/**
- * Funzione principale per la calcolatrice temporale della DeLorean
- * 
- * Simula i viaggi nel tempo di Doc Brown e Marty McFly:
- * - 1985: Anno di partenza originale
- * - 2015: Futuro visitato nel secondo film
- * - 1885: Vecchio West nel terzo film
+/* *
+Function principale per la calcolatrice temporale della DeLorean
+
+Simula i viaggi nel tempo di Doc Brown e Marty McFly:
+- 1985: Anno di partenza originale
+- 2015: Futuro visitato nel secondo film
+- 1885: Vecchio West nel terzo film
  */
 int main(){
     data dep_date, arr_date;
@@ -234,11 +221,11 @@ int main(){
     return 0;
 }
 
-/*
- * Note tecniche:
- * - Il calcolo dei giorni per mese ha problemi di logica nella gestione dei casi
- * - La gestione degli anni bisestili è corretta ma potrebbe essere migliorata
- * - Le funzioni modificano i parametri di input, il che può causare confusione
- * - Sarebbe meglio utilizzare strutture dati separate per i calcoli
- * - Il formato di input potrebbe essere validato meglio
+/* 
+Note tecniche:
+- Il calcolo dei giorni per mese ha problemi di logica nella gestione dei casi
+- La gestione degli anni bisestili è corretta ma potrebbe essere migliorata
+- Le funzioni modificano i parametri di input, il che può causare confusione
+- Sarebbe meglio utilizzare strutture dati separate per i calcoli
+- Il formato di input potrebbe essere validato meglio
  */

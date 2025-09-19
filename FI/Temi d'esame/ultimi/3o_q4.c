@@ -1,46 +1,32 @@
-/*
- * File: 3o_q4.c
- * Descrizione: Tema d'esame - Questione 4
- *              Verifica proprietà di ordinamento posizionale in matrice
- * Autore: Studente FI  
- * Data: Tema d'esame
- * Contesto: Fondamenti di Informatica - Elaborazione matrici bidimensionali
- * 
- * Funzionalità:
- * - Verifica che gli indici dei massimi di righe consecutive siano crescenti
- * - Implementa algoritmo di controllo posizionale su matrice
- * - Restituisce 1 se la proprietà è rispettata, 0 altrimenti
- * 
- * Note: Possibile confusione nell'uso di parametri (row_elem vs col_elem)
- */
+/* 3o_q4.c - C source file. */
 
 #include <stdio.h>
-#define ROW 3  // Numero di righe della matrice
-#define COL 4  // Numero di colonne della matrice
+#define ROW 3  // Numero di righe della matrix
+#define COL 4  // Numero di colonne della matrix
 
-/**
- * Funzione per verificare proprietà di ordinamento posizionale
- * 
- * Algoritmo:
- * 1. Per ogni coppia di righe consecutive
- * 2. Trova l'indice dell'elemento massimo in ciascuna riga  
- * 3. Verifica che l'indice della riga successiva sia maggiore
- * 4. Restituisce 1 solo se la proprietà vale per tutte le coppie
- * 
- * @param mat       Matrice bidimensionale da analizzare
- * @param row_elem  Numero di colonne (parametro confuso nel nome)
- * @param col_elem  Numero di righe (parametro confuso nel nome) 
- * @return          1 se proprietà rispettata, 0 altrimenti
+/* *
+Function per verificare proprietà di ordinamento posizionale
+
+Algoritmo:
+1. Per ogni coppia di righe consecutive
+2. Trova l'indice dell'elemento massimo in ciascuna row
+3. Verifica che l'indice della row successiva sia maggiore
+4. Restituisce 1 solo se la proprietà vale per tutte le coppie
+
+@param mat       Matrice bidimensionale da analizzare
+@param row_elem  Numero di colonne (parametro confuso nel nome)
+@param col_elem  Numero di righe (parametro confuso nel nome)
+@return          1 se proprietà rispettata, 0 altrimenti
  */
 int advanced(int mat[][COL], int row_elem, int col_elem){
-    int k=0, l=0;        // Indici dei massimi: k per riga corrente+1, l per riga corrente
+    int k=0, l=0;        // Indici dei massimi: k per row corrente+1, l per row corrente
     int state=0;         // Stato finale: 1 se proprietà rispettata
 
     // === CICLO SU COPPIE DI RIGHE CONSECUTIVE ===
     for (int j=0; j<col_elem-1; j++) {
         
         // === TROVA MASSIMO NELLA RIGA CORRENTE ===
-        l = 0;  // Reset indice massimo riga corrente
+        l = 0;  // Reset indice massimo row corrente
         for (int i=0; i<row_elem; i++) {
             if (mat[j][i]>mat[j][l]) {
                 l=i;  // Aggiorna indice del massimo
@@ -48,7 +34,7 @@ int advanced(int mat[][COL], int row_elem, int col_elem){
         }
         
         // === TROVA MASSIMO NELLA RIGA SUCCESSIVA ===
-        k = 0;  // Reset indice massimo riga successiva
+        k = 0;  // Reset indice massimo row successiva
         for (int i=0; i<row_elem; i++) {
             if (mat[j+1][i]>mat[j+1][k]) {
                 k=i;  // Aggiorna indice del massimo
@@ -59,15 +45,15 @@ int advanced(int mat[][COL], int row_elem, int col_elem){
         if(l<k){
             state=1;  // Indice crescente: proprietà rispettata per questa coppia
         } else {
-            state=0;  // Proprietà violata: termina con fallimento
+            state=0;  // Proprietà violata: terminates con fallimento
             break;    // NOTA: manca break esplicito, l'ultimo controllo prevale
         }
     }
     return state;
 }
 
-/**
- * Funzione principale - test dell'algoritmo di verifica proprietà matrice
+/* *
+Function principale - test dell'algoritmo di verifica proprietà matrix
  */
 int main(){
     // === MATRICE DI TEST ===

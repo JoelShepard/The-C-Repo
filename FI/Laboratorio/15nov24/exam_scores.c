@@ -1,16 +1,4 @@
-/**
- * File: exam_scores.c
- * Descrizione: Programma per gestire i risultati di esami universitari
- *              salva cognome, matricola e voto in un file binario CSV
- * Autore: [Studente]
- * Data: 15-11-2024
- * Laboratorio: Gestione file binari e strutture dati per registrazione esami
- * 
- * Funzionalità:
- * - Acquisizione dati di N candidati (nome, matricola, voto)
- * - Salvataggio in formato CSV nel file "esiti.bin"
- * - Validazione dell'apertura del file
- */
+/* exam_scores.c - C source file. */
 
 #include <stdio.h>
 #include <string.h>
@@ -18,8 +6,8 @@
 #define NLEN 14                           // Lunghezza massima per il cognome
 #define N 5                               // Numero di candidati da registrare
 
-/**
- * Struttura per rappresentare il risultato di un esame
+/* *
+Struttura per rappresentare il risultato di un esame
  */
 typedef struct {
     char name[NLEN];                      // Cognome del candidato
@@ -27,11 +15,11 @@ typedef struct {
     int score;                            // Voto dell'esame (0-30)
 } exam;
 
-/**
- * Funzione principale per la registrazione degli esiti d'esame
- * 
- * Il programma acquisisce i dati di N candidati e li salva in un file CSV
- * con formato: cognome,matricola,voto
+/* *
+Function principale per la registrazione degli esiti d'esame
+
+Il programma acquisisce i dati di N candidati e li salva in un file CSV
+con formato: cognome,matricola,voto
  */
 int main(){
     FILE * mydb;                          // Puntatore al file di database
@@ -76,7 +64,7 @@ int main(){
         printf("✓ Dati salvati: %s (Matr: %d) - Voto: %d\n\n", 
                allexams[i].name, allexams[i].code, allexams[i].score);
         
-        i++;                              // Incrementa il contatore
+        i++;                              // Incrementa il counter
     }
     
     // CHIUSURA FILE: finalizzazione del salvataggio

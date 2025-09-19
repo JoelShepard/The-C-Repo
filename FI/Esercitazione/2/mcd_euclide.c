@@ -1,17 +1,12 @@
-/*
- * File: mcd_euclide.c
- * Descrizione: Calcolo del Massimo Comun Divisore usando l'algoritmo di Euclide
- * Autore: Studente FI
- * Data: Esercitazione 2
- */
+/* mcd_euclide.c - C source file. */
 
 #include <stdio.h>
 #include <limits.h>
 
-/**
- * Funzione principale che implementa l'algoritmo di Euclide per il calcolo del MCD
- * L'algoritmo si basa sulla proprietà: MCD(a,b) = MCD(b, a mod b)
- * @return 0 se l'esecuzione è avvenuta con successo
+/* *
+Function principale che implementa l'algoritmo di Euclide per il calcolo del MCD
+L'algoritmo si basa sulla proprietà: MCD(a,b) = MCD(b, a mod b)
+@return 0 se l'esecuzione è avvenuta con successo
  */
 int main(){
    // Inizializzazione delle variabili

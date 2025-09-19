@@ -1,3 +1,4 @@
+/* q4.c - C source file. */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +10,7 @@ typedef struct Nodo {
 
 typedef Nodo* Lista;
 
-// Funzione per creare un nuovo nodo
+// Function per creare un nuovo nodo
 Nodo* creaNodo(int valore) {
     Nodo* nuovoNodo = (Nodo*)malloc(sizeof(Nodo));
     if (nuovoNodo == NULL) {
@@ -21,7 +22,7 @@ Nodo* creaNodo(int valore) {
     return nuovoNodo;
 }
 
-// Funzione per aggiungere un elemento alla lista
+// Function per addsre un elemento alla lista
 Lista aggiungiElemento(Lista testa, int valore) {
     Nodo* nuovoNodo = creaNodo(valore);
     if (testa == NULL) {
@@ -35,7 +36,7 @@ Lista aggiungiElemento(Lista testa, int valore) {
     return testa;
 }
 
-// Funzione per stampare la lista
+// Function per printsre la lista
 void stampaLista(Lista testa) {
     Nodo* temp = testa;
     while (temp != NULL) {
@@ -45,7 +46,7 @@ void stampaLista(Lista testa) {
     printf("NULL\n");
 }
 
-// Funzione Lista MaggioriDiTuttiISuccessori
+// Function Lista MaggioriDiTuttiISuccessori
 Lista ListaMaggioriDiTuttiISuccessori(Lista testa) {
     if (testa == NULL || testa->prossimo == NULL) {
         return testa; // Lista vuota o con un solo elemento

@@ -1,51 +1,19 @@
-/*
- * =============================================================================
- * GIOCO DEL TRIS (TIC-TAC-TOE) - VERSIONE CONSOLE
- * =============================================================================
- * 
- * Descrizione:
- * Implementazione completa del classico gioco del tris per due giocatori.
- * Il gioco presenta un'interfaccia testuale con menu interattivo e controllo
- * automatico delle condizioni di vittoria.
- * 
- * Autore: Studente FI
- * Data: 15 novembre 2024
- * Corso: Fondamenti di Informatica - Laboratorio
- * 
- * Funzionalità implementate:
- * - Griglia di gioco 3x3 gestita con matrice
- * - Alternanza turni tra due giocatori
- * - Validazione mosse (controllo caselle occupate)
- * - Controllo vittoria: righe, colonne, diagonali
- * - Visualizzazione griglia aggiornata dopo ogni mossa
- * 
- * Rappresentazione:
- * - 0: casella vuota (mostrata come '0')
- * - 1: giocatore 1 (mostrato come 'X')
- * - 2: giocatore 2 (mostrato come 'O')
- * 
- * Note tecniche:
- * - Usa coordinate 1-3 per input utente (convertite a 0-2 internamente)
- * - Manca controllo pareggio
- * - Codice duplicato per visualizzazione griglia
- * 
- * =============================================================================
- */
+/* tic_tac_toe.c - C source file. */
 
 #include <stdio.h>
 
-/*
- * Struttura per rappresentare coordinate bidimensionali
- * Utilizzata per memorizzare le mosse dei giocatori
+/* 
+Struttura per rappresentare coordinate bidimensionali
+Utilizzata per memorizzare le mosse dei giocatori
  */
 typedef struct{
-    int x;  // Coordinata x (riga)
-    int y;  // Coordinata y (colonna)
+    int x;  // Coordinata x (row)
+    int y;  // Coordinata y (column)
 } Coord;
 
-/*
- * Funzione principale che gestisce il ciclo di gioco
- * e l'interfaccia utente del tris
+/* 
+Function principale che gestisce il ciclo di gioco
+e l'interfaccia utente del tris
  */
 int main(){
     int game[3][3] = {0}, i, j, cmd;  // Griglia gioco + variabili controllo
@@ -140,7 +108,7 @@ int main(){
         // CONTROLLO CONDIZIONI DI VITTORIA
         // ===============================================
         
-        // CONTROLLO RIGHE: verifica se una riga è completamente occupata da un giocatore
+        // CONTROLLO RIGHE: verifica se una row è completamente occupata da un giocatore
         for(i = 0; i < 3; i++) {
             if(game[i][0] == game[i][1] && game[i][1] == game[i][2]) {
                 if(game[i][0] == 1) {
@@ -153,7 +121,7 @@ int main(){
             }
         }
         
-        // CONTROLLO COLONNE: verifica se una colonna è completamente occupata da un giocatore
+        // CONTROLLO COLONNE: verifica se una column è completamente occupata da un giocatore
         for(j = 0; j < 3; j++) {
             if(game[0][j] == game[1][j] && game[1][j] == game[2][j]) {
                 if(game[0][j] == 1) {
@@ -188,12 +156,12 @@ int main(){
             }
         }
         
-        /*
-         * NOTE DI MIGLIORAMENTO:
-         * 1. Aggiungere controllo pareggio (tutte caselle occupate, nessun vincitore)
-         * 2. Creare funzione separata per visualizzazione griglia (evitare duplicazione)
-         * 3. Aggiungere validazione input (coordinate fuori range)
-         * 4. Creare funzioni separate per controllo vittoria
-         */
+/* 
+NOTE DI MIGLIORAMENTO:
+1. Aggiungere controllo pareggio (tutte caselle occupate, nessun vincitore)
+2. Creare funzione separata per visualizzazione griglia (evitare duplicazione)
+3. Aggiungere validazione input (coordinate fuori range)
+4. Creare funzioni separate per controllo vittoria
+ */
     }  // Fine ciclo while(1)
 }

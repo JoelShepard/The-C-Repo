@@ -1,26 +1,16 @@
-/**
- * File: mcd_gpt.c
- * Descrizione: Calcolo del Massimo Comune Divisore (MCD) tra due numeri
- *              utilizzando il metodo di ricerca esaustiva con ciclo while
- * Autore: [Docente/AI Assistant]
- * Data: 03-10-2024
- * Lezione: Algoritmi di base - MCD con approccio iterativo
- * 
- * Algoritmo: Metodo di forza bruta che testa tutti i possibili divisori
- * da 1 fino al minimo tra i due numeri
- */
+/* mcd_gpt.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Funzione principale per calcolare il MCD di due numeri interi
- * 
- * Metodo utilizzato: Ricerca esaustiva
- * - Testa tutti i numeri da 1 al minimo tra num1 e num2
- * - Per ogni numero i, verifica se divide entrambi i numeri
- * - L'ultimo divisore comune trovato è il MCD
- * 
- * Complessità temporale: O(min(num1, num2))
+/* *
+Function principale per calcolare il MCD di due numeri interi
+
+Metodo utilizzato: Ricerca esaustiva
+- Testa tutti i numeri da 1 al minimo tra num1 e num2
+- Per ogni numero i, verifica se divide entrambi i numeri
+- L'ultimo divisore comune trovato è il MCD
+
+Complessità temporale: O(min(num1, num2))
  */
 int main() {
     // VARIABILI
@@ -56,10 +46,10 @@ int main() {
     return 0;
 }
 
-/*
- * Note tecniche:
- * - Questo algoritmo è semplice ma non efficiente per numeri grandi
- * - L'algoritmo di Euclide sarebbe più efficiente: O(log(min(num1, num2)))
- * - Il risultato è sempre corretto per numeri positivi
- * - Il MCD di due numeri è sempre >= 1 (il numero 1 divide sempre tutto)
+/* 
+Note tecniche:
+- Questo algoritmo è semplice ma non efficiente per numeri grandi
+- L'algoritmo di Euclide sarebbe più efficiente: O(log(min(num1, num2)))
+- Il risultato è sempre corretto per numeri positivi
+- Il MCD di due numeri è sempre >= 1 (il numero 1 divide sempre tutto)
  */

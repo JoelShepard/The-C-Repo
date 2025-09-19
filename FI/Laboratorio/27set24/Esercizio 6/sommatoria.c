@@ -1,39 +1,11 @@
-/**
- * ================================================================
- * CALCOLATORE SOMMATORIA DI SERIE ARMONICA
- * ================================================================
- * 
- * Descrizione:
- *   Programma per il calcolo della sommatoria di una serie armonica
- *   tra due estremi specificati dall'utente. La formula calcolata è:
- *   S = 1/q + 1/(q+1) + 1/(q+2) + ... + 1/r
- *   dove q è l'estremo inferiore e r quello superiore.
- * 
- * Funzionalità:
- *   - Acquisizione interattiva degli estremi della sommatoria
- *   - Validazione che gli estremi siano positivi e q ≤ r
- *   - Calcolo iterativo della sommatoria armonica
- *   - Utilizzo di aritmetica floating-point per precisione
- *   - Visualizzazione del risultato finale
- *
- * Formula matematica: Σ(k=q to r) 1/k
- *
- * Autore: Joel (Laboratorio del 27 settembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Utilizza float per gestire risultati frazionari
- *   - Algoritmo iterativo con complessità O(r-q+1)
- *   - Validazione input per evitare divisioni per zero
- * ================================================================
- */
+/* sommatoria.c - C source file. */
 
 #include <stdio.h>  // Per printf, scanf
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - CALCOLO SOMMATORIA ARMONICA
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - CALCOLO SOMMATORIA ARMONICA
+================================================================
  */
 int main(){
     // Variabili per gli estremi della sommatoria
@@ -71,7 +43,7 @@ int main(){
     // Ciclo per calcolare: Σ(k=q to r) 1/k
     while(iter >= 0){
         tot = tot + (1.0 / q);  // Aggiunge 1/q al totale (cast a float)
-        iter--;                 // Decrementa contatore iterazioni
+        iter--;                 // Decrementa counter iterazioni
         q++;                    // Passa al prossimo termine della serie
     }
     

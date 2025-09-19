@@ -1,60 +1,40 @@
-/*
- * File: example.c
- * Descrizione: Funzione ricorsiva per separare caratteri maiuscoli e minuscoli
- *              da una stringa, contando i caratteri non alfabetici
- * Autore: Studente FI
- * Data: Esempio di programmazione
- */
+/* example.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Funzione ricorsiva che separa i caratteri maiuscoli e minuscoli di una stringa
- * @param s[] stringa di input da analizzare
- * @param up[] array per raccogliere i caratteri maiuscoli
- * @param low[] array per raccogliere i caratteri minuscoli
- * @return numero di caratteri non alfabetici trovati
- */
+/* Fill `up` with uppercase and `low` with lowercase letters from `s`.
+Returns count of non-alphabetic characters (recursive). */
 int distingui(char s[], char up[], char low[]) {
-    // Caso base: se la stringa è vuota, termina la ricorsione
     if (*s == '\0') {
-        return 0; // Caso base: stringa vuota
+        return 0;
     }
 
-    char c = *s; // Carattere corrente
-    
-    if (c >= 'A' && c <= 'Z') { 
-        // Carattere maiuscolo: aggiunge a up[] e continua ricorsivamente
+    char c = *s;
+
+    if (c >= 'A' && c <= 'Z') {
         *up = c;
         return distingui(s + 1, up + 1, low);
-    } else if (c >= 'a' && c <= 'z') { 
-        // Carattere minuscolo: aggiunge a low[] e continua ricorsivamente
+    } else if (c >= 'a' && c <= 'z') {
         *low = c;
         return distingui(s + 1, up, low + 1);
-    } else { 
-        // Carattere non alfabetico: incrementa il contatore e continua
+    } else {
         return 1 + distingui(s + 1, up, low);
     }
 }
 
-/**
- * Funzione principale per testare la funzione distingui
- */
-int main(){
-    // Stringa di test con caratteri misti
+/* Test: print up to 5 uppercase and 5 lowercase characters found.
+Note: the buffers are not null-terminatested. */
+int main(void) {
     char s[] = "2Ew?jm7y9TR£";
-    char low[5], up[5]; // Array per caratteri minuscoli e maiuscoli
+    char low[5], up[5];
 
-    // Chiama la funzione ricorsiva
     distingui(s, up, low);
 
-    // Stampa i caratteri maiuscoli trovati
-    for (int i=0; i<5; i++) {
+    for (int i = 0; i < 5; i++)
         printf("%c ", up[i]);
-    }
-    
-    // Stampa i caratteri minuscoli trovati
-    for (int i=0; i<5; i++) {
+
+    for (int i = 0; i < 5; i++)
         printf("%c ", low[i]);
-    }
+
+    return 0;
 }

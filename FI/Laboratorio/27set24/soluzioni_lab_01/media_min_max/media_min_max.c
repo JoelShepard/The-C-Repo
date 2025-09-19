@@ -1,3 +1,4 @@
+/* media_min_max.c - C source file. */
 #include <stdio.h>
 
 int main()

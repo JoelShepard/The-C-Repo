@@ -1,58 +1,32 @@
-/**
- * ================================================================
- * LETTORE E PROCESSORE DI LABIRINTI DA FILE CSV
- * ================================================================
- * 
- * Descrizione:
- *   Programma per la lettura e gestione di labirinti rappresentati in formato
- *   CSV come matrici quadrate di 0 (passaggio libero) e 1 (muro/ostacolo).
- *   Il programma valida il formato del file e costruisce una rappresentazione
- *   in memoria del labirinto.
- * 
- * Funzionalità:
- *   - Lettura da file CSV "labirinto.csv"
- *   - Validazione caratteri (solo 0, 1, virgole, newline)
- *   - Verifica che la matrice sia quadrata
- *   - Allocazione dinamica della matrice bidimensionale
- *   - Gestione errori di formato e memoria
- *
- * Autore: Joel (Laboratorio del 13 dicembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Utilizza sqrt() per determinare dimensioni matrice quadrata
- *   - Allocazione dinamica con controllo errori e cleanup
- *   - Formato CSV: valori separati da virgole, righe da newline
- * ================================================================
- */
+/* 2_labirinto.c - C source file. */
 
 #include <stdio.h>   // Per file I/O, printf
 #include <math.h>    // Per sqrt() - calcolo radice quadrata
 #include <stdlib.h>  // Per malloc, free
 
-/**
- * ================================================================
- * FUNZIONE DI VALIDAZIONE E CONTEGGIO ELEMENTI
- * ================================================================
- * 
- * Parametri:
- *   file - Puntatore al file CSV da analizzare
- * 
- * Ritorna:
- *   int - Numero totale di elementi validi (0 e 1), -1 se formato invalido
- * 
- * Funzionalità:
- *   - Conta tutti gli elementi 0 e 1 nel file
- *   - Valida che il file contenga solo caratteri permessi
- *   - Ignora separatori (virgole) e newline
- *   - Riporta errore per caratteri non validi
+/* *
+================================================================
+FUNZIONE DI VALIDAZIONE E CONTEGGIO ELEMENTI
+================================================================
+
+Parametri:
+file - Puntatore al file CSV da analizzare
+
+Ritorna:
+int - Numero totale di elementi validi (0 e 1), -1 se formato invalido
+
+Features:
+- Conta tutti gli elementi 0 e 1 nel file
+- Valida che il file contenga solo characters permessi
+- Ignora separatori (virgole) e newline
+- Riporta errore per characters non validi
  */
 int count_check(FILE* file){
     rewind(file);  // Torna all'inizio del file per analisi completa
     int count = 0; // Contatore elementi validi
-    char c;        // Carattere corrente in lettura
+    char c;        // Character corrente in lettura
     
-    // Scansione carattere per carattere del file
+    // Scansione character per character del file
     while ((c = getc(file)) != EOF) {
         if (c == '1'){
             count++;  // Conta muri/ostacoli
@@ -61,36 +35,36 @@ int count_check(FILE* file){
         } if (c == ',') {
             continue; // Ignora separatori CSV
         } if (c == '\n') {
-            continue; // Ignora fine riga
+            continue; // Ignora fine row
         } if (c != '1' && c != '0' && c != '\n' && c != ',') {
-            return -1; // Carattere non valido trovato
+            return -1; // Character non valido trovato
         }
     }
     return count; // Restituisce numero totale elementi validi
 }
 
-/**
- * ================================================================
- * FUNZIONE DI COSTRUZIONE MATRICE DINAMICA
- * ================================================================
- * 
- * Parametri:
- *   lab - Puntatore al file CSV contenente il labirinto
- * 
- * Ritorna:
- *   int** - Puntatore alla matrice bidimensionale allocata dinamicamente
- *           NULL in caso di errore di allocazione
- * 
- * Funzionalità:
- *   - Calcola dimensioni della matrice quadrata (sqrt del numero elementi)
- *   - Alloca dinamicamente array di puntatori (righe)
- *   - Alloca dinamicamente ogni riga della matrice
- *   - Legge valori dal CSV e popola la matrice
- *   - Gestisce errori con cleanup completo della memoria
+/* *
+================================================================
+FUNZIONE DI COSTRUZIONE MATRICE DINAMICA
+================================================================
+
+Parametri:
+lab - Puntatore al file CSV contenente il labirinto
+
+Ritorna:
+int** - Puntatore alla matrix bidimensionale allocata dinamicamente
+NULL in caso di errore di allocazione
+
+Features:
+- Calcola dimensioni della matrix quadrata (sqrt del numero elementi)
+- Alloca dinamicamente array di puntatori (righe)
+- Alloca dinamicamente ogni row della matrix
+- Legge valori dal CSV e popola la matrix
+- Gestisce errori con cleanup completo della memoria
  */
 int** matrix(FILE* lab){
     int elems = count_check(lab);     // Numero totale di elementi
-    int rows = sqrt(count_check(lab)); // Dimensione matrice quadrata
+    int rows = sqrt(count_check(lab)); // Size matrix quadrata
     rewind(lab);                      // Torna all'inizio per lettura dati
     
     // ================================================================
@@ -127,14 +101,14 @@ int** matrix(FILE* lab){
         }
     }
 
-    return matrix; // Restituisce matrice completamente popolata
+    return matrix; // Restituisce matrix completamente popolata
 }
 
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - GESTIONE LABIRINTO
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - GESTIONE LABIRINTO
+================================================================
  */
 int main(){
     FILE* lab; // Puntatore al file del labirinto
@@ -148,7 +122,7 @@ int main(){
         return -1;
     }
 
-    // Validazione formato file (solo caratteri 0, 1, virgole, newline)
+    // Validazione formato file (solo characters 0, 1, virgole, newline)
     if (count_check(lab) == -1) {
         printf("Errore. Il file inserito contiene caratteri non validi.\n");
         return -1;
@@ -158,9 +132,9 @@ int main(){
     // FASE 2: VERIFICA MATRICE QUADRATA
     // ================================================================
     int n = count_check(lab);              // Numero totale elementi
-    int row = sqrt(n);                     // Dimensione lato matrice
+    int row = sqrt(n);                     // Size lato matrix
     
-    // Verifica che sqrt(n) sia un numero intero (matrice quadrata)
+    // Verifica che sqrt(n) sia un numero intero (matrix quadrata)
     if (sqrt(count_check(lab)) != (int)sqrt(count_check(lab))) {
         printf("Errore. La matrice non è quadrata.\n");
         return -1;
@@ -169,12 +143,12 @@ int main(){
     // ================================================================
     // FASE 3: COSTRUZIONE MATRICE IN MEMORIA
     // ================================================================
-    int** res = matrix(lab); // Costruisce la matrice dinamica del labirinto
+    int** res = matrix(lab); // Costruisce la matrix dinamica del labirinto
     
     // TODO: Aggiungere funzionalità di elaborazione del labirinto
-    // (es: ricerca percorsi, risoluzione, stampa)
+    // (es: ricerca percorsi, risoluzione, prints)
     
-    // Nota: Manca la deallocazione della memoria (memory leak)
+    // Note: Manca la deallocazione della memoria (memory leak)
     // Dovrebbe essere aggiunto cleanup con free() prima del return
 
     return 0;

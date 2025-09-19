@@ -1,36 +1,22 @@
-/*
- * File: 1o_q2.c
- * Descrizione: Tema d'esame - Questione 2  
- *              Conta ricorsivamente le occorrenze di una sequenza x,y in un array
- * Autore: Studente FI
- * Data: Tema d'esame
- * Contesto: Fondamenti di Informatica - Algoritmi ricorsivi su array
- * 
- * Funzionalità:
- * - Conta quante volte il valore y segue immediatamente il valore x
- * - Verifica prima che x esista nell'array
- * - Implementa ricorsione con controllo di validità
- * 
- * Note: Logica con possibili ottimizzazioni nel controllo di esistenza
- */
+/* 1o_q2.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Funzione ricorsiva per contare sequenze consecutive x,y in un array
- * 
- * Algoritmo:
- * 1. Verifica che x esista nell'array (controllo preliminare)
- * 2. Caso base: array vuoto -> ritorna 0
- * 3. Caso ricorsivo: se trova x seguito da y, incrementa contatore
- * 4. Continua ricorsione sul resto dell'array
- * 
- * @param a     Array di interi da analizzare
- * @param x     Primo valore della sequenza da cercare
- * @param y     Secondo valore della sequenza da cercare  
- * @param dim   Dimensione rimanente dell'array
- * @param flag  Flag di esistenza di x nell'array (0=non trovato, 1=trovato)
- * @return      Numero di occorrenze della sequenza x,y oppure -1 se x non esiste
+/* *
+Function recursive per contare sequenze consecutive x,y in un array
+
+Algoritmo:
+1. Verifica che x esista nell'array (controllo preliminare)
+2. Base case: array vuoto -> ritorna 0
+3. Case ricorsivo: se trova x seguito da y, increments counter
+4. Continua recursion sul resto dell'array
+
+@param a     Array di interi da analizzare
+@param x     Primo valore della sequenza da cercare
+@param y     Secondo valore della sequenza da cercare
+@param dim   Size rimanente dell'array
+@param flag  Flag di esistenza di x nell'array (0=non trovato, 1=trovato)
+@return      Numero di occorrenze della sequenza x,y oppure -1 se x non esiste
  */
 int itsfollowed(int a[], int x, int y, int dim, int flag){
 
@@ -53,21 +39,21 @@ int itsfollowed(int a[], int x, int y, int dim, int flag){
 
     // === CASO RICORSIVO: VERIFICA SEQUENZA ===
     if (*a == x && *(a+1)==y) {
-        // Sequenza x,y trovata: incrementa contatore e continua
+        // Sequenza x,y trovata: increments counter e continues
         return 1+itsfollowed(a+1, x, y, dim-1, flag);
     } else {
-        // Sequenza non trovata: continua senza incrementare
+        // Sequenza non trovata: continues senza incrementsre
         return 0+itsfollowed(a+1, x, y, dim-1, flag);
     }
 }
 
-/**
- * Funzione principale - test dell'algoritmo di conteggio sequenze
+/* *
+Function principale - test dell'algoritmo di conteggio sequenze
  */
 int main(){
     // === DATI DI TEST ===
     int a[]={2,3,4,5,2,3,4,6,2,3};  // Array: contiene sequenze 2,3 (posizioni 0-1, 4-5, 8-9)
-    int dim = 10;                    // Dimensione array
+    int dim = 10;                    // Size array
 
     // === ESECUZIONE E OUTPUT ===
     // Cerca sequenza 7,5: 7 non esiste nell'array -> dovrebbe ritornare -1

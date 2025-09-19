@@ -1,24 +1,17 @@
-/*
- * File: exe1.1.c
- * Descrizione: Programma per ordinare una sequenza di numeri in ordine crescente
- *              Utilizza un algoritmo di ordinamento simile al selection sort
- * Autore: Studente FI
- * Data: 18 ottobre 2024 - Esercitazione
- * Note: Implementazione da migliorare (vedi commento finale)
- */
+/* exe1.1.c - C source file. */
 
 #include <stdio.h>
 
-#define DEFAULT_DIM 100  // Dimensione massima dell'array
+#define DEFAULT_DIM 100  // Size massima dell'array
 
-/**
- * Funzione principale che implementa l'ordinamento di un array di interi
+/* *
+Function principale che implementa l'ordinamento di un array di interi
  */
 int main(){
     // === DICHIARAZIONE VARIABILI ===
     int myarray[DEFAULT_DIM];           // Array per memorizzare i numeri
     int i=0, j=0, tmp1=0, tmp2=0;      // Indici e variabili temporanee per scambio
-    int size=0;                        // Dimensione effettiva dell'array
+    int size=0;                        // Size effettiva dell'array
 
     // === INPUT DIMENSIONE ===
     printf("Inserisci la quantità di numeri da ordinare:");
@@ -59,4 +52,4 @@ int main(){
     return 0;
 }
 
-// Nota originale: "prova a sistemare" - L'algoritmo può essere ottimizzato
+// Note originale: "prova a sistemare" - L'algoritmo può essere ottimizzato

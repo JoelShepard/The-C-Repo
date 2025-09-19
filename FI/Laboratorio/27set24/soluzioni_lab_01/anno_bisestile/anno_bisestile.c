@@ -1,42 +1,11 @@
-/**
- * ================================================================
- * VERIFICA ANNO BISESTILE - ALGORITMO GREGORIANO
- * ================================================================
- * 
- * Descrizione:
- *   Programma per determinare se un anno inserito dall'utente è bisestile
- *   secondo le regole del calendario gregoriano. Implementa l'algoritmo
- *   completo che considera le eccezioni per i multipli di 100 e 400.
- * 
- * Funzionalità:
- *   - Acquisizione sicura dell'anno con validazione input
- *   - Controllo che l'anno sia un numero positivo
- *   - Applicazione delle regole gregoriane per anni bisestili
- *   - Gestione errori per input non numerici
- *   - Messaggi informativi chiari per l'utente
- *
- * Regole calendario gregoriano:
- *   1. Anno divisibile per 4 → bisestile
- *   2. ECCETTO se divisibile per 100 → non bisestile  
- *   3. ECCETTO se divisibile per 400 → bisestile
- *   Formula: (anno % 4 == 0 && anno % 100 != 0) || (anno % 400 == 0)
- *
- * Autore: Soluzione ufficiale (Laboratorio del 27 settembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Validazione robusta con controllo valore di ritorno scanf
- *   - Logica booleana compatta per regole complesse
- *   - Gestione casi edge (anni secolari) corretta
- * ================================================================
- */
+/* anno_bisestile.c - C source file. */
 
 #include <stdio.h>  // Per printf, scanf
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - VERIFICA ANNO BISESTILE
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - VERIFICA ANNO BISESTILE
+================================================================
  */
 int main() {
     int anno;  // Anno da verificare

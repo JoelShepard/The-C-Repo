@@ -1,29 +1,23 @@
-/*
- * File: char_freq.c
- * Descrizione: Programma che analizza la frequenza dei caratteri in un file di testo
- *              e determina quale lettera compare più frequentemente
- * Autore: Studente FI
- * Data: Esercizi personali
- */
+/* char_freq.c - C source file. */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-/**
- * Funzione che calcola le frequenze dei caratteri e trova quello più frequente
- * @param file Puntatore al file da analizzare
- * @param let Array di 26 elementi per contare le occorrenze di ogni lettera
- * @return Carattere più frequente nel file
+/* *
+Function che calcola le frequenze dei characters e trova quello più frequente
+@param file Puntatore al file da analizzare
+@param let Array di 26 elementi per contare le occorrenze di ogni lettera
+@return Character più frequente nel file
  */
 char freq(FILE* file, int* let){
-    char buffer;        // Buffer per leggere caratteri dal file
-    int max=0;         // Indice del carattere più frequente
+    char buffer;        // Buffer per leggere characters dal file
+    int max=0;         // Indice del character più frequente
     
     // === CONTEGGIO DELLE FREQUENZE ===
-    // Legge carattere per carattere dal file
+    // Legge character per character dal file
     while ((buffer = fgetc(file)) != EOF) {
-        // Incrementa il contatore per la lettera corrente
-        // Nota: Assumo solo lettere minuscole 'a'-'z'
+        // Incrementa il counter per la lettera corrente
+        // Note: Assumo solo lettere minuscole 'a'-'z'
         if (buffer >= 'a' && buffer <= 'z') {
             let[buffer-'a']+=1;
         }
@@ -37,15 +31,15 @@ char freq(FILE* file, int* let){
         }
     }
     
-    // Converte l'indice nel carattere corrispondente
+    // Converte l'indice nel character corrispondente
     char top = max + 'a';
     return top;
 }
 
-/**
- * Funzione principale che gestisce l'apertura del file e l'output
- * @param argc Numero di argomenti da linea di comando
- * @param argv Array degli argomenti (argv[1] deve essere il nome del file)
+/* *
+Function principale che gestisce l'apertura del file e l'output
+@param argc Numero di argomenti da linea di comando
+@param argv Array degli argomenti (argv[1] deve essere il nome del file)
  */
 int main(int argc, char* argv[]){
     // === VALIDAZIONE ARGOMENTI ===

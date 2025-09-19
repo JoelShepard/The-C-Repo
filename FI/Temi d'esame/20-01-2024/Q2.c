@@ -1,3 +1,4 @@
+/* Q2.c - C source file. */
 #include <stdio.h>
 #include <string.h>
 #define MAX_PROD 100

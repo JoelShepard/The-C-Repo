@@ -1,17 +1,11 @@
-/*
- * File: ipotenusa.c
- * Descrizione: Calcolo dell'ipotenusa di un triangolo rettangolo 
- *              utilizzando il teorema di Pitagora: i² = c1² + c2²
- * Autore: Studente FI
- * Data: Esercitazione 1
- */
+/* ipotenusa.c - C source file. */
 
 #include <stdio.h>
 #include <math.h>
 
-/**
- * Funzione principale che calcola l'ipotenusa di un triangolo rettangolo
- * Formula utilizzata: ipotenusa = sqrt(cateto1² + cateto2²)
+/* *
+Function principale che calcola l'ipotenusa di un triangolo rettangolo
+Formula utilizzata: ipotenusa = sqrt(cateto1² + cateto2²)
  */
 int main(){
     // === DICHIARAZIONE VARIABILI ===

@@ -1,35 +1,23 @@
-/**
- * File: perimetro_poligoni.c
- * Descrizione: Programma per calcolare il perimetro di un poligono dato
- *              un insieme di vertici con coordinate cartesiane
- * Autore: [Docente/Studente]
- * Data: 25-10-2024
- * Lezione: Geometria computazionale - calcolo perimetri
- * 
- * Algoritmo: 
- * 1. Acquisisce n vertici con coordinate (x,y)
- * 2. Calcola la distanza euclidea tra vertici consecutivi
- * 3. Include la distanza dall'ultimo al primo vertice per chiudere il poligono
- */
+/* perimetro_poligoni.c - C source file. */
 
 #include <stdio.h>
 #include <math.h>
 
 #define MAX 100                           // Numero massimo di vertici supportati
 
-/**
- * Struttura per rappresentare un punto nel piano cartesiano
+/* *
+Struttura per rappresentare un punto nel piano cartesiano
  */
 typedef struct{
     float x;                              // Coordinata x del punto
     float y;                              // Coordinata y del punto
 } punto;
 
-/**
- * Funzione principale per calcolare il perimetro di un poligono
- * 
- * Il perimetro è la somma delle distanze tra tutti i vertici consecutivi,
- * includendo la distanza dall'ultimo vertice al primo per chiudere la figura
+/* *
+Function principale per calcolare il perimetro di un poligono
+
+Il perimetro è la somma delle distanze tra tutti i vertici consecutivi,
+includendo la distanza dall'ultimo vertice al primo per chiudere la figura
  */
 int main(){
     // VARIABILI

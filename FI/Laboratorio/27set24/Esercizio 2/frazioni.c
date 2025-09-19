@@ -1,37 +1,11 @@
-/**
- * ================================================================
- * CALCOLATORE SOMMA DI FRAZIONI
- * ================================================================
- * 
- * Descrizione:
- *   Programma per eseguire la somma di due frazioni inserite dall'utente.
- *   Il programma acquisisce numeratore e denominatore di entrambe le frazioni,
- *   esegue controlli di validità (denominatore non nullo, frazioni positive)
- *   e calcola la somma utilizzando la regola matematica standard.
- * 
- * Funzionalità:
- *   - Acquisizione interattiva di due frazioni
- *   - Validazione denominatori diversi da zero
- *   - Controllo che le frazioni siano positive
- *   - Calcolo somma: a1/b1 + a2/b2 = (a1*b2 + a2*b1)/(b1*b2)
- *   - Visualizzazione risultato in formato frazione
- *
- * Autore: Joel (Laboratorio del 27 settembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Non esegue semplificazione della frazione risultante
- *   - Controlli di validità per frazioni negative
- *   - Algoritmo classico per somma frazioni
- * ================================================================
- */
+/* frazioni.c - C source file. */
 
 #include <stdio.h>  // Per printf, scanf
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - SOMMA FRAZIONI
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - SOMMA FRAZIONI
+================================================================
  */
 int main(){
     // Variabili per il risultato finale

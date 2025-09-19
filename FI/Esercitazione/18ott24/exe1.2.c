@@ -1,22 +1,16 @@
-/*
- * File: exe1.2.c
- * Descrizione: Programma che calcola la media di una sequenza eliminando i duplicati adiacenti
- *              Se ci sono due numeri uguali uno di fianco all'altro, li conta una sola volta
- * Autore: Studente FI
- * Data: 18 ottobre 2024 - Esercitazione
- */
+/* exe1.2.c - C source file. */
 
 #include <stdio.h>
 
-#define DEF_DIM 128  // Dimensione massima dell'array
+#define DEF_DIM 128  // Size massima dell'array
 
-/**
- * Funzione principale che elimina duplicati consecutivi e calcola la media
+/* *
+Function principale che elimina duplicati consecutivi e calcola la media
  */
 int main(){
     // === DICHIARAZIONE VARIABILI ===
     int myarray[DEF_DIM];       // Array per memorizzare i numeri
-    int size=0, sum=0, count=0, i=0;  // Dimensione, somma, contatore e indice
+    int size=0, sum=0, count=0, i=0;  // Size, somma, counter e indice
     float average=0.0;          // Media calcolata
 
     // === INPUT DIMENSIONE ===
@@ -43,7 +37,7 @@ int main(){
         // - È diverso dall'elemento precedente
         if (i == 0 || myarray[i] != myarray[i-1]) {
             sum += myarray[i];  // Aggiunge alla somma
-            count++;           // Incrementa il contatore degli elementi unici
+            count++;           // Incrementa il counter degli elementi unici
         }
     }
     

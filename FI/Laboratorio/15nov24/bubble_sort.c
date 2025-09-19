@@ -1,20 +1,14 @@
-/*
- * File: bubble_sort.c
- * Descrizione: Implementazione dell'algoritmo Bubble Sort per ordinare due array
- *              e successiva fusione degli array ordinati
- * Autore: Studente FI
- * Data: 15 novembre 2024
- */
+/* bubble_sort.c - C source file. */
 
 #include <stdio.h>
-#define N 3  // Dimensione degli array
+#define N 3  // Size degli array
 
-/**
- * Funzione principale che implementa:
- * 1. Input di due array
- * 2. Ordinamento con bubble sort
- * 3. Fusione degli array ordinati
- * 4. Conteggio di swap e confronti
+/* *
+Function principale che implementa:
+1. Input di due array
+2. Ordinamento con bubble sort
+3. Fusione degli array ordinati
+4. Conteggio di swap e confronti
  */
 int main(){
     // Dichiarazione delle variabili
@@ -22,7 +16,7 @@ int main(){
     int i=0, k=0, tmp=0, j=0;                                 // Indici e variabile temporanea
     int swap1=0, swap2=0, iter1=0, iter2=0;                  // Contatori per statistiche
     
-    // === SEZIONE INPUT ===
+    // === SECTION INPUT ===
     printf("Inserisci i valori nel primo array:\n");
     for (i=0; i<N; i++) {
         scanf("%d", &myarray1[i]);
@@ -36,14 +30,14 @@ int main(){
     // Algoritmo bubble sort: confronta elementi adiacenti e li scambia se necessario
     for (j=0; j<N-1; j++) {                    // N-1 passate
         for (i=0; i<N; i++) {                  // Scorre l'array
-            iter1+=2;                          // Incrementa contatore iterazioni
+            iter1+=2;                          // Incrementa counter iterazioni
             if(i+1 == N){continue;}            // Evita di uscire dai bounds
             if (myarray1[i] > myarray1[i+1]) { // Se l'elemento corrente > successivo
                 // Scambia gli elementi
                 tmp=myarray1[i];
                 myarray1[i]=myarray1[i+1];
                 myarray1[i+1]=tmp;
-                swap1+=1;                      // Incrementa contatore scambi
+                swap1+=1;                      // Incrementa counter scambi
             }
         }
     }
@@ -51,14 +45,14 @@ int main(){
     // === BUBBLE SORT SECONDO ARRAY ===
     for (j=0; j<N-1; j++) {                    // N-1 passate
         for (i=0; i<N; i++) {                  // Scorre l'array
-            iter2+=1;                          // Incrementa contatore iterazioni
+            iter2+=1;                          // Incrementa counter iterazioni
             if(i+1 == N){continue;}            // Evita di uscire dai bounds
             if (myarray2[i] > myarray2[i+1]) { // Se l'elemento corrente > successivo
                 // Scambia gli elementi
                 tmp=myarray2[i];
                 myarray2[i]=myarray2[i+1];
                 myarray2[i+1]=tmp;
-                swap2+=1;                      // Incrementa contatore scambi
+                swap2+=1;                      // Incrementa counter scambi
             }
         }
     }
@@ -95,29 +89,29 @@ int main(){
         k++;
     }
 
-    // === SEZIONE OUTPUT ===
-    // Stampa il primo array ordinato
+    // === SECTION OUTPUT ===
+    // Prints il primo array ordinato
     printf("Array 1 ordinato è:\n ");
     for (i=0; i<N; i++) {
         printf("%d ", myarray1[i]);
     }
     printf("\n");
     
-    // Stampa il secondo array ordinato
+    // Prints il secondo array ordinato
     printf("Array 2 ordinato è:\n ");
     for (i=0; i<N; i++) {
         printf("%d ", myarray2[i]);
     }
     printf("\n");
     
-    // Stampa l'array risultante dalla fusione
+    // Prints l'array risultante dalla fusione
     printf("La loro unione ordinata è:\n ");
     for (i=0; i<2*N; i++) {
         printf("%d ", myarrayx2[i]);
     }
     printf("\n");
 
-    // Stampa le statistiche degli algoritmi
+    // Prints le statistiche degli algoritmi
     printf("Numero di swap effettuati\n - per ordinare Array 1: %d\n - per ordinare Array 2: %d\n", swap1, swap2);
     printf("Numero di controlli effettuati\n - per Array 1: %d\n - per Array 2: %d\n", iter1, iter2);
 }

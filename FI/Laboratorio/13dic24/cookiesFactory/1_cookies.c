@@ -1,20 +1,14 @@
-/*
- * File: 1_cookies.c
- * Descrizione: Generatore di frasi casuali ("fortune cookies") che combina elementi
- *              da 4 file di testo (azioni, cose, luoghi, momenti) per creare frasi random
- * Autore: Studente FI
- * Data: 13 dicembre 2024 - Laboratorio 5
- */
+/* 1_cookies.c - C source file. */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
-#define MAX_ROW 1024  // Dimensione massima per stringhe e buffer
+#define MAX_ROW 1024  // Size massima per stringhe e buffer
 
-/**
- * Struttura per nodo di lista concatenata che contiene stringhe
+/* *
+Struttura per nodo di lista concatenata che contiene stringhe
  */
 typedef struct my {
     char name[MAX_ROW];  // Contenuto del nodo (parola/frase)
@@ -23,37 +17,37 @@ typedef struct my {
 
 typedef Node* List;  // Alias per puntatore alla lista
 
-/**
- * Funzione per aprire un file in modalità lettura
- * @param filename Nome del file da aprire
- * @return Puntatore al file aperto
+/* *
+Function per aprire un file in modalità lettura
+@param filename Nome del file da aprire
+@return Puntatore al file aperto
  */
 FILE* open(char* filename){
     FILE* file = fopen(filename, "r");
     return file;
 }
 
-/**
- * Funzione per verificare se l'apertura del file è avvenuta con successo
- * @param file Puntatore al file da verificare
- * @return -1 se errore, 0 se successo
+/* *
+Function per verificare se l'apertura del file è avvenuta con successo
+@param file Puntatore al file da verificare
+@return -1 se errore, 0 se successo
  */
 int open_check(FILE* file){
     if (file == NULL) return -1;
     else return 0;
 }
 
-/**
- * Funzione per contare il numero di righe in un file
- * @param file Puntatore al file da analizzare
- * @return Numero di righe nel file
+/* *
+Function per contare il numero di righe in un file
+@param file Puntatore al file da analizzare
+@return Numero di righe nel file
  */
 int count_row(FILE* file){
     rewind(file);  // Torna all'inizio del file
     int count=0;
     char c;
     
-    // Conta i caratteri di nuova linea
+    // Conta i characters di nuova linea
     while ((c = getc(file)) != EOF) {
         if (c == '\n'){
             count++;
@@ -62,10 +56,10 @@ int count_row(FILE* file){
     return count;
 }
 
-/**
- * Funzione per creare una catena di n nodi collegati
- * @param list Puntatore al puntatore della lista (per modificare la testa)
- * @param n Numero di nodi da creare
+/* *
+Function per creare una catena di n nodi collegati
+@param list Puntatore al puntatore della lista (per modificare la testa)
+@param n Numero di nodi da creare
  */
 void create_nodes(Node** list, int n){
     *list = (Node*)malloc(sizeof(Node));
@@ -79,19 +73,19 @@ void create_nodes(Node** list, int n){
     tmp->next = NULL;  // Termina la lista
 }
 
-/**
- * Funzione per popolare la lista con le righe del file
- * @param list Lista da popolare
- * @param file File da cui leggere le righe
+/* *
+Function per popolare la lista con le righe del file
+@param list Lista da popolare
+@param file File da cui leggere le righe
  */
 void insert(List list, FILE* file){
     rewind(file);  // Torna all'inizio del file
     Node* tmp = list;
     char buffer[MAX_ROW];
 
-    // Legge ogni riga e la inserisce nel nodo corrente
+    // Legge ogni row e la inserisce nel nodo corrente
     while (fgets(buffer, MAX_ROW, file) != NULL) {
-        buffer[strcspn(buffer, "\n")] = '\0'; // Rimuove il carattere di nuova riga
+        buffer[strcspn(buffer, "\n")] = '\0'; // Rimuove il character di nuova row
         strcpy(tmp->name, buffer);
         tmp = tmp->next;
     }

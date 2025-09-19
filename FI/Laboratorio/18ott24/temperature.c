@@ -1,19 +1,13 @@
-/*
- * File: temperature.c
- * Descrizione: Programma per gestire temperature settimanali con calcolo di statistiche
- *              e visualizzazione grafica tramite istogramma
- * Autore: Studente FI
- * Data: 18 ottobre 2024
- */
+/* temperature.c - C source file. */
 
 #include <stdio.h>
 #include <limits.h>
 
 #define NUMGIORNI 7  // Numero di giorni della settimana
 
-/**
- * Funzione principale per l'analisi delle temperature settimanali
- * Calcola media, massimo, minimo e mostra un istogramma
+/* *
+Function principale per l'analisi delle temperature settimanali
+Calcola media, massimo, minimo e mostra un istogramma
  */
 int main() {
     // === DICHIARAZIONE VARIABILI ===

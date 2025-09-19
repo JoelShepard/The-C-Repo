@@ -1,44 +1,35 @@
-/**
- * File: q4.c
- * Descrizione: Programma per calcolare la durata di soggiorni alberghieri
- *              leggendo le date da file e calcolando le differenze in giorni
- * Autore: [Studente]  
- * Data: 02-09-2024
- * Tema d'esame: Gestione date e lettura da file per calcolo soggiorni
- * 
- * Commento originale: "errore per colpa di un -1 che non serviva. Stai attento nei for"
- */
+/* q4.c - C source file. */
 
 #include <stdio.h>
 #include <wchar.h>
 
-/**
- * Array con i giorni di ogni mese (considerando anno bisestile per febbraio)
- * Indici: 0=Gen, 1=Feb, 2=Mar, ..., 11=Dic
+/* *
+Array con i giorni di ogni mese (considerando anno bisestile per febbraio)
+Indici: 0=Gen, 1=Feb, 2=Mar, ..., 11=Dic
  */
 const int anno[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-/**
- * Struttura per rappresentare una data (giorno e mese)
+/* *
+Struttura per rappresentare una data (giorno e mese)
  */
 typedef struct {
     int giorno;                    // Giorno del mese (1-31)
     int mese;                      // Mese dell'anno (1-12)
 } Data;
 
-/**
- * Calcola la differenza in giorni tra due date dello stesso anno
- * 
- * @param a  Data di inizio del soggiorno
- * @param b  Data di fine del soggiorno  
- * @return   Numero di giorni di differenza, -1 se errore
- * 
- * Algoritmo:
- * 1. Validazione delle date
- * 2. Controllo dell'ordine cronologico
- * 3. Calcolo giorni rimanenti del mese di partenza
- * 4. Somma giorni dei mesi intermedi
- * 5. Aggiunta giorni del mese di arrivo
+/* *
+Calcola la differenza in giorni tra due date dello stesso anno
+
+@param a  Date di inizio del soggiorno
+@param b  Date di fine del soggiorno
+@return   Numero di giorni di differenza, -1 se errore
+
+Algoritmo:
+1. Validazione delle date
+2. Controllo dell'ordine cronologico
+3. Calcolo giorni rimanenti del mese di partenza
+4. Somma giorni dei mesi intermedi
+5. Aggiunta giorni del mese di arrivo
  */
 int differenza(Data a, Data b){
     // VALIDAZIONE: controllo giorni validi per ogni mese
@@ -81,14 +72,14 @@ int differenza(Data a, Data b){
     return diff;
 }
 
-/**
- * Funzione principale per elaborare il file dei soggiorni
- * 
- * @param argc  Numero di argomenti da linea di comando
- * @param argv  Array degli argomenti (argv[1] = nome file)
- * 
- * Formato file atteso: ogni riga contiene 4 numeri:
- * giorno_inizio mese_inizio giorno_fine mese_fine
+/* *
+Function principale per elaborare il file dei soggiorni
+
+@param argc  Numero di argomenti da linea di comando
+@param argv  Array degli argomenti (argv[1] = nome file)
+
+Formato file atteso: ogni row contiene 4 numeri:
+giorno_inizio mese_inizio giorno_fine mese_fine
  */
 int main(int argc, char* argv[]){
     FILE* file;
@@ -116,11 +107,11 @@ int main(int argc, char* argv[]){
     // RESET FILE: riporta il puntatore all'inizio
     rewind(file);
     
-    // ELABORAZIONE: legge e processa ogni riga del file
+    // ELABORAZIONE: legge e processa ogni row del file
     Data tmpa, tmpb;                       // Date temporanee per ogni soggiorno
     
     for (int i = 0; i < count; i++) {
-        // LETTURA: 4 valori per riga (giorno1 mese1 giorno2 mese2)
+        // LETTURA: 4 valori per row (giorno1 mese1 giorno2 mese2)
         fscanf(file, "%d %d %d %d", &tmpa.giorno, &tmpa.mese, &tmpb.giorno, &tmpb.mese);
         
         // CALCOLO: differenza in giorni tra le date

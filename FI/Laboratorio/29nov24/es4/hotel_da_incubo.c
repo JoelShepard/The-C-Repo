@@ -1,36 +1,4 @@
-/*
- * =============================================================================
- * HOTEL DA INCUBO - SISTEMA DI VALUTAZIONE E RANKING
- * =============================================================================
- * 
- * Descrizione:
- * Sistema completo per la valutazione di hotel basato su tre criteri:
- * servizio, pulizia e posizione. Il programma legge le valutazioni da file,
- * calcola i punteggi medi e identifica l'hotel con il punteggio più basso
- * ("hotel da incubo").
- * 
- * Autore: Studente FI
- * Data: 29 novembre 2024
- * Corso: Fondamenti di Informatica - Laboratorio
- * 
- * Funzionalità principali:
- * - Lettura valutazioni da file per ogni hotel
- * - Calcolo media ponderata per tre criteri
- * - Ordinamento hotel per punteggio
- * - Identificazione hotel peggiore
- * - Gestione dinamica memoria
- * 
- * Input formato:
- * - File index: lista nomi file hotel
- * - File hotel: intestazione + righe "servizio pulizia posizione"
- * 
- * Note tecniche:
- * - Uso di malloc/free per allocazione dinamica
- * - Algoritmo bubble sort per ordinamento
- * - Gestione parametri command line
- * 
- * =============================================================================
- */
+/* hotel_da_incubo.c - C source file. */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,9 +8,9 @@
 // Variabile globale per memorizzare nome hotel peggiore
 char looser_name[LEN];
 
-/*
- * Struttura per memorizzare i voti di una singola recensione
- * Tre criteri di valutazione: servizio, pulizia, posizione
+/* 
+Struttura per memorizzare i voti di una singola recensione
+Tre criteri di valutazione: servizio, pulizia, posizione
  */
 typedef struct{
     int serv;  // Voto servizio (1-10)
@@ -50,9 +18,9 @@ typedef struct{
     int pos;   // Voto posizione (1-10)
 } voto;
 
-/*
- * Struttura per memorizzare il punteggio complessivo di un hotel
- * Include nome file dell'hotel e punteggio medio calcolato
+/* 
+Struttura per memorizzare il punteggio complessivo di un hotel
+Include nome file dell'hotel e punteggio medio calcolato
  */
 typedef struct{
     char name[LEN];  // Nome file dell'hotel
@@ -63,20 +31,20 @@ typedef struct{
 float voto_hotel(char myhfilename[]);
 char* incubo(char index[]);
 
-/*
- * Funzione per calcolare il voto medio di un hotel
- * Legge le recensioni dal file e calcola la media dei tre criteri
- * 
- * Parametri:
- *   myhfilename[] - nome del file contenente le recensioni
- * 
- * Ritorna:
- *   float - punteggio totale medio dell'hotel
+/* 
+Function per calcolare il voto medio di un hotel
+Legge le recensioni dal file e calcola la media dei tre criteri
+
+Parametri:
+myhfilename[] - nome del file contenente le recensioni
+
+Ritorna:
+float - punteggio totale medio dell'hotel
  */
 float voto_hotel(char myhfilename[]){
     float avgserv, avgpul, avgpos, tot;  // Medie per categoria e totale
-    int sum=0, people=0;                 // Somma parziale e contatore recensioni
-    char buffer[1024], let;              // Buffer lettura e carattere temporaneo
+    int sum=0, people=0;                 // Somma parziale e counter recensioni
+    char buffer[1024], let;              // Buffer lettura e character temporaneo
     FILE*myhotel = fopen(myhfilename, "r");  // Apertura file hotel
 
     // Controllo errore apertura file
@@ -88,7 +56,7 @@ float voto_hotel(char myhfilename[]){
     // CONTEGGIO NUMERO RECENSIONI
     // ===============================================
     
-    // Conta le righe per determinare il numero di recensioni
+    // Conta le righe per determinatesre il numero di recensioni
     while ((let = fgetc(myhotel)) != EOF) {
         if (let == '\n') {
             people++;
@@ -151,15 +119,15 @@ float voto_hotel(char myhfilename[]){
     return tot;    // Ritorna punteggio totale
 }
 
-/*
- * Funzione per identificare l'hotel peggiore (da incubo)
- * Legge lista hotel, calcola punteggi e trova il minimo
- * 
- * Parametri:
- *   index[] - nome del file contenente la lista degli hotel
- * 
- * Ritorna:
- *   char* - puntatore al nome dell'hotel peggiore
+/* 
+Function per identificare l'hotel peggiore (da incubo)
+Legge lista hotel, calcola punteggi e trova il minimo
+
+Parametri:
+index[] - nome del file contenente la lista degli hotel
+
+Ritorna:
+char* - puntatore al nome dell'hotel peggiore
  */
 char* incubo(char index[]){
 
@@ -172,7 +140,7 @@ char* incubo(char index[]){
     // CONTEGGIO NUMERO HOTEL
     // ===============================================
     
-    // Conta righe per determinare numero hotel
+    // Conta righe per determinatesre numero hotel
     while ((let = fgetc(myindex)) != EOF) {
         if (let == '\n') {
             rows++;
@@ -231,15 +199,15 @@ char* incubo(char index[]){
     return looser_name;  // Ritorna nome hotel peggiore
 }
 
-/*
- * Funzione principale del programma
- * Gestisce parametri command line e coordina l'esecuzione
- * 
- * Parametri:
- *   argc - numero argomenti command line
- *   argv - array argomenti command line
- * 
- * Uso: ./hotel_da_incubo <file_indice_hotel>
+/* 
+Function principale del programma
+Gestisce parametri command line e coordina l'esecuzione
+
+Parametri:
+argc - numero argomenti command line
+argv - array argomenti command line
+
+Uso: ./hotel_da_incubo <file_indice_hotel>
  */
 int main(int argc, char* argv[]){
     // Controllo numero parametri
@@ -260,27 +228,27 @@ int main(int argc, char* argv[]){
         return 0;
     }
     
-    /*
-     * NOTE TECNICHE E POSSIBILI MIGLIORAMENTI:
-     * 
-     * 1. GESTIONE ERRORI:
-     *    - Aggiungere controllo esistenza file
-     *    - Gestire malloc fallite
-     *    - Validare formato dati input
-     * 
-     * 2. OTTIMIZZAZIONI:
-     *    - Evitare doppia chiamata voto_hotel nel main
-     *    - Usare algoritmi ordinamento più efficienti (quicksort)
-     *    - Implementare media ponderata per i criteri
-     * 
-     * 3. ROBUSTEZZA:
-     *    - Controllo range voti (1-10)
-     *    - Gestione file vuoti o malformati
-     *    - Limitazione lunghezza nomi file
-     * 
-     * 4. FUNZIONALITÀ AGGIUNTIVE:
-     *    - Classifica completa hotel
-     *    - Statistiche dettagliate per categoria
-     *    - Export risultati in formato CSV
-     */
+/* 
+NOTE TECNICHE E POSSIBILI MIGLIORAMENTI:
+
+1. GESTIONE ERRORI:
+- Aggiungere controllo esistenza file
+- Gestire malloc fallite
+- Validare formato dati input
+
+2. OTTIMIZZAZIONI:
+- Evitare doppia chiamata voto_hotel nel main
+- Usare algoritmi ordinamento più efficienti (quicksort)
+- Implementare media ponderata per i criteri
+
+3. ROBUSTEZZA:
+- Controllo range voti (1-10)
+- Gestione file vuoti o malformati
+- Limitazione lunghezza nomi file
+
+4. FUNZIONALITÀ AGGIUNTIVE:
+- Classifica completa hotel
+- Statistiche dettagliate per categoria
+- Export risultati in formato CSV
+ */
 }

@@ -1,42 +1,16 @@
-/*
- * =============================================================================
- * ALGEBRA DEI PUNTATORI - INTRODUZIONE E NAVIGAZIONE ARRAY
- * =============================================================================
- * 
- * Descrizione:
- * Programma dimostrativo per introdurre i concetti fondamentali dell'algebra
- * dei puntatori in C, mostrando l'equivalenza tra notazione array e puntatori
- * per l'accesso agli elementi.
- * 
- * Autore: Studente FI
- * Data: 15 novembre 2024
- * Corso: Fondamenti di Informatica - Laboratorio
- * 
- * Concetti dimostrati:
- * - Dichiarazione e inizializzazione puntatori
- * - Equivalenza tra array[0] e *pointer
- * - Aritmetica dei puntatori (incremento)
- * - Navigazione array con puntatori vs indici
- * 
- * Note didattiche:
- * - Mostra la doppia assegnazione myarray[0]=128 (ridondante)
- * - Confronta due metodi di iterazione: indici tradizionali vs puntatori
- * - Utilizza typedef per migliorare la leggibilità del codice
- * 
- * =============================================================================
- */
+/* pointers_algebra.c - C source file. */
 
 #include <stdio.h>
-#define MAX 5            // Dimensione massima dell'array
+#define MAX 5            // Size massima dell'array
 typedef int* Pointer;    // Definizione di tipo per puntatore ad intero
 
-/*
- * Funzione principale che dimostra l'uso dei puntatori
- * con array e l'equivalenza delle diverse notazioni di accesso
+/* 
+Function principale che dimostra l'uso dei puntatori
+con array e l'equivalenza delle diverse notezioni di accesso
  */
 int main(){
     // ===============================================
-    // SEZIONE 1-2: INIZIALIZZAZIONE E COLLEGAMENTO
+    // SECTION 1-2: INIZIALIZZAZIONE E COLLEGAMENTO
     // ===============================================
     
     int myarray[MAX] = {128, 32, 43, 23, 54}, count=0;  // Array con valori iniziali
@@ -52,7 +26,7 @@ int main(){
     printf("mypoint: %d == myarray[0]: %d\n", *mypoint, myarray[0]);
 
     // ===============================================
-    // SEZIONE 3: CONFRONTO METODI DI ITERAZIONE
+    // SECTION 3: CONFRONTO METODI DI ITERAZIONE
     // ===============================================
 
     // METODO 1: Iterazione tradizionale con indici
@@ -66,16 +40,16 @@ int main(){
     while(count<MAX){
         printf("%d ", *mypoint);    // Dereferenziazione del puntatore
         mypoint++;                  // Incremento puntatore (aritmetica puntatori)
-        count++;                    // Incremento contatore
+        count++;                    // Incremento counter
     }
     printf("\n");
     
-    /*
-     * NOTE DIDATTICHE:
-     * - mypoint++ sposta il puntatore all'elemento successivo
-     * - *mypoint accede al valore puntato
-     * - myarray[i] è equivalente a *(myarray + i)
-     * - L'aritmetica dei puntatori tiene conto automaticamente
-     *   della dimensione del tipo di dato (sizeof(int))
-     */
+/* 
+NOTE DIDATTICHE:
+- mypoint++ sposta il puntatore all'elemento successivo
+- *mypoint accede al valore puntato
+- myarray[i] è equivalente a *(myarray + i)
+- L'aritmetica dei puntatori tiene conto automaticamente
+della dimensione del tipo di dato (sizeof(int))
+ */
 }

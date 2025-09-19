@@ -1,26 +1,12 @@
-/*
- * File: crivello_eratostene.c
- * Descrizione: Laboratorio del 18 ottobre 2024 - Algoritmo del Crivello di Eratostene
- *              Implementazione del famoso algoritmo per trovare numeri primi
- * Autore: Studente FI
- * Data: 18 ottobre 2024
- * Contesto: Fondamenti di Informatica - Algoritmi matematici
- * 
- * Algoritmo del Crivello di Eratostene:
- * 1. Inizializza array con tutti i numeri da 2 a N
- * 2. Per ogni numero primo p, elimina tutti i suoi multipli
- * 3. I numeri rimasti sono tutti primi
- * 
- * Complessità: O(n log log n)
- */
+/* crivello_eratostene.c - C source file. */
 
 #include <stdio.h>
 #include <math.h>
 
 #define NUMERI 500  // Limite superiore per la ricerca dei primi
 
-/**
- * Funzione principale che implementa il Crivello di Eratostene
+/* *
+Function principale che implementa il Crivello di Eratostene
  */
 int main(){
     // === DICHIARAZIONE VARIABILI ===

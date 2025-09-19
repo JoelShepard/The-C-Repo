@@ -1,18 +1,12 @@
-/*
- * File: shift_right.c
- * Descrizione: Programma che effettua uno shift circolare a destra di tre variabili
- *              Trasformazione: a→c, b→a, c→b
- * Autore: Studente FI
- * Data: 27 settembre 2024 - Esercizio 1
- */
+/* shift_right.c - C source file. */
 
 #include <stdio.h>
 
-/**
- * Funzione principale che implementa lo shift circolare a destra
- * Input: tre valori a, b, c
- * Output: a2=b, b2=c, c2=a (shift circolare)
- */
+/* *
+Function principale che implementa lo shift circolare a right
+Input: tre valori a, b, c
+Output: a2=b, b2=c, c2=a (shift circolare)
+/ */
 int main() {
 	// === DICHIARAZIONE VARIABILI ===
 	int a, b, c;        // Variabili originali
@@ -37,10 +31,10 @@ int main() {
 	scanf("%d", &c);
 
 	// === OPERAZIONE DI SHIFT CIRCOLARE A DESTRA ===
-	/* 
-	 * Schema dello shift: a → c, b → a, c → b
-	 * Quindi: a2 = b, b2 = c, c2 = a
-	 */
+/* 
+Schema dello shift: a → c, b → a, c → b
+Quindi: a2 = b, b2 = c, c2 = a
+/ */
 	 a2 = b;  // Il nuovo valore di 'a' diventa l'ex valore di 'b'
 	 b2 = c;  // Il nuovo valore di 'b' diventa l'ex valore di 'c'
 	 c2 = a;  // Il nuovo valore di 'c' diventa l'ex valore di 'a'

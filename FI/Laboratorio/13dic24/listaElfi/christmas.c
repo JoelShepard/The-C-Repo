@@ -1,47 +1,18 @@
-/**
- * ================================================================
- * SISTEMA DI GESTIONE LISTA REGALI DI NATALE - ELFI DI BABBO NATALE
- * ================================================================
- * 
- * Descrizione:
- *   Programma per la gestione di una lista collegata di regali natalizi.
- *   Ogni regalo è caratterizzato da nome, peso e quantità. Il sistema
- *   legge da file la lista dei regali e fornisce funzionalità per
- *   visualizzare e manipolare i dati.
- * 
- * Funzionalità:
- *   - Lettura lista regali da file di testo
- *   - Creazione lista collegata dinamica
- *   - Visualizzazione formattata della lista
- *   - Rimozione duplicati (funzione da implementare)
- *   - Gestione memoria dinamica con malloc
- *
- * Formato file: <nome_regalo> <peso> <quantità>
- * Esempio: "Bicicletta 15 2"
- *
- * Autore: Joel (Laboratorio del 13 dicembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Struttura dati: Lista collegata semplice
- *   - Gestione parametri da linea di comando
- *   - Allocazione dinamica con controllo errori limitato
- * ================================================================
- */
+/* christmas.c - C source file. */
 
 #include <stdio.h>   // Per file I/O, printf
 #include <stdlib.h>  // Per malloc, free
 #include <string.h>  // Per strcpy, manipolazione stringhe
 
-/**
- * ================================================================
- * DEFINIZIONE STRUTTURE DATI
- * ================================================================
+/* *
+================================================================
+DEFINIZIONE STRUTTURE DATI
+================================================================
  */
 
 // Struttura per rappresentare un singolo regalo di Natale
 typedef struct el{
-    char name[50];      // Nome del regalo (max 49 caratteri + \0)
+    char name[50];      // Nome del regalo (max 49 characters + \0)
     int weight;         // Peso del regalo in unità arbitrarie
     int qty;            // Quantità di regali di questo tipo
     struct el* next;    // Puntatore al prossimo regalo nella lista
@@ -50,19 +21,19 @@ typedef struct el{
 // Alias per semplificare la gestione della lista
 typedef Gift* List;
 
-/**
- * ================================================================
- * FUNZIONE DI STAMPA LISTA REGALI
- * ================================================================
- * 
- * Parametri:
- *   my - Puntatore alla testa della lista collegata
- * 
- * Funzionalità:
- *   - Stampa intestazione tabellare formattata
- *   - Itera attraverso tutti i nodi della lista
- *   - Visualizza nome, peso e quantità di ogni regalo
- *   - Utilizza tabulazioni per allineamento colonne
+/* *
+================================================================
+FUNZIONE DI STAMPA LISTA REGALI
+================================================================
+
+Parametri:
+my - Puntatore alla testa della lista collegata
+
+Features:
+- Prints intestazione tabellare formattata
+- Itera attraverso tutti i nodi della lista
+- Visualizza nome, peso e quantità di ogni regalo
+- Utilizza tabulazioni per allineamento colonne
  */
 void stamp(List my){
     printf("Nome\t Peso\t Quantità\n");
@@ -74,21 +45,21 @@ void stamp(List my){
     }
 }
 
-/**
- * ================================================================
- * FUNZIONE DI RIMOZIONE DUPLICATI
- * ================================================================
- * 
- * Parametri:
- *   my - Puntatore alla testa della lista collegata
- * 
- * Funzionalità:
- *   TODO: Implementare la logica per rimuovere regali duplicati
- *   - Dovrebbe confrontare i nomi dei regali
- *   - Unire quantità per regali con stesso nome
- *   - Deallocare nodi duplicati dalla memoria
- * 
- * Stato: FUNZIONE NON IMPLEMENTATA
+/* *
+================================================================
+FUNZIONE DI RIMOZIONE DUPLICATI
+================================================================
+
+Parametri:
+my - Puntatore alla testa della lista collegata
+
+Features:
+TODO: Implementare la logica per rimuovere regali duplicati
+- Dovrebbe confrontare i nomi dei regali
+- Unire quantità per regali con stesso nome
+- Deallocare nodi duplicati dalla memoria
+
+Stato: FUNZIONE NON IMPLEMENTATA
  */
 void deletedoubles(List my){
     // Implementazione da completare
@@ -101,22 +72,22 @@ void deletedoubles(List my){
 
 
 
-/**
- * ================================================================
- * FUNZIONE DI CREAZIONE NUOVO NODO
- * ================================================================
- * 
- * Parametri:
- *   prev - Puntatore al nodo precedente nella lista
- * 
- * Ritorna:
- *   Gift* - Puntatore al nuovo nodo creato e collegato
- * 
- * Funzionalità:
- *   - Alloca memoria per un nuovo nodo Gift
- *   - Collega il nuovo nodo dopo il nodo precedente
- *   - Inizializza il campo next del nuovo nodo a NULL
- *   - Restituisce puntatore al nuovo nodo per ulteriori operazioni
+/* *
+================================================================
+FUNZIONE DI CREAZIONE NUOVO NODO
+================================================================
+
+Parametri:
+prev - Puntatore al nodo precedente nella lista
+
+Ritorna:
+Gift* - Puntatore al nuovo nodo creato e collegato
+
+Features:
+- Alloca memoria per un nuovo nodo Gift
+- Collega il nuovo nodo dopo il nodo precedente
+- Inizializza il campo next del nuovo nodo a NULL
+- Restituisce puntatore al nuovo nodo per ulteriori operazioni
  */
 Gift* create(Gift* prev){
     prev->next = (Gift*)malloc(sizeof(Gift)); // Alloca nuovo nodo
@@ -124,31 +95,31 @@ Gift* create(Gift* prev){
     return prev->next;                         // Restituisce nuovo nodo
 }
 
-/**
- * ================================================================
- * FUNZIONE DI LETTURA DA FILE E COSTRUZIONE LISTA
- * ================================================================
- * 
- * Parametri:
- *   elf - Puntatore al file contenente la lista dei regali
- *   my  - Puntatore al puntatore della testa della lista (modifica la lista)
- * 
- * Funzionalità:
- *   - Conta il numero di righe nel file per dimensionare il ciclo
- *   - Legge dati in formato: <nome> <peso> <quantità>
- *   - Costruisce dinamicamente la lista collegata
- *   - Gestisce il caso del primo nodo (lista vuota)
- *   - Utilizza fscanf per parsing strutturato dei dati
+/* *
+================================================================
+FUNZIONE DI LETTURA DA FILE E COSTRUZIONE LISTA
+================================================================
+
+Parametri:
+elf - Puntatore al file contenente la lista dei regali
+my  - Puntatore al puntatore della testa della lista (modifica la lista)
+
+Features:
+- Conta il numero di righe nel file per dimensionare il ciclo
+- Legge dati in formato: <nome> <peso> <quantità>
+- Costruisce dinamicamente la lista collegata
+- Gestisce il caso del primo nodo (lista vuota)
+- Utilizza fscanf per parsing strutturato dei dati
  */
 void read(FILE* elf, List* my){
     char tmpn[50], buffer[1024]; // Buffer temporanei per lettura
-    int tmpw, tmpq, count = 0;   // Variabili temporanee e contatore righe
+    int tmpw, tmpq, count = 0;   // Variabili temporanee e counter righe
     
     // ================================================================
     // FASE 1: CONTEGGIO RIGHE NEL FILE
     // ================================================================
     while (fgets(buffer, sizeof(buffer), elf) != NULL) {
-        count++; // Conta ogni riga letta
+        count++; // Conta ogni row letta
     }
     rewind(elf); // Torna all'inizio del file per lettura dati
     
@@ -158,7 +129,7 @@ void read(FILE* elf, List* my){
     // FASE 2: LETTURA DATI E COSTRUZIONE LISTA
     // ================================================================
     for (int i = 0; i < count; i++) {
-        // Legge una riga: nome peso quantità
+        // Legge una row: nome peso quantità
         fscanf(elf, "%s %d %d\n", tmpn, &tmpw, &tmpq);
         
         if (tmp == NULL) {
@@ -178,10 +149,10 @@ void read(FILE* elf, List* my){
 }
 
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - GESTIONE LISTA REGALI DI NATALE
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - GESTIONE LISTA REGALI DI NATALE
+================================================================
  */
 int main(int argc, char* argv[]){
     // ================================================================

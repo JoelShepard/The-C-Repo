@@ -1,16 +1,10 @@
-/*
- * File: list_sum.c
- * Descrizione: Implementazione di liste concatenate con operazione di somma tra nodi adiacenti
- *              Ogni nodo viene modificato sommando il valore del nodo precedente
- * Autore: Studente FI
- * Data: Esercizi personali
- */
+/* list_sum.c - C source file. */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-/**
- * Struttura per rappresentare un nodo della lista
+/* *
+Struttura per rappresentare un nodo della lista
  */
 typedef struct nd{
     int val;           // Valore del nodo
@@ -19,10 +13,10 @@ typedef struct nd{
 
 typedef Node* List;  // Alias per puntatore alla lista
 
-/**
- * Funzione che modifica la lista sommando ogni nodo con il precedente
- * @param my Puntatore alla testa della lista
- * Algoritmo: curr->val += prev->val per ogni nodo (tranne il primo)
+/* *
+Function che modifica la lista sommando ogni nodo con il precedente
+@param my Puntatore alla testa della lista
+Algoritmo: curr->val += prev->val per ogni nodo (tranne il primo)
  */
 void sumbytwo(List my){
     List prev = my;           // Puntatore al nodo precedente
@@ -41,8 +35,8 @@ void sumbytwo(List my){
     }
 }
 
-/**
- * Funzione principale che crea, modifica e gestisce la lista
+/* *
+Function principale che crea, modifica e gestisce la lista
  */
 int main(){
     // === CREAZIONE DELLA LISTA ===
@@ -91,4 +85,4 @@ int main(){
     return 0;
 }
 
-// Nota originale: "Liste Bastarde" - Commento scherzoso sulle liste concatenate
+// Note originale: "Liste Bastarde" - Commento scherzoso sulle liste concatenate

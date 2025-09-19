@@ -1,41 +1,11 @@
-/**
- * ================================================================
- * MOLTIPLICAZIONE TRAMITE SOMME SUCCESSIVE
- * ================================================================
- * 
- * Descrizione:
- *   Programma che implementa l'algoritmo di moltiplicazione utilizzando
- *   solo operazioni di addizione e sottrazione. Il prodotto a × b viene
- *   calcolato sommando 'a' per 'b' volte consecutive, gestendo anche
- *   il caso di fattori negativi.
- * 
- * Funzionalità:
- *   - Acquisizione di due fattori interi (positivi o negativi)
- *   - Calcolo del prodotto tramite addizioni successive
- *   - Gestione dei segni per fattori negativi
- *   - Algoritmo che evita l'uso dell'operatore di moltiplicazione
- *
- * Algoritmo:
- *   - Se b > 0: somma 'a' per 'b' volte
- *   - Se b < 0: somma 'a' per |b| volte, poi nega il risultato
- *   - Se b = 0: il risultato rimane 0 (inizializzazione)
- *
- * Autore: Joel (Laboratorio del 27 settembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Complessità temporale: O(|b|)
- *   - Implementazione iterativa con while loop
- *   - Gestione corretta dei segni per prodotti negativi
- * ================================================================
- */
+/* somme_successive.c - C source file. */
 
 #include <stdio.h>  // Per printf, scanf
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - MOLTIPLICAZIONE PER SOMME
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - MOLTIPLICAZIONE PER SOMME
+================================================================
  */
 int main(){
     // Variabili per i fattori e il risultato
@@ -61,7 +31,7 @@ int main(){
         // Somma 'a' per 'b' volte: a + a + ... + a (b volte)
         while(b > 0){
             c = c + a;    // Accumula 'a' nel risultato
-            b = b - 1;    // Decrementa il contatore
+            b = b - 1;    // Decrementa il counter
         }   
     }
     
@@ -72,7 +42,7 @@ int main(){
         // Somma 'a' per |b| volte, poi nega il risultato
         while(b < 0){
             c = c + a;    // Accumula 'a' nel risultato
-            b = b + 1;    // Incrementa il contatore (verso zero)
+            b = b + 1;    // Incrementa il counter (verso zero)
         }
         c = -c;  // Nega il risultato finale (a × (-b) = -(a × b))
     }      
@@ -80,7 +50,7 @@ int main(){
     // ================================================================
     // FASE 4: VISUALIZZAZIONE RISULTATO
     // ================================================================
-    // Nota: se b = 0, c rimane 0 (qualsiasi numero × 0 = 0)
+    // Note: se b = 0, c rimane 0 (qualsiasi numero × 0 = 0)
     printf("il risultato è: %d", c);
     return 0;
 }

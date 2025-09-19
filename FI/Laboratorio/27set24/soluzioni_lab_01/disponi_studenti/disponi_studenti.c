@@ -1,40 +1,11 @@
-/**
- * ================================================================
- * SISTEMA DI DISPOSIZIONE STUDENTI IN AULA CON DISTANZIAMENTO
- * ================================================================
- * 
- * Descrizione:
- *   Programma per la gestione della disposizione degli studenti in un'aula
- *   con regole di distanziamento sociale. Implementa un sistema che lascia
- *   vuota ogni terza fila per garantire il distanziamento, calcolando
- *   automaticamente la capienza disponibile e generando una mappa visiva.
- * 
- * Funzionalità:
- *   - Acquisizione parametri aula: numero file (max 15) e postazioni per fila (max 20)
- *   - Calcolo automatico delle file utilizzabili con regola del distanziamento
- *   - Verifica che tutti gli studenti possano essere accommodati
- *   - Generazione mappa visiva dell'aula (X = occupato, 0 = vuoto)
- *   - Validazione completa dei parametri di input
- *
- * Regola di distanziamento: Ogni terza fila rimane completamente vuota
- * Formula capienza: file_occupabili = x - x/3, posti = file_occupabili × y
- *
- * Autore: Soluzione ufficiale (Laboratorio del 27 settembre 2024)
- * Corso: Fondamenti di Informatica
- * 
- * Note tecniche:
- *   - Utilizzo dell'operatore modulo per pattern ciclico
- *   - Algoritmo di riempimento sequenziale con controllo capacità
- *   - Validazione robusta con limiti massimi per sicurezza
- * ================================================================
- */
+/* disponi_studenti.c - C source file. */
 
 #include <stdio.h>  // Per printf, scanf
 
-/**
- * ================================================================
- * FUNZIONE PRINCIPALE - GESTIONE DISPOSIZIONE AULA
- * ================================================================
+/* *
+================================================================
+FUNZIONE PRINCIPALE - GESTIONE DISPOSIZIONE AULA
+================================================================
  */
 int main()
 {
@@ -101,7 +72,7 @@ int main()
     while (i <= x)  // Ciclo attraverso tutte le file
     {
         int j = 0;      // Contatore per postazioni nella fila corrente
-        printf("\n");   // Nuova riga per ogni fila
+        printf("\n");   // Nuova row per ogni fila
         
         while (j < y)   // Ciclo attraverso tutte le postazioni della fila
         {
@@ -123,7 +94,7 @@ int main()
             else
             {
                 printf("X");          // Postazione occupata
-                posti_occupati++;     // Incrementa contatore studenti posizionati
+                posti_occupati++;     // Incrementa counter studenti posizionati
             }
 
             j++;  // Passa alla postazione successiva
