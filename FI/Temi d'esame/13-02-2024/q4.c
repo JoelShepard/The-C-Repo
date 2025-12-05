@@ -46,7 +46,7 @@ void stampaLista(Lista testa) {
     printf("NULL\n");
 }
 
-// Function Lista MaggioriDiTuttiISuccessori
+
 Lista ListaMaggioriDiTuttiISuccessori(Lista testa) {
     if (testa == NULL || testa->prossimo == NULL) {
         return testa; // Lista vuota o con un solo elemento

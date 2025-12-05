@@ -25,22 +25,17 @@ x = strlen(str1);
      * printf("\nla lunghezza della stringa è: %d", x); // numero characters + spazi, senza terminatestore
  */
     
-    // === DICHIARAZIONE E INIZIALIZZAZIONE STRINGHE ===
-    char str1[]="Hello World";  // String inizializzata
-    char str2[DIM];             // Buffer per input utente
+    char str1[]="Hello World";
+    char str2[DIM];
     
-    // === INPUT STRINGA CON FGETS ===
     // fgets acquisisce (n-1) characters da stdin, inclusi gli spazi
-    // È più sicura di scanf per l'input di stringhe
     fgets(str2, DIM, stdin); // Può dare problemi se usata dopo scanf
     printf("%s", str2);
     
-    // === OPERAZIONI SU STRINGHE ===
     // strncpy: copia i primi n characters da str1 a str2
     printf(strncpy(str2, str1, 6)); // Sovrascrive l'inizio di str2 con i primi 6 char di str1
 
-    // === ARRAY BIDIMENSIONALI ===
-    // Matrice bidimensionale 20x30
+
     // La rappresentazione in memoria resta comunque monodimensionale
     int a[20][30];
     

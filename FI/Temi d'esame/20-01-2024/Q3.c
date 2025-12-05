@@ -2,9 +2,9 @@
 #include <stdio.h>
 
 char min_ch(char s[]) {
-  if (s[0] == '\0') { // Base case: string vuota
+  if (s[0] == '\0') {
     return '\0';
-  } else if (s[1] == '\0') { // Base case: string di lunghezza 1
+  } else if (s[1] == '\0') {
     return s[0];
   } else {
     // Case ricorsivo: confronta il primo character con il minimo del resto della string

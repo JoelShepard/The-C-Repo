@@ -8,12 +8,10 @@ Function principale del programma
 Gestisce la lettura, elaborazione e salvataggio delle matrices
  */
 int main(){
-    FILE *mycsv, *oddcsv;  // Puntatori ai file di input e output
+    FILE *mycsv, *oddcsv;
     int mat1[N][N], mat2[N][N] = {0}, i=0,j=0,k=0,l=0;  // Matrici e variabili di controllo
 
-    // ===========================================
     // SECTION 1: LETTURA MATRICE DA FILE CSV
-    // ===========================================
     
     mycsv = fopen("matrice.txt", "r");  // Apertura file in modalità lettura
 
@@ -33,11 +31,8 @@ int main(){
         }
     }
 
-    fclose(mycsv);  // Chiusura file di input
+    fclose(mycsv);
 
-    // =====================================================
-    // SECTION 2: ESTRAZIONE E RIORGANIZZAZIONE DISPARI
-    // =====================================================
     
     // WARNING: Questo algoritmo ha diversi bug!
     // - La logica di incremento di k e l non è corretta
@@ -52,17 +47,15 @@ int main(){
                 if(l==N){
                     k++;
                     l=0;
-                    mat2[k][l] = mat1[i][j];  // Prima assegnazione
+                    mat2[k][l] = mat1[i][j];
                 }
-                mat2[k][l] = mat1[i][j];  // Seconda assegnazione (ridondante)
+                mat2[k][l] = mat1[i][j];
                 l++;
             }
         }
     }
 
-    // =======================================
     // SECTION 3: VISUALIZZAZIONE RISULTATI
-    // =======================================
     
     // ERRORE: dice "numeri pari" ma mostra tutta la matrix
     printf("Matrice numeri pari:\n");
@@ -81,11 +74,9 @@ int main(){
         printf("\n");
     }
 
-    // =======================================
     // SECTION 4: SALVATAGGIO SU FILE CSV
-    // =======================================
     
-    oddcsv = fopen("matrice_dispari.txt", "w");  // Apertura file output
+    oddcsv = fopen("matrice_dispari.txt", "w");
     
     // Controllo errori apertura file
     if(oddcsv == NULL){
@@ -99,7 +90,7 @@ int main(){
         }
         fprintf(oddcsv, "\n");  // Nuova row per ogni row della matrix
     }
-    fclose(oddcsv);  // Chiusura file output
+    fclose(oddcsv);
 
     return 0;  // Terminazione normale del programma
 }

@@ -12,9 +12,7 @@ int main()
     // Variabili per le dimensioni dell'aula e numero studenti
     int x, y, n;  // x = file, y = postazioni per fila, n = studenti
 
-    // ================================================================
     // FASE 1: ACQUISIZIONE PARAMETRI AULA
-    // ================================================================
     printf("\nDa quante file di postazioni è composta l'aula (max. 15)? ");
     scanf("%d", &x);
 
@@ -24,9 +22,7 @@ int main()
     printf("\nQuanti studenti partecipano al corso? ");
     scanf("%d", &n);
 
-    // ================================================================
     // FASE 2: VALIDAZIONE DEI PARAMETRI
-    // ================================================================
     if (x <= 0 || y <= 0 || n <= 0 || x > 15 || y > 20)
     {
         printf("\nErrore: hai inserito dei parametri non validi. Controlla ed esegui di nuovo il programma.");
@@ -34,9 +30,7 @@ int main()
     }
 
     
-    // ================================================================
     // FASE 3: CALCOLO CAPIENZA CON REGOLA DISTANZIAMENTO
-    // ================================================================
     
     // Analisi del pattern di distanziamento:
     // File utilizzabili seguono il pattern: occupata, occupata, VUOTA, ripeti...
@@ -53,9 +47,7 @@ int main()
     int posti_disponibili = 0;
     posti_disponibili = file_occupabili * y;
 
-    // ================================================================
     // FASE 4: VERIFICA CAPIENZA SUFFICIENTE
-    // ================================================================
     if (n > posti_disponibili)
     {
         printf("\nErrore: non ci sono abbastanza posti per tutti gli studenti (%d posti per %d studenti).", posti_disponibili, n);
@@ -63,9 +55,7 @@ int main()
     }
 
     
-    // ================================================================
     // FASE 5: GENERAZIONE MAPPA VISIVA DELL'AULA
-    // ================================================================
     
     int i = 1, posti_occupati = 0;  // Contatori per file e studenti posizionati
     
@@ -76,9 +66,7 @@ int main()
         
         while (j < y)   // Ciclo attraverso tutte le postazioni della fila
         {
-            // ================================================================
-            // LOGICA DI POSIZIONAMENTO:
-            // ================================================================
+
             // Una postazione è VUOTA (0) se:
             // 1. La fila è di distanziamento: i % 3 == 0 (ogni terza fila)
             // 2. Tutti gli studenti sono già stati posizionati
@@ -89,12 +77,12 @@ int main()
             
             if (i % 3 == 0 || posti_occupati == n)
             {
-                printf("0");  // Postazione vuota
+                printf("0");
             }
             else
             {
-                printf("X");          // Postazione occupata
-                posti_occupati++;     // Incrementa counter studenti posizionati
+                printf("X");
+                posti_occupati++;
             }
 
             j++;  // Passa alla postazione successiva

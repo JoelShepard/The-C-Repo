@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <inttypes.h>
 
-// === VARIABILI GLOBALI ===
 // Le variabili globali occupano memoria e sono accessibili da tutte le funzioni
 int var=-154;           // Tipo int con complemento a 2 (C2)
 unsigned var2=5;        // Variabile intera positiva, formato %u
@@ -22,21 +21,17 @@ Function principale che dimostra l'uso dei diversi tipi di dati
 e i fenomeni di overflow
  */
 int main(){
-    // === VARIABILI LOCALI ===
     int var3; // Variabile locale (valore dipende dal settore di memoria assegnato)
     
-    // === STAMPA VALORI E FORMATI ===
-    printf("var: %d\n", var);           // Prints valore decimale
-    printf("var2: %u\n", var2);         // Prints unsigned integer
+    printf("var: %d\n", var);
+    printf("var2: %u\n", var2);
     printf("var hex: %04X\n", var);     // Prints in formato esadecimale (4 cifre)
 
-    // === DIMOSTRAZIONE OVERFLOW ===
-    printf("%d\n", two_comp);           // Valore iniziale: 127
-    two_comp = two_comp +1;             // Incremento che causa overflow
+    printf("%d\n", two_comp);
+    two_comp = two_comp +1;
     // Equivalenti: two_comp +=1; oppure two_comp++;
     printf("%d/n", two_comp);           // Risultato: -128 (overflow da 127 a -128)
 
-    // === NOTE TECNICHE ===
     // bash:"man ascii" -> per consultare la tabella ASCII
     // ASCII usa 7 bit ma il compilatore C adds 1 bit per raddsre 8 bit
     // Unicode è migliore di ASCII perché include ASCII + altri characters

@@ -8,42 +8,28 @@
 Function principale per l'inversione di string
  */
 int main(){
-    // ===============================================
     // SECTION 1: DICHIARAZIONE VARIABILI
-    // ===============================================
     
     int lastchar=0, newlen=0;  // Variabili per gestione lunghezza
-    char mystring[MAXLEN], tmpfirst, tmplast, newstring[MAXLEN];  // Array e temp
+    char mystring[MAXLEN], tmpfirst, tmplast, newstring[MAXLEN];
 
-    // ===============================================
-    // SECTION 2: INPUT SICURO DA STDIN
-    // ===============================================
     
-    // Input da stdin con protezione overflow
     fgets(mystring, MAXLEN, stdin);
 
-    // ===============================================
     // SECTION 3: GESTIONE TERMINATORI E LUNGHEZZA
-    // ===============================================
     
     // Aggiustamento per fgets: rimuove '\n' inserito da fgets
     lastchar = strlen(mystring);
     mystring[lastchar - 1] = '\0';  // Sostituisce '\n' con terminatestore
-    newlen = strlen(mystring);      // Ricalcola lunghezza effettiva
+    newlen = strlen(mystring);
 
-    // ===============================================
-    // SECTION 4: VALIDAZIONE INPUT
-    // ===============================================
     
-    // Controllo string vuota
     if (newlen == 0) {
         printf("\nErrore, la stringa inserita è vuota");
         return 0;
     }
 
-    // ===============================================
     // SECTION 5: ALGORITMO INVERSIONE IN-PLACE
-    // ===============================================
     
     // Inversione character per character con scambio simmetrico
     for (int j = 0; j < newlen/2; j++) {
@@ -64,9 +50,6 @@ newlen-1-j calcola la posizione simmetrica rispetto al centro
  */
     }
 
-    // ===============================================
-    // SECTION 6: OUTPUT RISULTATO
-    // ===============================================
     
     printf("La tua stringa invertita è: %s", mystring);
     

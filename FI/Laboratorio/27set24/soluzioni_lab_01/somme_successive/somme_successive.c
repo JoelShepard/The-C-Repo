@@ -13,7 +13,7 @@ int main()
 	printf("\nInserisci il secondo fattore: ");
 	scanf("%d", &fattore2);
 
-	// Inizializzazione numeroSomme
+
 	if (fattore2 >= 0) {
 		numeroSomme = fattore2;
 	} else {
@@ -32,9 +32,9 @@ int main()
 		prodotto = -prodotto;
 	}
 
-	// Scrive il risultato
+
 	printf("\nIl valore del prodotto e': %d\n", prodotto);
 
-	// Termina correttamente
+
 	return 0;
 }

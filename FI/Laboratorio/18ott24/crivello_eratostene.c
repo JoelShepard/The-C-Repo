@@ -9,7 +9,6 @@
 Function principale che implementa il Crivello di Eratostene
  */
 int main(){
-    // === DICHIARAZIONE VARIABILI ===
     int setaccio[NUMERI-1] = {0};  // Array per memorizzare i numeri (0 = eliminato)
     int i=0, j=0, incremento=0;    // Indici e variabile di supporto
 
@@ -17,10 +16,10 @@ int main(){
     // Riempe l'array con numeri consecutivi da 2 a NUMERI
     for (i = 0; i < NUMERI-1; i++){
         if (i == 0){
-            setaccio[i]=2;           // Primo numero primo
+            setaccio[i]=2;
             incremento=setaccio[i];
         }else{
-            setaccio[i] = incremento + 1;  // Numeri consecutivi: 2,3,4,5,...
+            setaccio[i] = incremento + 1;
             incremento = setaccio[i];
         }
     }
@@ -38,7 +37,6 @@ int main(){
         }
     }
 
-    // === FASE 3: OUTPUT DEI NUMERI PRIMI ===
     printf("Numeri primi fino a %d:\n", NUMERI);
     for (i = 0; i < NUMERI-1; i++){
         if (setaccio[i]!=0) {           // Solo numeri non eliminati

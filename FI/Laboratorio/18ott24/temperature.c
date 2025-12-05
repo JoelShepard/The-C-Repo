@@ -10,45 +10,38 @@ Function principale per l'analisi delle temperature settimanali
 Calcola media, massimo, minimo e mostra un istogramma
  */
 int main() {
-    // === DICHIARAZIONE VARIABILI ===
-    float temperature[NUMGIORNI];         // Array delle temperature
+    float temperature[NUMGIORNI];
     float sum=0.0, avg, max=0.0, min=__FLT_MAX__;  // Variabili per calcoli statistici
-    int i=0, col=0, j=0;                 // Indici e contatori
+    int i=0, col=0, j=0;
 
-    // === INPUT DELLE TEMPERATURE ===
     for (i = 0; i < NUMGIORNI; i++){
         printf("Valore giorno %d:", i+1);
         scanf("%f", &temperature[i]);
     }
     
-    // === CALCOLO DELLA SOMMA ===
     for (i = 0; i < NUMGIORNI; i++){
         sum = (float) sum + temperature[i];  // Cast esplicito per chiarezza
     }
     
-    // === CALCOLO DELLA MEDIA ===
     avg = (float) sum / NUMGIORNI;
     printf("\nLa temperatura media è: %.3f\n", avg);
 
-    // === RICERCA DEL MASSIMO ===
     for (i = 0; i < NUMGIORNI; i++){
         if (max < temperature[i])
         {
-            max = temperature[i];  // Aggiorna il massimo
+            max = temperature[i];
         }
     }
     printf("Il massimo è: %.1f\n", max);
     
-    // === RICERCA DEL MINIMO ===
     for (i = 0; i < NUMGIORNI; i++){
         if (min > temperature[i])
         {
-            min = temperature[i];  // Aggiorna il minimo
+            min = temperature[i];
         }
     }
     printf("Il minimo è: %.1f\n", min);
     
-    // === VISUALIZZAZIONE TABELLA CON ISTOGRAMMA ===
     printf ("Giorno\tTemperatura\tIstogramma\t");
     for (i = 0; i < NUMGIORNI; i++){
         printf("\n%6d\t%11.1f\t", col+=1, temperature[i]);

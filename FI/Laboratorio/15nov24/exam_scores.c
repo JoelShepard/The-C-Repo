@@ -10,27 +10,20 @@
 Struttura per rappresentare il risultato di un esame
  */
 typedef struct {
-    char name[NLEN];                      // Cognome del candidato
+    char name[NLEN];
     int code;                             // Numero di matricola universitaria
-    int score;                            // Voto dell'esame (0-30)
+    int score;
 } exam;
 
-/* *
-Function principale per la registrazione degli esiti d'esame
-
-Il programma acquisisce i dati di N candidati e li salva in un file CSV
-con formato: cognome,matricola,voto
- */
 int main(){
     FILE * mydb;                          // Puntatore al file di database
-    int i = 0;                            // Contatore per il ciclo di input
+    int i = 0;
     exam allexams[N];                     // Array per memorizzare tutti gli esami
 
-    // INTESTAZIONE: benvenuto all'utente
+
     printf("=== SISTEMA REGISTRAZIONE ESITI D'ESAME ===\n");
     printf("Inserimento dati per %d candidati\n\n", N);
 
-    // APERTURA FILE: creazione del file di output in modalità scrittura
     mydb = fopen("esiti.bin", "w");
     if(mydb == NULL){
         printf("ERRORE: Il file non è stato aperto correttamente.\n");
@@ -42,17 +35,14 @@ int main(){
     while (i < N){
         printf("--- CANDIDATO %d di %d ---\n", i+1, N);
         
-        // INPUT COGNOME: acquisizione e scrittura su file
         printf("Inserisci il cognome del candidato %d: ", i+1);
         scanf("%s", allexams[i].name);
         fprintf(mydb, "%s,", allexams[i].name);
 
-        // INPUT MATRICOLA: acquisizione e scrittura su file
         printf("Inserisci il numero di matricola del candidato %d: ", i+1);
         scanf("%d", &allexams[i].code);
         fprintf(mydb, "%d,", allexams[i].code);
 
-        // INPUT VOTO: acquisizione e scrittura su file
         printf("Inserisci il voto del candidato %d (0-30): ", i+1);
         scanf("%d", &allexams[i].score);
         fprintf(mydb, "%d", allexams[i].score);     // Ultimo campo senza virgola
@@ -64,7 +54,7 @@ int main(){
         printf("✓ Dati salvati: %s (Matr: %d) - Voto: %d\n\n", 
                allexams[i].name, allexams[i].code, allexams[i].score);
         
-        i++;                              // Incrementa il counter
+        i++;
     }
     
     // CHIUSURA FILE: finalizzazione del salvataggio

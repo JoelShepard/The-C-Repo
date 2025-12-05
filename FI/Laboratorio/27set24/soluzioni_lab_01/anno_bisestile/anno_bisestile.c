@@ -8,30 +8,23 @@ FUNZIONE PRINCIPALE - VERIFICA ANNO BISESTILE
 ================================================================
  */
 int main() {
-    int anno;  // Anno da verificare
+    int anno;
 
-    // ================================================================
     // FASE 1: ACQUISIZIONE ANNO CON VALIDAZIONE
-    // ================================================================
     printf("Inserisci un anno: ");
     
-    // Controllo di validità dell'input (deve essere un numero intero)
     if (scanf("%d", &anno) != 1) {
         printf("Input non valido. Inserisci un numero intero.\n");
         return 1;
     }
     
-    // ================================================================
     // FASE 2: VALIDAZIONE VALORE ANNO
-    // ================================================================
     if (anno < 0) {
         printf("Per favore inserisci un anno positivo.\n");
         return 1;
     }
 
-    // ================================================================
     // FASE 3: APPLICAZIONE ALGORITMO GREGORIANO
-    // ================================================================
     // Regole del calendario gregoriano per anni bisestili:
     // 1. Divisibile per 4 → potenzialmente bisestile
     // 2. Se divisibile per 100 → NON bisestile (eccezione regola 1)

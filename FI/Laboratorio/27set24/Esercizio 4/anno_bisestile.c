@@ -7,15 +7,12 @@ Function principale che verifica se un anno è bisestile
 Implementa l'algoritmo del calendario gregoriano per gli anni bisestili
  */
 int main(){
-    // === DICHIARAZIONE VARIABILI ===
-    int anno;                                    // Anno inserito dall'utente
-    int modulo_anno4, modulo_anno100, modulo_anno400;  // Resto delle divisioni
+    int anno;
+    int modulo_anno4, modulo_anno100, modulo_anno400;
 
-    // === INPUT DELL'ANNO ===
     printf("Inserisci un anno qualsiasi:");
     scanf("%d", &anno);
 
-    // === CALCOLO DEI MODULI ===
     // Calcoliamo i resti delle divisioni per applicare le regole bisestili
     modulo_anno4 = anno % 4;     // Resto divisione per 4
     modulo_anno100 = anno % 100; // Resto divisione per 100

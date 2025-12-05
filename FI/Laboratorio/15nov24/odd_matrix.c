@@ -2,38 +2,31 @@
 +/* odd_matrix.c - C source file. */
 
 
-
 #include <stdio.h>
 
 #define N 2  // Size matrix (2x2 per semplicità)
 
 
-
-/* 
-
-Function principale per la gestione delle matrixs
-
-e l'estrazione dei numeri dispari
-
- */
-
 int main(){
 
-    int mat1[N][N], mat2[N][N] = {0}, i=0,j=0,k=0,l=0;  // Matrices and indices
+    int mat1[N][N], mat2[N][N] = {0}, i=0,j=0,k=0,l=0;
 
     
-
-    // ===============================================
-
-    // SECTION 1: INPUT MATRICE DALL'UTENTE
-
-    // ===============================================
-
-    
-
     printf("Inserisci i valori della tua matrice battendo invio ad ogni posizione, il programma li inserirà in ordine lessico-grafico:\n");
 
     
+    // Lettura matrix in lexicographic order (row per row)
+
+    for(i=0; i<N; i++){
+
+        for(j=0; j<N; j++){
+
+        scanf("%d", &mat1[i][j]);
+
+        }
+
+    }
+
 
     // Lettura matrix in lexicographic order (row per row)
 
@@ -41,42 +34,18 @@ int main(){
 
         for(j=0; j<N; j++){
 
-        scanf("%d", &mat1[i][j]);  // Input elemento [i][j]
+        scanf("%d", &mat1[i][j]);
 
         }
 
     }
 
-
-
-    // Lettura matrix in lexicographic order (row per row)
-
-    for(i=0; i<N; i++){
-
-        for(j=0; j<N; j++){
-
-        scanf("%d", &mat1[i][j]);  // Input elemento [i][j]
-
-        }
-
-    }
-
-
-
-    // =====================================================
-
-    // SECTION 2: ESTRAZIONE E RIORGANIZZAZIONE DISPARI
-
-    // =====================================================
-
-    
 
     // WARNING: Questo algoritmo contiene bug!
 
     // Stessi problemi del file odd_matrix_csv.c
 
     
-
     for(i=0; i<N; i++){
 
         for(j=0; j<N; j++){
@@ -91,15 +60,15 @@ int main(){
 
                     k++;     // Passa alla row successiva
 
-                    l=0;     // Reset column
+                    l=0;
 
-                    mat2[k][l] = mat1[i][j];  // Prima assegnazione
+                    mat2[k][l] = mat1[i][j];
 
                 }
 
                 mat2[k][l] = mat1[i][j];  // Seconda assegnazione (sovrascrive la prima)
 
-                l++;     // Incrementa posizione column
+                l++;
 
             }
 
@@ -108,14 +77,8 @@ int main(){
     }
 
 
-
-    // ===============================================
-
     // SECTION 3: VISUALIZZAZIONE RISULTATO
 
-    // ===============================================
-
-    
 
     printf("Matrice numeri dispari:\n");
 
@@ -123,7 +86,7 @@ int main(){
 
         for(j=0; j<N; j++){
 
-        printf("%d  ", mat2[i][j]);  // Prints elemento [i][j]
+        printf("%d  ", mat2[i][j]);
 
         }
 
@@ -132,11 +95,9 @@ int main(){
     }
 
     
-
 /* 
 
 CORREZIONE SUGGERITA:
-
 
 
      * int pos = 0;  // Posizione lineare
@@ -156,7 +117,6 @@ pos++;
 }
 
 }
-
 
 
 Questo approccio evita i bug nell'indicizzazione.

@@ -7,17 +7,12 @@
 Struttura per rappresentare un nodo della lista
  */
 typedef struct nd{
-    int val;           // Valore del nodo
+    int val;
     struct nd* next;   // Puntatore al nodo successivo
 }Node;
 
 typedef Node* List;  // Alias per puntatore alla lista
 
-/* *
-Function che modifica la lista sommando ogni nodo con il precedente
-@param my Puntatore alla testa della lista
-Algoritmo: curr->val += prev->val per ogni nodo (tranne il primo)
- */
 void sumbytwo(List my){
     List prev = my;           // Puntatore al nodo precedente
     List curr = my->next;     // Puntatore al nodo corrente
@@ -39,7 +34,6 @@ void sumbytwo(List my){
 Function principale che crea, modifica e gestisce la lista
  */
 int main(){
-    // === CREAZIONE DELLA LISTA ===
     // Crea il nodo testa con valore 0
     List head = malloc(sizeof(Node));
     head->val = 0;
@@ -53,7 +47,6 @@ int main(){
         curr = curr->next;
     }
 
-    // === STAMPA LISTA ORIGINALE ===
     printf("Original list: ");
     curr = head;
     while(curr != NULL) {
@@ -62,10 +55,8 @@ int main(){
     }
     printf("\n");
 
-    // === MODIFICA DELLA LISTA ===
     sumbytwo(head);
 
-    // === STAMPA LISTA MODIFICATA ===
     printf("Modified list: ");
     curr = head;
     while(curr != NULL) {
@@ -74,12 +65,11 @@ int main(){
     }
     printf("\n");
 
-    // === LIBERAZIONE DELLA MEMORIA ===
     curr = head;
     while(curr != NULL) {
         List tmp = curr;
         curr = curr->next;
-        free(tmp);  // Dealloca ogni nodo
+        free(tmp);
     }
 
     return 0;

@@ -12,26 +12,21 @@ int main() {
     float temperature[NUMGIORNI], sum=0.0, avg, max=0.0, min=__FLT_MAX__;
     int i=0, k=0, col=0, j=0, asterischi[NUMGIORNI], aster=0, maxast=0;
 
-    // ===============================================
-    // SECTION 1: INPUT TEMPERATURE
-    // ===============================================
     
     for (i = 0; i < NUMGIORNI; i++){
         printf("Valore giorno %d:", i+1);
         scanf("%f", &temperature[i]);
     }
     
-    // ===============================================
     // SECTION 2: CALCOLO STATISTICHE
-    // ===============================================
     
     // Calcolo somma per media
     for (i = 0; i < NUMGIORNI; i++){
         sum += temperature[i];
     }
-    avg = sum / (float) NUMGIORNI;  // Media temperature
+    avg = sum / (float) NUMGIORNI;
 
-    // Ricerca temperatura massima
+
     for (i = 0; i < NUMGIORNI; i++){
         if (max < temperature[i])
         {
@@ -39,7 +34,7 @@ int main() {
         }
     }
     
-    // Ricerca temperatura minima
+
     for (i = 0; i < NUMGIORNI; i++){
         if (min > temperature[i])
         {
@@ -47,9 +42,7 @@ int main() {
         }
     }
 
-    // ===============================================
     // SECTION 3: CALCOLO ASTERISCHI PER GRAFICO
-    // ===============================================
     
     // Conta asterischi per ogni giorno (temp > 34°C)
     for (i = 0; i < NUMGIORNI; i++){
@@ -72,25 +65,20 @@ int main() {
         }
     }
 
-    // ===============================================
     // SECTION 4: GENERAZIONE GRAFICO VERTICALE
-    // ===============================================
     
     // Prints grafico dall'alto verso il basso
     for (j = maxast; j >= 0; j--){        // Da massima altezza a 0
-        for (i = 0; i < NUMGIORNI; i++){  // Per ogni giorno
+        for (i = 0; i < NUMGIORNI; i++){
             if (asterischi[i] >= j){
                 printf("*\t");  // Asterisco se altezza sufficiente
             } else {
-                printf("\t");   // Spazio vuoto altrimenti
+                printf("\t");
             }
         }
         printf("\n");  // Nuova row per livello successivo
     }
 
-    // ===============================================
-    // SECTION 5: OUTPUT RISULTATI
-    // ===============================================
     
     // Prints temperature sotto il grafico
     for (i = 0; i < NUMGIORNI; i++){
@@ -98,7 +86,7 @@ int main() {
     }
     printf("\n");
 
-    // Prints statistiche finali
+
     printf("\nLa temperatura media è: %.1f\n", avg);
     printf("Il minimo è: %.1f\n", min);
     printf("Il massimo è: %.1f\n", max);

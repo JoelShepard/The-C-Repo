@@ -10,37 +10,19 @@
 Struttura per rappresentare coordinate 2D nel labirinto
  */
 typedef struct {
-    int x;                                // Coordinata verticale (row)
-    int y;                                // Coordinata orizzontale (column)
+    int x;
+    int y;
 } Coo;
 
-// VARIABILI GLOBALI
+
 Coo mosse[MOSSE];                         // Array delle mosse da eseguire
-int mylab[N][M];                          // Matrice del labirinto
+int mylab[N][M];
 
-/* *
-Verifica se una sequenza di mosse è valida nel labirinto
-
-@param mylab    Matrice del labirinto (0=libero, 1=ostacolo)
-@param mosse    Array delle mosse da eseguire
-@return         1 se il percorso è valido, -1 se incontra ostacoli
-
-Algoritmo:
-- Parte dalla posizione (0,0)
-- Per ogni mossa, controlla se la destinazione è libera
-- Se trova un ostacolo (valore 1), ritorna -1
-- Se completa tutte le mosse senza ostacoli, ritorna 1
-
-WARNING: Il codice presenta diversi problemi:
-- Non controlla i limiti del labirinto (bounds checking)
-- La sintassi del parametro mylab[][] è incorretta
-- Mancano controlli per uscire dai confini della matrix
- */
 int solve(int mylab[][], Coo mosse[]){
     // POSIZIONE INIZIALE: partenza sempre da (0,0)
     Coo tmp;
-    tmp.x = 0;                            // Riga di partenza
-    tmp.y = 0;                            // Colonna di partenza
+    tmp.x = 0;
+    tmp.y = 0;
 
     // ESECUZIONE MOSSE: elabora ogni mossa nell'array
     for (int k = 0; k < MOSSE; k++) {
@@ -77,24 +59,24 @@ Crea un labirinto 3x3 con un percorso specifico e testa una sequenza di mosse
  */
 int main(){
     int i, j, ris;
-    int mylab[N][M];                      // Labirinto locale (ridefinito)
+    int mylab[N][M];
 
     // CREAZIONE LABIRINTO: definisce la mappa con ostacoli
     // Layout del labirinto (0=libero, 1=ostacolo):
     // [0][1][1]
     // [0][1][1] 
     // [0][0][0]
-    mylab[0][0] = 0;                      // Partenza - libera
-    mylab[0][1] = 1;                      // Ostacolo
-    mylab[0][2] = 1;                      // Ostacolo
-    mylab[1][0] = 0;                      // Libera
-    mylab[1][1] = 1;                      // Ostacolo
-    mylab[1][2] = 1;                      // Ostacolo
-    mylab[2][0] = 0;                      // Libera
-    mylab[2][1] = 0;                      // Libera
-    mylab[2][2] = 0;                      // Libera
+    mylab[0][0] = 0;
+    mylab[0][1] = 1;
+    mylab[0][2] = 1;
+    mylab[1][0] = 0;
+    mylab[1][1] = 1;
+    mylab[1][2] = 1;
+    mylab[2][0] = 0;
+    mylab[2][1] = 0;
+    mylab[2][2] = 0;
 
-    // VISUALIZZAZIONE LABIRINTO
+
     printf("=== LABIRINTO 3x3 ===\n");
     for (i = 0; i < N; i++) {
         for (j = 0; j < M; j++) {
@@ -118,7 +100,7 @@ int main(){
     mosse[3].x = 1;                       // Giù: (1,2) → (2,2)
     mosse[4].y = 1;                       // Destra: (2,2) → (2,3) - FUORI LIMITI!
 
-    // VISUALIZZAZIONE MOSSE
+
     printf("=== SEQUENZA MOSSE ===\n");
     for (int k = 0; k < 5; k++) {
         if (mosse[k].x != 0 || mosse[k].y != 0) {
@@ -130,7 +112,6 @@ int main(){
     // ESECUZIONE: verifica se il percorso è valido
     ris = solve(mylab, mosse);
     
-    // OUTPUT: risultato della verifica
     printf("=== RISULTATO ===\n");
     if (ris == 1) {
         printf("✓ Percorso valido: %d\n", ris);
@@ -155,7 +136,7 @@ int main(){
     mosse[3].x = 1;                       // Giù: (1,2) → (2,2)
     mosse[4].y = 1;                       // Destra: (2,2) → (2,3) - FUORI LIMITI!
 
-    // VISUALIZZAZIONE MOSSE
+
     printf("=== SEQUENZA MOSSE ===\n");
     for (int k = 0; k < 5; k++) {
         if (mosse[k].x != 0 || mosse[k].y != 0) {
@@ -167,7 +148,6 @@ int main(){
     // ESECUZIONE: verifica se il percorso è valido
     ris = solve(mylab, mosse);
     
-    // OUTPUT: risultato della verifica
     printf("=== RISULTATO ===\n");
     if (ris == 1) {
         printf("✓ Percorso valido: %d\n", ris);

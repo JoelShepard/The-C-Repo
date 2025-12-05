@@ -7,8 +7,8 @@ Struttura per rappresentare coordinate bidimensionali
 Utilizzata per memorizzare le mosse dei giocatori
  */
 typedef struct{
-    int x;  // Coordinata x (row)
-    int y;  // Coordinata y (column)
+    int x;
+    int y;
 } Coord;
 
 /* 
@@ -22,9 +22,7 @@ int main(){
     int game[3][3] = {0}, i, j, cmd;  // Griglia gioco + variabili controllo
     Coord user1, user2;               // Coordinate per i due giocatori
 
-    // ===============================================
     // CICLO PRINCIPALE DI GIOCO
-    // ===============================================
     
     while(1){
         // Menu principale con opzioni disponibili
@@ -37,9 +35,7 @@ int main(){
             return 0;
         }
         
-        // ===============================================
         // GESTIONE MOSSA GIOCATORE 1 (X)
-        // ===============================================
         
         if(cmd == 1){
             printf("Fai la tua mossa (inserisci le coordinate in questo formato: x y): ");
@@ -50,29 +46,27 @@ int main(){
                 game[user1.x-1][user1.y-1] = 1;  // Marca casella per giocatore 1
             }else{
                 printf("MOSSA NON VALIDA\n");
-                continue;  // Richiedi nuova mossa
+                continue;
             }
             
-            // Visualizzazione griglia aggiornata
+
             for(i=0; i<3; i++){
                 for(j=0; j<3; j++){
                     if(game[i][j] == 1){
-                        printf("%c  ", 'X');  // Giocatore 1
+                        printf("%c  ", 'X');
                     }
                     if(game[i][j] == 2){
-                        printf("%c  ", 'O');  // Giocatore 2
+                        printf("%c  ", 'O');
                     }
                     if(game[i][j] == 0){
-                        printf("%c  ", '0');  // Casella vuota
+                        printf("%c  ", '0');
                     }
                 }
                 printf("\n");
             }
         }
         
-        // ===============================================
         // GESTIONE MOSSA GIOCATORE 2 (O)
-        // ===============================================
         
         if(cmd == 2){
             printf("Fai la tua mossa (inserisci le coordinate in questo formato: x y): ");
@@ -84,29 +78,27 @@ int main(){
             }else{
                 printf("MOSSA NON VALIDA\n");
                                 printf("MOSSA NON VALIDA\n");
-                continue;  // Richiedi nuova mossa
+                continue;
             }
             
             // Visualizzazione griglia aggiornata (codice duplicato - da ottimizzare)
             for(i=0; i<3; i++){
                 for(j=0; j<3; j++){
                     if(game[i][j] == 1){
-                        printf("%c  ", 'X');  // Giocatore 1
+                        printf("%c  ", 'X');
                     }
                     if(game[i][j] == 2){
-                        printf("%c  ", 'O');  // Giocatore 2
+                        printf("%c  ", 'O');
                     }
                     if(game[i][j] == 0){
-                        printf("%c  ", '0');  // Casella vuota
+                        printf("%c  ", '0');
                     }
                 }
                 printf("\n");
             }
         }
         
-        // ===============================================
         // CONTROLLO CONDIZIONI DI VITTORIA
-        // ===============================================
         
         // CONTROLLO RIGHE: verifica se una row è completamente occupata da un giocatore
         for(i = 0; i < 3; i++) {
@@ -163,5 +155,5 @@ NOTE DI MIGLIORAMENTO:
 3. Aggiungere validazione input (coordinate fuori range)
 4. Creare funzioni separate per controllo vittoria
  */
-    }  // Fine ciclo while(1)
+    }
 }

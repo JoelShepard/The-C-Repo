@@ -13,24 +13,12 @@ typedef struct nd {
 
 typedef Nodo* Lista;
 
-/* *
-Function per filtrare una lista concatenata secondo un criterio specifico
-
-@param lis  Puntatore alla lista da filtrare
-@return     Puntatore alla lista filtrata
-
-WARNING: La logica di filtraggio in questa implementazione presenta
-alcuni problemi e comportamenti non chiari. Il codice sembra tentare
-di confrontare nodi adiacenti e rimuovere quelli che non soddisfano
-certe condizioni, ma la logica è incompleta e potenzialmente buggata.
- */
 Lista filtra(Lista lis){
     // INIZIALIZZAZIONE: tre puntatori per navigare la lista
-    Lista prev = lis;              // Nodo precedente
-    Lista curr = prev->next;       // Nodo corrente
-    Lista succ = curr->next;       // Nodo successivo
+    Lista prev = lis;
+    Lista curr = prev->next;
+    Lista succ = curr->next;
     
-    // CASO BASE: lista con un solo elemento
     if (curr == NULL) {
         return prev;
     } 
@@ -46,7 +34,7 @@ Lista filtra(Lista lis){
             return prev;           // Mantiene il primo se uguali
         } else {
             return curr;           // WARNING: memory leak! prev non viene liberato
-            free(prev);            // Codice irraggiungibile
+            free(prev);
         }
     }
 
@@ -84,12 +72,6 @@ Lista filtra(Lista lis){
         return lis;
 }
 
-/* *
-Function di utilità per creare un nuovo nodo
-
-@param val  Valore da memorizzare nel nodo
-@return     Puntatore al nuovo nodo creato
- */
 Nodo* creaNodo(int val) {
     Nodo* nuovo = (Nodo*)malloc(sizeof(Nodo));
     nuovo->valore = val;
@@ -97,11 +79,6 @@ Nodo* creaNodo(int val) {
     return nuovo;
 }
 
-/* *
-Function di utilità per printsre tutti gli elementi di una lista
-
-@param l  Puntatore alla lista da printsre
- */
 void stampaLista(Lista l) {
     while(l != NULL) {
         printf("%d ", l->valore);
@@ -110,12 +87,6 @@ void stampaLista(Lista l) {
     printf("\n");
 }
 
-/* *
-Function principale per testare il filtraggio di liste
-
-Crea una lista di test e applica la funzione filtra
-Test case: 5 → 3 → 7 → 2
- */
 int main() {
     // CREAZIONE: lista di test con valori misti
     Lista lista = creaNodo(5);
@@ -123,14 +94,12 @@ int main() {
     lista->next->next = creaNodo(7);
     lista->next->next->next = creaNodo(2);
 
-    // OUTPUT: stato iniziale
+
     printf("Lista originale: ");
     stampaLista(lista);
 
-    // ELABORAZIONE: applica il filtro
     lista = filtra(lista);
 
-    // OUTPUT: risultato del filtraggio
     printf("Lista dopo il filtraggio: ");
     stampaLista(lista);
 

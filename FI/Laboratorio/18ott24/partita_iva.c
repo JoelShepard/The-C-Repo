@@ -20,20 +20,13 @@ int main(){
     int i=0, j=0, pari[5]={0}, sum_pari=0, dispari[6]={0}, sum_dispari=0;
     int decine=0, unità=0, code_dispari=0, final_code=1;
 
-    // ===============================================
-    // SECTION 1: INPUT PARTITA IVA
-    // ===============================================
     
     printf("Inserisci la partita iva: ");
     fgets(partita_iva, PIVALEN+1, stdin);  // Lettura sicura con limite
 
-    // ===============================================
-    // SECTION 2: ELABORAZIONE CIFRE PARI
-    // ===============================================
     
-    // Estrazione cifre in posizione pari (1, 3, 5, 7, 9)
     for (i = 1, j=0; i < PIVALEN, j < 5; i+=2, j++){
-        pari[j]=partita_iva[i] - '0';  // Conversione char->int
+        pari[j]=partita_iva[i] - '0';
     }
     
     // Calcolo somma delle cifre pari moltiplicate per 2
@@ -42,13 +35,9 @@ int main(){
     }
     //printf("Somma x2 delle cifre pari:%d\n", sum_pari);  // Debug
 
-    // ===============================================
-    // SECTION 3: ELABORAZIONE CIFRE DISPARI
-    // ===============================================
     
-    // Estrazione cifre in posizione dispari (0, 2, 4, 6, 8, 10)
     for (i = 0, j=0; i < PIVALEN, j < 6; i+=2, j++){
-        dispari[j]=partita_iva[i] - '0';  // Conversione char->int
+        dispari[j]=partita_iva[i] - '0';
     }
     
     // Calcolo somma delle cifre dispari
@@ -58,21 +47,17 @@ int main(){
     code_dispari = sum_dispari;
     //printf("Somma delle cifre dispari: %d\n", sum_dispari);  // Debug
 
-    // ===============================================
     // SECTION 4: GESTIONE SOMMA DISPARI >= 10
-    // ===============================================
     
     // Se somma dispari >= 10, somma le cifre del risultato
     if (sum_dispari >= 10) {
-        decine = sum_dispari / 10;     // Cifra delle decine
-        unità = sum_dispari % 10;      // Cifra delle unità
+        decine = sum_dispari / 10;
+        unità = sum_dispari % 10;
         code_dispari = decine + unità; // Riduzione a cifra singola
         //printf("Il codice delle cifre dispari è: %d\n", code_dispari);  // Debug
     }
     
-    // ===============================================
     // SECTION 5: CONTROLLO FINALE E VALIDAZIONE
-    // ===============================================
     
     // Calcolo codice di controllo finale
     final_code = (sum_pari + code_dispari) % 10;

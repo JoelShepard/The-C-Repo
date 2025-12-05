@@ -14,23 +14,9 @@ Struttura per rappresentare una data (giorno e mese)
  */
 typedef struct {
     int giorno;                    // Giorno del mese (1-31)
-    int mese;                      // Mese dell'anno (1-12)
+    int mese;
 } Data;
 
-/* *
-Calcola la differenza in giorni tra due date dello stesso anno
-
-@param a  Date di inizio del soggiorno
-@param b  Date di fine del soggiorno
-@return   Numero di giorni di differenza, -1 se errore
-
-Algoritmo:
-1. Validazione delle date
-2. Controllo dell'ordine cronologico
-3. Calcolo giorni rimanenti del mese di partenza
-4. Somma giorni dei mesi intermedi
-5. Aggiunta giorni del mese di arrivo
- */
 int differenza(Data a, Data b){
     // VALIDAZIONE: controllo giorni validi per ogni mese
     if (a.giorno > anno[a.mese - 1]) {
@@ -72,15 +58,6 @@ int differenza(Data a, Data b){
     return diff;
 }
 
-/* *
-Function principale per elaborare il file dei soggiorni
-
-@param argc  Numero di argomenti da linea di comando
-@param argv  Array degli argomenti (argv[1] = nome file)
-
-Formato file atteso: ogni row contiene 4 numeri:
-giorno_inizio mese_inizio giorno_fine mese_fine
- */
 int main(int argc, char* argv[]){
     FILE* file;
     char buffer[1024];
@@ -107,7 +84,6 @@ int main(int argc, char* argv[]){
     // RESET FILE: riporta il puntatore all'inizio
     rewind(file);
     
-    // ELABORAZIONE: legge e processa ogni row del file
     Data tmpa, tmpb;                       // Date temporanee per ogni soggiorno
     
     for (int i = 0; i < count; i++) {
@@ -117,13 +93,12 @@ int main(int argc, char* argv[]){
         // CALCOLO: differenza in giorni tra le date
         int diff = differenza(tmpa, tmpb);
         
-        // OUTPUT: risultato per ogni ospite
         if (diff >= 0) {
             printf("L'ospite %d ha soggiornato per %d giorni\n", i+1, diff);
         }
     }
     
-    // CHIUSURA FILE
+
     fclose(file);
     return 0;
 }

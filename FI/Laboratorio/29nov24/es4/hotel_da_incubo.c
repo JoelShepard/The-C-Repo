@@ -13,9 +13,9 @@ Struttura per memorizzare i voti di una singola recensione
 Tre criteri di valutazione: servizio, pulizia, posizione
  */
 typedef struct{
-    int serv;  // Voto servizio (1-10)
-    int pul;   // Voto pulizia (1-10)
-    int pos;   // Voto posizione (1-10)
+    int serv;
+    int pul;
+    int pos;
 } voto;
 
 /* 
@@ -23,46 +23,33 @@ Struttura per memorizzare il punteggio complessivo di un hotel
 Include nome file dell'hotel e punteggio medio calcolato
  */
 typedef struct{
-    char name[LEN];  // Nome file dell'hotel
-    float score;     // Punteggio medio complessivo
+    char name[LEN];
+    float score;
 } hscore;
 
-// Dichiarazioni funzioni
+
 float voto_hotel(char myhfilename[]);
 char* incubo(char index[]);
 
-/* 
-Function per calcolare il voto medio di un hotel
-Legge le recensioni dal file e calcola la media dei tre criteri
-
-Parametri:
-myhfilename[] - nome del file contenente le recensioni
-
-Ritorna:
-float - punteggio totale medio dell'hotel
- */
 float voto_hotel(char myhfilename[]){
     float avgserv, avgpul, avgpos, tot;  // Medie per categoria e totale
     int sum=0, people=0;                 // Somma parziale e counter recensioni
     char buffer[1024], let;              // Buffer lettura e character temporaneo
-    FILE*myhotel = fopen(myhfilename, "r");  // Apertura file hotel
+    FILE*myhotel = fopen(myhfilename, "r");
 
     // Controllo errore apertura file
     if (myhotel == NULL) {
         printf("Errore. Il file non si apre");
     }
 
-    // ===============================================
-    // CONTEGGIO NUMERO RECENSIONI
-    // ===============================================
-    
+
     // Conta le righe per determinatesre il numero di recensioni
     while ((let = fgetc(myhotel)) != EOF) {
         if (let == '\n') {
             people++;
         }
     }
-    people = people-1;  // Sottrae intestazione
+    people = people-1;
     rewind(myhotel);    // Torna all'inizio del file
 
     // Allocazione dinamica array per le recensioni
@@ -71,9 +58,7 @@ float voto_hotel(char myhfilename[]){
     // Allocazione dinamica array per le recensioni
     voto* myvoti = malloc(sizeof(voto)*(people));
 
-    // ===============================================
     // LETTURA DATI DAL FILE
-    // ===============================================
     
     // Salta l'intestazione del file
     fgets(buffer, sizeof(buffer), myhotel);
@@ -84,76 +69,59 @@ float voto_hotel(char myhfilename[]){
     }
     fclose(myhotel);
 
-    // ===============================================
     // CALCOLO MEDIE PER CATEGORIA
-    // ===============================================
     
-    // Media voti SERVIZIO
+
     for (int i=0; i<people; i++) {
         sum = sum + myvoti[i].serv;
-    // Media voti SERVIZIO
+
     for (int i=0; i<people; i++) {
         sum = sum + myvoti[i].serv;
     }
     avgserv = (float) sum / people;  // Cast per divisione float
-    sum = 0;  // Reset somma
+    sum = 0;
     
-    // Media voti PULIZIA
+
     for (int i=0; i<people; i++) {
         sum = sum + myvoti[i].pul;
     }
     avgpul = (float) sum / people;
-    sum = 0;  // Reset somma
+    sum = 0;
     
-    // Media voti POSIZIONE
+
     for (int i=0; i<people; i++) {
         sum = sum + myvoti[i].pos;
     }
     avgpos = (float) sum / people;
-    sum = 0;  // Reset somma
+    sum = 0;
 
     // Calcolo punteggio totale (somma delle tre medie)
     tot = avgserv + avgpul + avgpos;
 
-    free(myvoti);  // Liberazione memoria allocata
-    return tot;    // Ritorna punteggio totale
+    free(myvoti);
+    return tot;
 }
 
-/* 
-Function per identificare l'hotel peggiore (da incubo)
-Legge lista hotel, calcola punteggi e trova il minimo
-
-Parametri:
-index[] - nome del file contenente la lista degli hotel
-
-Ritorna:
-char* - puntatore al nome dell'hotel peggiore
- */
 char* incubo(char index[]){
 
-    FILE*myindex = fopen(index, "r");    // Apertura file indice
-    char let, tmp_name[LEN];             // Variabili temporanee
-    int rows=0, l=0, m=0;                // Contatori
+    FILE*myindex = fopen(index, "r");
+    char let, tmp_name[LEN];
+    int rows=0, l=0, m=0;
     float tmp;                           // Variabile temporanea per swap
 
-    // ===============================================
-    // CONTEGGIO NUMERO HOTEL
-    // ===============================================
-    
+
     // Conta righe per determinatesre numero hotel
     while ((let = fgetc(myindex)) != EOF) {
         if (let == '\n') {
             rows++;
         }
     }
-    rewind(myindex);  // Torna all'inizio
+    rewind(myindex);
 
     // Allocazione dinamica array per hotel e punteggi
     hscore* hotel = malloc(sizeof(hscore)*(rows));
 
-    // ===============================================
     // LETTURA NOMI HOTEL E CALCOLO PUNTEGGI
-    // ===============================================
     
     // Lettura nomi file hotel
     for (int i=0; i<rows; i++) {
@@ -168,20 +136,18 @@ char* incubo(char index[]){
     //printf("%.2f", hotel[3].score);  // Debug print (commentato)
     //printf(" %s\n", hotel[3].name);
 
-    // ===============================================
     // ORDINAMENTO CRESCENTE (BUBBLE SORT)
-    // ===============================================
     
     // Bubble sort per ordinare hotel dal peggiore al migliore
     for (int i=0; i<rows-1; i++){
         for (int j=0; j<rows-i-1; j++){
             if(hotel[j].score > hotel[j+1].score){
-                // Swap punteggi
+
                 tmp = hotel[j].score;
                 hotel[j].score = hotel[j+1].score;
                 hotel[j+1].score = tmp;
                 
-                // Swap nomi
+
                 strcpy(tmp_name, hotel[j].name);
                 strcpy(hotel[j].name, hotel[j+1].name);
                 strcpy(hotel[j+1].name, tmp_name);
@@ -191,7 +157,7 @@ char* incubo(char index[]){
 
     // Il primo elemento è l'hotel con punteggio più basso (peggiore)
     strcpy(looser_name, hotel[0].name);
-    free(hotel);  // Liberazione memoria
+    free(hotel);
 
     return looser_name;  // Ritorna nome hotel peggiore
 }
@@ -199,21 +165,11 @@ char* incubo(char index[]){
     return looser_name;  // Ritorna nome hotel peggiore
 }
 
-/* 
-Function principale del programma
-Gestisce parametri command line e coordina l'esecuzione
-
-Parametri:
-argc - numero argomenti command line
-argv - array argomenti command line
-
-Uso: ./hotel_da_incubo <file_indice_hotel>
- */
 int main(int argc, char* argv[]){
-    // Controllo numero parametri
+
     if (argc == 2){
         // Esecuzione normale con un parametro
-        char* worst_hotel = incubo(argv[1]);  // Trova hotel peggiore
+        char* worst_hotel = incubo(argv[1]);
         
         // Rimuove estensione .txt dal nome per la visualizzazione
         char* hotel_name = strtok(worst_hotel, ".");

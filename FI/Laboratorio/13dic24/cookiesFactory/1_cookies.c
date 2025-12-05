@@ -17,31 +17,16 @@ typedef struct my {
 
 typedef Node* List;  // Alias per puntatore alla lista
 
-/* *
-Function per aprire un file in modalità lettura
-@param filename Nome del file da aprire
-@return Puntatore al file aperto
- */
 FILE* open(char* filename){
     FILE* file = fopen(filename, "r");
     return file;
 }
 
-/* *
-Function per verificare se l'apertura del file è avvenuta con successo
-@param file Puntatore al file da verificare
-@return -1 se errore, 0 se successo
- */
 int open_check(FILE* file){
     if (file == NULL) return -1;
     else return 0;
 }
 
-/* *
-Function per contare il numero di righe in un file
-@param file Puntatore al file da analizzare
-@return Numero di righe nel file
- */
 int count_row(FILE* file){
     rewind(file);  // Torna all'inizio del file
     int count=0;
@@ -56,11 +41,6 @@ int count_row(FILE* file){
     return count;
 }
 
-/* *
-Function per creare una catena di n nodi collegati
-@param list Puntatore al puntatore della lista (per modificare la testa)
-@param n Numero di nodi da creare
- */
 void create_nodes(Node** list, int n){
     *list = (Node*)malloc(sizeof(Node));
     Node* tmp = *list;
@@ -70,14 +50,9 @@ void create_nodes(Node** list, int n){
         tmp->next = (Node*)malloc(sizeof(Node));
         tmp = tmp->next;
     }
-    tmp->next = NULL;  // Termina la lista
+    tmp->next = NULL;
 }
 
-/* *
-Function per popolare la lista con le righe del file
-@param list Lista da popolare
-@param file File da cui leggere le righe
- */
 void insert(List list, FILE* file){
     rewind(file);  // Torna all'inizio del file
     Node* tmp = list;
@@ -134,13 +109,11 @@ void general_free(List* a, List* b, List* c, List* d, List* e){
 }
 
 
-
-
 int main(){
     FILE *azioni, *cose, *luoghi, *momenti;
     srand(time(NULL));
 
-    // Apertura files
+
     azioni = open("azioni.txt");
     if (open_check(azioni) == -1){
         printf("Errore nell'apertura del file\n");
@@ -162,10 +135,10 @@ int main(){
         return -1;
     }
 
-    //Lists
+
     List actions, things, places, moments;
 
-    //Creation, insert
+
     create_nodes(&actions, count_row(azioni));
     insert(actions, azioni);
     create_nodes(&things, count_row(cose));
@@ -188,14 +161,14 @@ int main(){
     fclose(luoghi);
     fclose(momenti);
 
-    //User Interaction
+
     int phrases;
     char buffer[MAX_ROW];
     int point;
     printf("Quante frasi vuoi generare: ");
     scanf("%d", &phrases);
 
-    //New list creation
+
     List frasi;
     create_nodes(&frasi, phrases);
     for (int i=0; i<phrases; i++) {
@@ -206,14 +179,14 @@ int main(){
         insert_phrase(frasi, buffer, i);
         buffer[0]= '\0';
     }
-    //List Print
+
     Node* tmp = frasi, *tmp2=frasi;
     for (int i=0; i<phrases; i++) {
         printf("%s\n", tmp->name);
         tmp = tmp->next;
     }
 
-    //File Creation
+
     FILE* file_frasi = fopen("frasi.txt", "w");
     if (file_frasi == NULL) {
         printf("Errore nella creazione del file frasi.txt");

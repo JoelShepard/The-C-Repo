@@ -73,4 +73,3 @@ int main(){
     l = int_list();
 }
 
-

@@ -11,31 +11,24 @@ int main(){
     // Variabili per il risultato finale
     int a, b;                    // Numeratore e denominatore della somma
     
-    // Variabili per le due frazioni di input
-    int a1, a2;                  // Numeratori delle frazioni
-    int b1, b2;                  // Denominatori delle frazioni
+    int a1, a2;
+    int b1, b2;
 
-    // ================================================================
     // FASE 1: ACQUISIZIONE PRIMA FRAZIONE
-    // ================================================================
     printf("inserisci il numeratore della prima frazione:");
     scanf("%d", &a1);
 
     printf("inserisci il denominatore della prima frazione:");
     scanf("%d", &b1);
 
-    // ================================================================
     // FASE 2: ACQUISIZIONE SECONDA FRAZIONE  
-    // ================================================================
     printf("inserisci il numeratore della seconda frazione:");
     scanf("%d", &a2);
 
     printf("inserisci il denominatore della seconda frazione:");
     scanf("%d", &b2);
 
-    // ================================================================
     // FASE 3: VALIDAZIONE DELLE FRAZIONI INSERITE
-    // ================================================================
     
     // Controllo: denominatore della prima frazione non può essere zero
     if(b1 == 0){
@@ -67,17 +60,13 @@ int main(){
         printf("\n la seconda frazione è negativa");
         return 0;
     } 
-    // ================================================================
     // FASE 4: CALCOLO DELLA SOMMA
-    // ================================================================
     else {
         // Formula: a1/b1 + a2/b2 = (a1*b2 + a2*b1)/(b1*b2)
-        b = b2 * b1;                    // Denominatore comune
-        a = (a1 * b2) + (a2 * b1);      // Numeratore della somma
+        b = b2 * b1;
+        a = (a1 * b2) + (a2 * b1);
     }
 
-    // ================================================================
     // FASE 5: VISUALIZZAZIONE RISULTATO
-    // ================================================================
     printf("la somma tra le tue frazioni è: %d / %d", a, b); 
 }

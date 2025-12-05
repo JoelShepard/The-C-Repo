@@ -1,9 +1,6 @@
-/* example.c - C source file. */
-
 #include <stdio.h>
 
-/* Fill `up` with uppercase and `low` with lowercase letters from `s`.
-Returns count of non-alphabetic characters (recursive). */
+/* Separates uppercase and lowercase letters from string. Returns count of non-alphabetic chars. */
 int distingui(char s[], char up[], char low[]) {
     if (*s == '\0') {
         return 0;
@@ -22,8 +19,6 @@ int distingui(char s[], char up[], char low[]) {
     }
 }
 
-/* Test: print up to 5 uppercase and 5 lowercase characters found.
-Note: the buffers are not null-terminatested. */
 int main(void) {
     char s[] = "2Ew?jm7y9TR£";
     char low[5], up[5];

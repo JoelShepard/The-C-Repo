@@ -6,33 +6,28 @@
 ================================================================
 FUNZIONE PRINCIPALE - CALCOLO SOMMATORIA OTTIMIZZATO
 ================================================================
-/ */
+/
+ */
 int main()
 {
 	// Variabili per calcolo sommatoria
 	int r, q;    // Estremi della sommatoria (q = inf, r = sup)
 	float y;     // Risultato della sommatoria (precisione float)
-	int i;       // Variabile di iterazione
+	int i;
 
-	// ================================================================
 	// FASE 1: ACQUISIZIONE ESTREMI SIMULTANEA
-	// ================================================================
 	printf("Inserisci i valori di q e r: ");
 	scanf("%d%d", &q, &r);  // Lettura consolidata di entrambi i valori
 
-	// ================================================================
 	// FASE 2: VALIDAZIONE CONSOLIDATA E CALCOLO
-	// ================================================================
 	// Validazione completa in una sola condizione logica:
 	// - r > 0: estremo superiore positivo
 	// - q > 0: estremo inferiore positivo  
 	// - r > q: ordine corretto degli estremi
 	if ((r > 0) && (q > 0) && (r > q))
 	{
-		// ================================================================
 		// FASE 3: CALCOLO ITERATIVO DELLA SOMMATORIA
-		// ================================================================
-		y = 0;    // Inizializza accumulatore risultato
+		y = 0;
 		i = q;    // Inizializza counter dall'estremo inferiore
 		
 		// Ciclo ottimizzato: increments direttamente da q a r
@@ -42,9 +37,7 @@ int main()
 			i++;           // Passa al termine successivo
 		}
 
-		// ================================================================
 		// FASE 4: VISUALIZZAZIONE RISULTATO
-		// ================================================================
 		printf("Il risultato è %f\n", y);
 	}
 	else

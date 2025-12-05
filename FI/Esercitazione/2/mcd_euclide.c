@@ -3,16 +3,10 @@
 #include <stdio.h>
 #include <limits.h>
 
-/* *
-Function principale che implementa l'algoritmo di Euclide per il calcolo del MCD
-L'algoritmo si basa sulla proprietà: MCD(a,b) = MCD(b, a mod b)
-@return 0 se l'esecuzione è avvenuta con successo
- */
 int main(){
-   // Inizializzazione delle variabili
+
    int x=UINT_MAX, y=UINT_MAX, mcd=0;
     
-   // Input dei due numeri dall'utente
    printf("\nInserisci numeri interi in questo formato: x,y\n");
    scanf("%d,%d", &x, &y);
    
@@ -33,6 +27,6 @@ int main(){
    // Quando x == y, abbiamo trovato il MCD
    mcd = x;
    
-   // Output del risultato
+
    printf("mcd è: %d", mcd);
 }

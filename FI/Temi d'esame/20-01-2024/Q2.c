@@ -50,14 +50,12 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    // Apertura file di input
     fin = fopen(argv[1], "r");
     if (fin == NULL) {
         printf("Errore nell'apertura del file di input\n");
         return 1;
     }
 
-    // Apertura file di output
     fout = fopen(argv[2], "w");
     if (fout == NULL) {
         printf("Errore nell'apertura del file di output\n");
@@ -68,7 +66,7 @@ int main(int argc, char* argv[]) {
     // Chiamata alla funzione Ripulisci
     Ripulisci(fin, fout);
 
-    // Chiusura dei file
+
     fclose(fin);
     fclose(fout);
 

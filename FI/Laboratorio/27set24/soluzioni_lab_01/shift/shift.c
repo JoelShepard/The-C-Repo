@@ -3,7 +3,7 @@
 
 int main()
 {
-	// Dichiarazione delle variabili
+
 	int a, b, c, temp;
 
 	// Richieste e lettura da stdin
@@ -22,7 +22,6 @@ int main()
 	b = a;
 	a = temp;
 
-	// Prints il risultato dello shift
 	printf("\nIl valore di a e': %d", a);
 	printf("\nIl valore di b e': %d", b);
 	printf("\nIl valore di c e': %d \n", c);

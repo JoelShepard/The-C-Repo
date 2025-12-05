@@ -9,12 +9,10 @@ Function principale che dimostra l'uso dei puntatori
 con array e l'equivalenza delle diverse notezioni di accesso
  */
 int main(){
-    // ===============================================
     // SECTION 1-2: INIZIALIZZAZIONE E COLLEGAMENTO
-    // ===============================================
     
     int myarray[MAX] = {128, 32, 43, 23, 54}, count=0;  // Array con valori iniziali
-    Pointer mypoint;                                     // Dichiarazione puntatore
+    Pointer mypoint;
     
     myarray[0]=128;      // Ridondante: già inizializzato sopra
     mypoint = myarray;   // Il puntatore ora punta al primo elemento dell'array
@@ -25,9 +23,7 @@ int main(){
     // Dimostrazione equivalenza: *mypoint == myarray[0]
     printf("mypoint: %d == myarray[0]: %d\n", *mypoint, myarray[0]);
 
-    // ===============================================
     // SECTION 3: CONFRONTO METODI DI ITERAZIONE
-    // ===============================================
 
     // METODO 1: Iterazione tradizionale con indici
     printf("Il tuo array stampato come sempre è: ");
@@ -38,9 +34,9 @@ int main(){
     // METODO 2: Iterazione con algebra dei puntatori
     printf("\nIl tuo array stampato con i puntatori è: ");
     while(count<MAX){
-        printf("%d ", *mypoint);    // Dereferenziazione del puntatore
-        mypoint++;                  // Incremento puntatore (aritmetica puntatori)
-        count++;                    // Incremento counter
+        printf("%d ", *mypoint);
+        mypoint++;
+        count++;
     }
     printf("\n");
     

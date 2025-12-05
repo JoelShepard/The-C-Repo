@@ -4,7 +4,7 @@
 #define N 2                               // Valore di test per fattoriale e potenza
 #define X 3                               // Base per il calcolo della potenza
 
-// PROTOTIPI DELLE FUNZIONI
+
 int fattoriale(int n);
 int fattoriale_ricorsivo(int n);
 int power(int x, int n);
@@ -31,40 +31,21 @@ int main(){
     return 0;
 }
 
-/* *
-Calcolo del fattoriale con approccio iterativo (ciclo while)
-
-@param n  Numero di cui calcolare il fattoriale
-@return   n! (fattoriale di n)
-
-Algoritmo: f = 1 * 2 * 3 * ... * n
- */
 int fattoriale(int n){
-    int f = 1;                            // Inizializza il risultato
+    int f = 1;
     
     // ITERAZIONE: moltiplica tutti i numeri da n a 1
     while(n > 0){
-        f = f * n;                        // Accumula il prodotto
-        n--;                              // Decrementa il counter
+        f = f * n;
+        n--;
     }
     return f;
 }
 
-/* *
-Calcolo del fattoriale con approccio ricorsivo
-
-@param n  Numero di cui calcolare il fattoriale
-@return   n! (fattoriale di n)
-
-Definizione recursive: n! = n * (n-1)!
-Base case: 0! = 1
- */
 int fattoriale_ricorsivo(int n){
-    // CASO BASE: fattoriale di 0 è 1
     if(n == 0){
         return 1;
     } else {
-        // RICORSIONE: n! = n * (n-1)!
         return n * fattoriale_ricorsivo(n-1);
     }
 }
@@ -80,22 +61,10 @@ fattoriale_ricorsivo(3)
 → 3 * 2 * 1 * 1 = 6
  */
 
-/* *
-Calcolo della potenza con approccio ricorsivo
-
-@param x  Base della potenza
-@param n  Esponente della potenza
-@return   x^n (x elevato alla n)
-
-Definizione recursive: x^n = x * x^(n-1)
-Base case: x^0 = 1
- */
 int power(int x, int n){
-    // CASO BASE: qualsiasi numero elevato a 0 è 1
     if(n == 0){
         return 1;
     } else {
-        // RICORSIONE: x^n = x * x^(n-1)
         return x * power(x, n-1);
     }
 /* 
@@ -105,23 +74,11 @@ Principi della recursion:
 - Pensare come "matriosche": ogni chiamata contiene una versione più piccola del problema
  */
 
-/* *
-Calcolo della lunghezza di una string con approccio ricorsivo
-
-@param str  Array di characters (string) di cui calcolare la lunghezza
-@return     Numero di characters nella string (escluso '\0')
-
-Definizione recursive:
-- Se il primo character è '\0', la lunghezza è 0
-- Altrimenti, la lunghezza è 1 + lunghezza del resto della string
- */
 int mystrlen(char str[]){
-    // CASO BASE: string vuota (terminatestore '\0')
     if (str[0] == '\0'){
         return 0;
     }
     else {
-        // RICORSIONE: 1 + lunghezza del resto della string
         return 1 + mystrlen(str+1);       // str+1 o &str[1]: puntatore al character successivo
     }
 }

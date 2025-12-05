@@ -13,29 +13,21 @@ typedef struct{
     float y;                              // Coordinata y del punto
 } punto;
 
-/* *
-Function principale per calcolare il perimetro di un poligono
-
-Il perimetro è la somma delle distanze tra tutti i vertici consecutivi,
-includendo la distanza dall'ultimo vertice al primo per chiudere la figura
- */
 int main(){
-    // VARIABILI
+
     punto punti[MAX];                     // Array per memorizzare i vertici
-    int n = 0, i = 0, a = 0;             // Contatori e indici
+    int n = 0, i = 0, a = 0;
     float perimetro = 0.0;               // Perimetro totale del poligono
 
-    // INPUT: acquisizione numero di vertici
     printf("Quanti vertici ha il poligono: ");
     scanf("%d", &n);
     
-    // Validazione input
+
     if (n < 3 || n > MAX) {
         printf("Errore: un poligono deve avere almeno 3 vertici e massimo %d\n", MAX);
         return 1;
     }
 
-    // INPUT: acquisizione coordinate di tutti i vertici
     for (i = 0; i < n; i++){
         printf("Inserisci la coordinata x del punto %d: ", i+1);
         scanf("%f", &punti[i].x);
@@ -50,7 +42,7 @@ int main(){
         if(i == n-1){
             a = 0;                        // Dall'ultimo vertice al primo
         }else{
-            a = i+1;                      // Al vertice successivo
+            a = i+1;
         }
 
         // FORMULA DISTANZA EUCLIDEA: sqrt((x2-x1)² + (y2-y1)²)
@@ -59,7 +51,7 @@ int main(){
         perimetro += distanza;
     }
     
-    // OUTPUT: risultato finale
+
     printf("Il perimetro del poligono è: %.3f\n", perimetro);
 
     return 0;
