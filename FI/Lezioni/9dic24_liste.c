@@ -1,6 +1,5 @@
-/* 9dic24_liste.c - C source file. */
-#include<stdlib.h>
-
+// 9dic24_liste.c - Operazioni su liste concatenate
+#include <stdio.h>
 
 typedef struct EL {
     int data;
@@ -12,7 +11,7 @@ typedef ElemList* List;
 List int_list();
 int list_void_check(List l);
 int list_dim(List l);
-int rec_list_dim(Lit l);
+int rec_list_dim(List l);
 void print_list(List l);
 void print_list_reverse(List l);
 int elem_data_check(List l, int val);
@@ -22,21 +21,21 @@ List int_list(){
 }
 
 int list_void_check(List l){
-	if (l == NULL) return 1;
+    if (l == NULL) return 1;
     return 0;
 }
 
 int list_dim(List l){
     int count=0;
     while ((*l).next != NULL){
-		l=(*l).next;
+        l=(*l).next;
         count++;
     }
     return count;
 }
 
 int rec_list_dim(List l){
-    if (L == NULL){
+    if (l == NULL){
         return 0;
     }
     return 1 + rec_list_dim((*l).next);
@@ -45,31 +44,29 @@ int rec_list_dim(List l){
 void print_list(List l){
     if (l==NULL) printf("-|");
     while(l!=NULL){
-		printf("%d->", (*l).data);
-		print_list((*l).next);
+        printf("%d->", (*l).data);
+        print_list((*l).next);
     }
 }
 
 void print_list_reverse(List l){
     if (l==NULL) printf("|-");
-	while(l!=NULL){
-		print_list((*l).next);
-    	printf("%d->", (*l).data);
+    while(l!=NULL){
+        print_list((*l).next);
+        printf("%d->", (*l).data);
     }
 }
 
 int elem_data_check(List l, int val){
     ElemList* cur = l;
     while(cur!=NULL && (*cur).data != val){
-		cur = (*cur).next;
+        cur = (*cur).next;
     }
     if((*cur).data == val) return 1;
     return 0;
 }
 
-
 int main(){
     List l;
     l = int_list();
 }
-

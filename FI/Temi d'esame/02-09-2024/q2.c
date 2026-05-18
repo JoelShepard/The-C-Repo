@@ -1,4 +1,4 @@
-/* q2.c - C source file. */
+// q2.c - Plusone ricorsivo
 
 #include <stdio.h>
 
@@ -9,7 +9,6 @@ int plusone(int n){
         int ultimacifra = n % 10;
         int newultima = 0;
         
-
         if (ultimacifra == 9) {
             newultima = 0;
         } else {

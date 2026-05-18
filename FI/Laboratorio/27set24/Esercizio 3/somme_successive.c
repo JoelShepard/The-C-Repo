@@ -1,48 +1,35 @@
-/* somme_successive.c - C source file. */
+// somme_successive.c - Moltiplicazione per somme successive
 
-#include <stdio.h>  // Per printf, scanf
+#include <stdio.h>
 
-/* *
-================================================================
-FUNZIONE PRINCIPALE - MOLTIPLICAZIONE PER SOMME
-================================================================
- */
 int main(){
-    // Variabili per i fattori e il risultato
     int a, b, c;
-    
-    // Inizializzazione esplicita delle variabili
+
     a = 0;
     b = 0;
-    c = 0;  // Risultato del prodotto (inizialmente zero)
-    
-    // FASE 1: ACQUISIZIONE DEI FATTORI
+    c = 0;
+
     printf("inserisci il primo fattore:");
     scanf("%d", &a);
     printf("inserisci il secondo fattore:");
     scanf("%d", &b);
 
-    // FASE 2: CALCOLO DEL PRODOTTO - CASO MOLTIPLICATORE POSITIVO
     if (b > 0) {
-        // Somma 'a' per 'b' volte: a + a + ... + a (b volte)
         while(b > 0){
-            c = c + a;    // Accumula 'a' nel risultato
+            c = c + a;
             b = b - 1;
-        }   
+        }
     }
-    
-    // FASE 3: CALCOLO DEL PRODOTTO - CASO MOLTIPLICATORE NEGATIVO
+
     if (b < 0) {
-        // Somma 'a' per |b| volte, poi nega il risultato
+        // Moltiplicatore negativo: somma |b| volte poi nega
         while(b < 0){
-            c = c + a;    // Accumula 'a' nel risultato
+            c = c + a;
             b = b + 1;
         }
-        c = -c;  // Nega il risultato finale (a × (-b) = -(a × b))
-    }      
+        c = -c;
+    }
 
-    // FASE 4: VISUALIZZAZIONE RISULTATO
-    // Note: se b = 0, c rimane 0 (qualsiasi numero × 0 = 0)
     printf("il risultato è: %d", c);
     return 0;
 }

@@ -1,4 +1,4 @@
-/* shift_right.c - C source file. */
+// shift_right.c - Circular right shift
 
 #include <stdio.h>
 

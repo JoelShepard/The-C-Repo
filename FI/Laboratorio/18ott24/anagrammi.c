@@ -1,4 +1,4 @@
-/* anagrammi.c - Anagram checker */
+// anagrammi.c - Verifica anagrammi
 
 #include <stdio.h>
 #include <string.h>
@@ -14,7 +14,7 @@ int main(){
     printf("Inserisci la seconda stringa: ");
     fgets(word2, MAXLEN, stdin);
 
-    // Remove newline from fgets
+    // Rimuove newline aggiunto da fgets
     int lastchar1 = strlen(word1);
     word1[lastchar1 - 1] = '\0';
     int lastchar2 = strlen(word2);

@@ -1,106 +1,80 @@
-/* 2_labirinto.c - C source file. */
+// 2_labirinto.c - Lettura e validazione labirinto da file CSV
 
-#include <stdio.h>   // Per file I/O, printf
-#include <math.h>    // Per sqrt() - calcolo radice quadrata
-#include <stdlib.h>  // Per malloc, free
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 
 int count_check(FILE* file){
-    rewind(file);  // Torna all'inizio del file per analisi completa
+    rewind(file);
     int count = 0;
-    char c;        // Character corrente in lettura
+    char c;
     
-    // Scansione character per character del file
     while ((c = getc(file)) != EOF) {
-        if (c == '1'){
-            count++;
-        } if (c =='0') {
-            count++;
-        } if (c == ',') {
-            continue;
-        } if (c == '\n') {
-            continue;
-        } if (c != '1' && c != '0' && c != '\n' && c != ',') {
-            return -1; // Character non valido trovato
-        }
+        if (c == '1') count++;
+        else if (c == '0') count++;
+        else if (c == ',' || c == '\n') continue;
+        else return -1; // Carattere non valido
     }
-    return count; // Restituisce numero totale elementi validi
+    return count;
 }
 
 int** matrix(FILE* lab){
-    int elems = count_check(lab);     // Numero totale di elementi
+    int elems = count_check(lab);
     int rows = sqrt(count_check(lab));
-    rewind(lab);                      // Torna all'inizio per lettura dati
+    rewind(lab);
     
-    // ALLOCAZIONE DINAMICA DELL'ARRAY DI PUNTATORI (RIGHE)
     int** matrix = (int**)malloc(sizeof(int*) * rows);
     if (matrix == NULL) {
         printf("Errore di allocazione dell'array dinamico.\n");
         return NULL;
     }
     
-    // ALLOCAZIONE DINAMICA DI OGNI RIGA DELLA MATRICE
     for (int i = 0; i < rows; i++) {
         matrix[i] = (int*)malloc(sizeof(int) * rows);
         if (matrix[i] == NULL) {
             printf("Errore di allocazione dell'array dinamico.\n");
             // Cleanup: libera tutte le righe già allocate
-            for(int j = 0; j < i; j++) {
-                free(matrix[j]);
-            }
+            for(int j = 0; j < i; j++) free(matrix[j]);
             free(matrix);
             return NULL;
         }
     }
     
-    // LETTURA E INSERIMENTO DATI DAL FILE CSV
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < rows; j++) {
-            fscanf(lab, "%d,", &matrix[i][j]); // Legge numero e ignora virgola
+            fscanf(lab, "%d,", &matrix[i][j]);
         }
     }
 
-    return matrix; // Restituisce matrix completamente popolata
+    return matrix;
 }
 
-
-/* *
-================================================================
-FUNZIONE PRINCIPALE - GESTIONE LABIRINTO
-================================================================
- */
 int main(){
-    FILE* lab; // Puntatore al file del labirinto
+    FILE* lab;
 
-    // FASE 1: APERTURA E VALIDAZIONE FILE
     lab = fopen("labirinto.csv", "r");
     if (lab == NULL) {
         printf("Apertura di labirinto.csv non riuscita.\n");
         return -1;
     }
 
-    // Validazione formato file (solo characters 0, 1, virgole, newline)
+    // Validazione formato file (solo 0, 1, virgole, newline)
     if (count_check(lab) == -1) {
         printf("Errore. Il file inserito contiene caratteri non validi.\n");
         return -1;
     }
 
-    // FASE 2: VERIFICA MATRICE QUADRATA
     int n = count_check(lab);
     int row = sqrt(n);
     
-    // Verifica che sqrt(n) sia un numero intero (matrix quadrata)
     if (sqrt(count_check(lab)) != (int)sqrt(count_check(lab))) {
         printf("Errore. La matrice non è quadrata.\n");
         return -1;
     }
     
-    // FASE 3: COSTRUZIONE MATRICE IN MEMORIA
-    int** res = matrix(lab); // Costruisce la matrix dinamica del labirinto
+    int** res = matrix(lab);
     
-    // (es: ricerca percorsi, risoluzione, prints)
-    
-    // Note: Manca la deallocazione della memoria (memory leak)
-    // Dovrebbe essere aggiunto cleanup con free() prima del return
+    // TODO: Manca deallocazione memoria (free) e logica di elaborazione
 
     return 0;
 }

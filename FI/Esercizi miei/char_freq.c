@@ -1,29 +1,25 @@
-/* char_freq.c - C source file. */
+// char_freq.c - Frequenza caratteri in file
 
 #include <stdio.h>
 #include <stdlib.h>
 
 char freq(FILE* file, int* let){
-    char buffer;        // Buffer per leggere characters dal file
-    int max=0;         // Indice del character più frequente
+    char buffer;
+    int max=0;
     
-    // Legge character per character dal file
     while ((buffer = fgetc(file)) != EOF) {
-
-        // Note: Assumo solo lettere minuscole 'a'-'z'
+        // Assume solo lettere minuscole 'a'-'z'
         if (buffer >= 'a' && buffer <= 'z') {
             let[buffer-'a']+=1;
         }
     }
     
-    // Trova l'indice della lettera con frequenza massima
-    for (int i=0; i<26; i++) {  // Correzione: era 25, dovrebbe essere 26
+    for (int i=0; i<26; i++) {
         if (let[max]<let[i]) {
             max=i;
         }
     }
     
-    // Converte l'indice nel character corrispondente
     char top = max + 'a';
     return top;
 }
@@ -34,7 +30,7 @@ int main(int argc, char* argv[]){
         return -1;
     }
     
-    int letters[26]={0};  // Array per contare le 26 lettere dell'alfabeto
+    int letters[26]={0};
     
     FILE* my = fopen(argv[1], "r");
     if (my==NULL) {

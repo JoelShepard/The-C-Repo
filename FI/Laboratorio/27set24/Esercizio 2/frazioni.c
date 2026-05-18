@@ -1,72 +1,53 @@
-/* frazioni.c - C source file. */
+// frazioni.c - Somma frazioni
 
-#include <stdio.h>  // Per printf, scanf
+#include <stdio.h>
 
-/* *
-================================================================
-FUNZIONE PRINCIPALE - SOMMA FRAZIONI
-================================================================
- */
 int main(){
-    // Variabili per il risultato finale
-    int a, b;                    // Numeratore e denominatore della somma
-    
+    int a, b;
     int a1, a2;
     int b1, b2;
 
-    // FASE 1: ACQUISIZIONE PRIMA FRAZIONE
     printf("inserisci il numeratore della prima frazione:");
     scanf("%d", &a1);
 
     printf("inserisci il denominatore della prima frazione:");
     scanf("%d", &b1);
 
-    // FASE 2: ACQUISIZIONE SECONDA FRAZIONE  
     printf("inserisci il numeratore della seconda frazione:");
     scanf("%d", &a2);
 
     printf("inserisci il denominatore della seconda frazione:");
     scanf("%d", &b2);
 
-    // FASE 3: VALIDAZIONE DELLE FRAZIONI INSERITE
-    
-    // Controllo: denominatore della prima frazione non può essere zero
     if(b1 == 0){
         printf("\n il primo denominatore è 0");
         return 0;
-    } 
-    // Controllo: prima frazione negativa (numeratore negativo, denominatore positivo)
+    }
     else if(a1 < 0 && b1 > 0){
         printf("\n la prima frazione è negativa");
-        return 0;    
-    } 
-    // Controllo: prima frazione negativa (numeratore positivo, denominatore negativo)
+        return 0;
+    }
     else if(b1 < 0 && a1 > 0){
         printf("\n la prima frazione è negativa");
-        return 0; 
-    } 
-    // Controllo: denominatore della seconda frazione non può essere zero
+        return 0;
+    }
     else if(b2 == 0){
        printf("\n il secondo denominatore è 0");
         return 0;
-    } 
-    // Controllo: seconda frazione negativa (numeratore negativo, denominatore positivo)
+    }
     else if(a2 < 0 && b2 > 0){
         printf("\n la seconda frazione è negativa");
-        return 0; 
+        return 0;
     }
-    // Controllo: seconda frazione negativa (numeratore positivo, denominatore negativo)
     else if(b2 < 0 && a2 > 0){
         printf("\n la seconda frazione è negativa");
         return 0;
-    } 
-    // FASE 4: CALCOLO DELLA SOMMA
+    }
     else {
-        // Formula: a1/b1 + a2/b2 = (a1*b2 + a2*b1)/(b1*b2)
+        // a1/b1 + a2/b2 = (a1*b2 + a2*b1)/(b1*b2)
         b = b2 * b1;
         a = (a1 * b2) + (a2 * b1);
     }
 
-    // FASE 5: VISUALIZZAZIONE RISULTATO
-    printf("la somma tra le tue frazioni è: %d / %d", a, b); 
+    printf("la somma tra le tue frazioni è: %d / %d", a, b);
 }

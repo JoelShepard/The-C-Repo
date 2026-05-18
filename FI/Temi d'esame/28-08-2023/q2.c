@@ -1,4 +1,4 @@
-/* q2.c - C source file. */
+// q2.c - strcmp ricorsivo
 
 #include <stdio.h>
 
@@ -8,25 +8,22 @@ int strcmpRec(char s1[], char s2[]){
         return 0;
     }
     
-    // CASO 1: character di s1 maggiore di s2
     if (*s1 > *s2) {
-        return 1 + strcmpRec(s1+1, s2+1);        // +1 e continues
+        return 1 + strcmpRec(s1+1, s2+1);
     }
     
-    // CASO 2: character di s1 minore di s2
     if (*s1 < *s2) {
-        return -1 + strcmpRec(s1+1, s2+1);       // -1 e continues
+        return -1 + strcmpRec(s1+1, s2+1);
     }
     
-    // CASO 3: characters uguali
     else {
-        return 0 + strcmpRec(s1+1, s2+1);        // +0 e continues
+        return 0 + strcmpRec(s1+1, s2+1);
     }
 }
 
 int main(){
-    char a[] = "gioele";                         // Prima string di test
-    char b[] = "casa";                           // Seconda string di test
+    char a[] = "gioele";
+    char b[] = "casa";
 
     int ris = strcmpRec(a, b);
     
@@ -36,10 +33,7 @@ int main(){
 }
 
 /* 
-Note tecniche:
-- La funzione accumula +1 per ogni character in s1 maggiore del corrispondente in s2
-- La funzione accumula -1 per ogni character in s1 minore del corrispondente in s2
-- Il bug nella condizione di base può causare comportamenti imprevisti
-- La logica è diversa dallo strcmp standard che ritorna solo -1, 0, o 1
-- Per "gioele" vs "casa": g>c(+1), i>a(+1), o>s(+1), e>a(+1) = risultato positivo
- */
+Note: La funzione accumula +1/-1 per ogni carattere, logica diversa dallo strcmp standard.
+Il bug nella condizione di base può causare comportamenti imprevisti.
+Per "gioele" vs "casa": g>c(+1), i>a(+1), o>s(+1), e>a(+1) = risultato positivo.
+*/

@@ -1,4 +1,4 @@
-/* q3.c - C source file. */
+// q3.c - Distingui caratteri
 
 #include <stdio.h>
 
@@ -9,31 +9,28 @@ int distingui(char s[], char up[], char low[]){
         return 0;
     }
 
-    // CASO 1: character lowercase (a-z)
     if (*s >= 'a' && *s <= 'z'){
-        *low = *s;                                    // Inserisce in array minuscoli
+        *low = *s;
         count += distingui(s+1, up, low+1);
         return count;
     }
     
-    // CASO 2: character uppercase (A-Z)
     if (*s >= 'A' && *s <= 'Z') {
-        *up = *s;                                     // Inserisce in array maiuscoli
+        *up = *s;
         count += distingui(s+1, up+1, low);
         return count;
     }
     
-    // CASO 3: character non-alphabetic (numeri, simboli)
     else {
-        count = distingui(s+1, up, low) + 1;         // Conta +1 e continues recursion
+        count = distingui(s+1, up, low) + 1;
         return count;
     }
 }
 
 int main(){
     char s[] = "C4i1a5o?";
-    char up[6];                                       // Array per characters maiuscoli
-    char low[6];                                      // Array per characters minuscoli
+    char up[6];
+    char low[6];
 
     printf("Caratteri non alfabetici: %d\n", distingui(s, up, low));
     

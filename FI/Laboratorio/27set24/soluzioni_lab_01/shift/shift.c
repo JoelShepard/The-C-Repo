@@ -1,12 +1,11 @@
-/* shift.c - C source file. */
+// shift.c - Shift circolare
+
 #include <stdio.h>
 
 int main()
 {
-
 	int a, b, c, temp;
 
-	// Richieste e lettura da stdin
 	printf("\nInserire il valore di a: ");
 	scanf("%d", &a);
 
@@ -26,6 +25,5 @@ int main()
 	printf("\nIl valore di b e': %d", b);
 	printf("\nIl valore di c e': %d \n", c);
 
-	// Terminazione corretta del programma
 	return 0;
 }

@@ -1,4 +1,5 @@
-/* media_min_max.c - C source file. */
+// media_min_max.c - Media, massimo e minimo da sequenza
+
 #include <stdio.h>
 
 int main()
@@ -11,17 +12,13 @@ int main()
 	printf("Inserisci un valore: ");
 	scanf("%d", &x);
 
-	// se il primo valore è negativo, la sequenza inserita è nulla
 	if (x > 0)
 	{
-		// alla prima iterazione max e min sono uguali a x
 		max = x;
 		min = x;
 
-		// richiedo valori fino a quando x non è negativo
 		while (x > 0)
 		{
-			// aggiorno i valori di max e min
 			if (x > max)
 				max = x;
 

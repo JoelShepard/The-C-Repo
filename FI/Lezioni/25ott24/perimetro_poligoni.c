@@ -1,27 +1,22 @@
-/* perimetro_poligoni.c - C source file. */
+// perimetro_poligoni.c - Calcolo perimetro poligoni
 
 #include <stdio.h>
 #include <math.h>
 
-#define MAX 100                           // Numero massimo di vertici supportati
+#define MAX 100
 
-/* *
-Struttura per rappresentare un punto nel piano cartesiano
- */
 typedef struct{
-    float x;                              // Coordinata x del punto
-    float y;                              // Coordinata y del punto
+    float x;
+    float y;
 } punto;
 
 int main(){
-
-    punto punti[MAX];                     // Array per memorizzare i vertici
+    punto punti[MAX];
     int n = 0, i = 0, a = 0;
-    float perimetro = 0.0;               // Perimetro totale del poligono
+    float perimetro = 0.0;
 
     printf("Quanti vertici ha il poligono: ");
     scanf("%d", &n);
-    
 
     if (n < 3 || n > MAX) {
         printf("Errore: un poligono deve avere almeno 3 vertici e massimo %d\n", MAX);
@@ -35,22 +30,19 @@ int main(){
         scanf("%f", &punti[i].y);
     }
 
-    // CALCOLO PERIMETRO: somma delle distanze tra vertici consecutivi
+    // Somma distanze euclidee tra vertici consecutivi (ultimo → primo)
     for (i = 0; i < n; i++)
     {
-        // GESTIONE CHIUSURA: l'ultimo vertice si collega al primo
         if(i == n-1){
-            a = 0;                        // Dall'ultimo vertice al primo
+            a = 0;
         }else{
             a = i+1;
         }
 
-        // FORMULA DISTANZA EUCLIDEA: sqrt((x2-x1)² + (y2-y1)²)
         float distanza = sqrt(pow(punti[a].x - punti[i].x, 2) + 
                              pow(punti[a].y - punti[i].y, 2));
         perimetro += distanza;
     }
-    
 
     printf("Il perimetro del poligono è: %.3f\n", perimetro);
 

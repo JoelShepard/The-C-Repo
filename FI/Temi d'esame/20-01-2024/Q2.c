@@ -1,4 +1,4 @@
-/* Q2.c - C source file. */
+// Q2.c - Ripulisci file prodotti
 #include <stdio.h>
 #include <string.h>
 #define MAX_PROD 100
@@ -19,13 +19,11 @@ void Ripulisci(FILE *fin, FILE *fout){
         }
     }
 
-    //insert
     rewind(fin);
     for(int i=0; i<count; i++){
         fscanf(fin, "%s %d\n", list[i].name, &(list[i].qta));
     }
 
-    //clean up
     int i=0, j=0;
     for(i=0; i<count; i++){
         int ptot=0;
@@ -63,9 +61,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // Chiamata alla funzione Ripulisci
     Ripulisci(fin, fout);
-
 
     fclose(fin);
     fclose(fout);

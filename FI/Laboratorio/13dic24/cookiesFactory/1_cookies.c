@@ -1,21 +1,18 @@
-/* 1_cookies.c - C source file. */
+// 1_cookies.c - Generatore frasi casuali
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
-#define MAX_ROW 1024  // Size massima per stringhe e buffer
+#define MAX_ROW 1024
 
-/* *
-Struttura per nodo di lista concatenata che contiene stringhe
- */
 typedef struct my {
-    char name[MAX_ROW];  // Contenuto del nodo (parola/frase)
-    struct my* next;     // Puntatore al nodo successivo
+    char name[MAX_ROW];
+    struct my* next;
 } Node;
 
-typedef Node* List;  // Alias per puntatore alla lista
+typedef Node* List;
 
 FILE* open(char* filename){
     FILE* file = fopen(filename, "r");
@@ -28,15 +25,12 @@ int open_check(FILE* file){
 }
 
 int count_row(FILE* file){
-    rewind(file);  // Torna all'inizio del file
+    rewind(file);
     int count=0;
     char c;
     
-    // Conta i characters di nuova linea
     while ((c = getc(file)) != EOF) {
-        if (c == '\n'){
-            count++;
-        }
+        if (c == '\n') count++;
     }
     return count;
 }
@@ -44,8 +38,6 @@ int count_row(FILE* file){
 void create_nodes(Node** list, int n){
     *list = (Node*)malloc(sizeof(Node));
     Node* tmp = *list;
-
-    // Crea n nodi concatenati
     for (int i=0; i<n; i++) {
         tmp->next = (Node*)malloc(sizeof(Node));
         tmp = tmp->next;
@@ -54,13 +46,12 @@ void create_nodes(Node** list, int n){
 }
 
 void insert(List list, FILE* file){
-    rewind(file);  // Torna all'inizio del file
+    rewind(file);
     Node* tmp = list;
     char buffer[MAX_ROW];
 
-    // Legge ogni row e la inserisce nel nodo corrente
     while (fgets(buffer, MAX_ROW, file) != NULL) {
-        buffer[strcspn(buffer, "\n")] = '\0'; // Rimuove il character di nuova row
+        buffer[strcspn(buffer, "\n")] = '\0'; // Rimuove newline
         strcpy(tmp->name, buffer);
         tmp = tmp->next;
     }
@@ -79,7 +70,6 @@ Node* search(List list, int n){
 }
 
 Node* sel(List list, int elem){
-
     int mynum = rand() % (elem + 1);
     Node* randptr = search(list, mynum);
     return randptr;
@@ -91,9 +81,7 @@ void insert_phrase(List list, char* str, int n){
 }
 
 void list_free(List* list){
-    if (*list == NULL) {
-        return;
-    }
+    if (*list == NULL) return;
     Node* next = (*list)->next;
     free (*list);
     *list = NULL;
@@ -108,11 +96,9 @@ void general_free(List* a, List* b, List* c, List* d, List* e){
     list_free(e);
 }
 
-
 int main(){
     FILE *azioni, *cose, *luoghi, *momenti;
     srand(time(NULL));
-
 
     azioni = open("azioni.txt");
     if (open_check(azioni) == -1){
@@ -135,9 +121,7 @@ int main(){
         return -1;
     }
 
-
     List actions, things, places, moments;
-
 
     create_nodes(&actions, count_row(azioni));
     insert(actions, azioni);
@@ -148,26 +132,22 @@ int main(){
     create_nodes(&moments, count_row(momenti));
     insert(moments, momenti);
 
-    //save number of elements
     int elementi[4];
     elementi[0] = count_row(azioni);
     elementi[1] = count_row(cose);
     elementi[2] = count_row(luoghi);
     elementi[3] = count_row(momenti);
 
-    // file closure
     fclose(azioni);
     fclose(cose);
     fclose(luoghi);
     fclose(momenti);
-
 
     int phrases;
     char buffer[MAX_ROW];
     int point;
     printf("Quante frasi vuoi generare: ");
     scanf("%d", &phrases);
-
 
     List frasi;
     create_nodes(&frasi, phrases);
@@ -186,7 +166,6 @@ int main(){
         tmp = tmp->next;
     }
 
-
     FILE* file_frasi = fopen("frasi.txt", "w");
     if (file_frasi == NULL) {
         printf("Errore nella creazione del file frasi.txt");
@@ -196,7 +175,6 @@ int main(){
         tmp2 = tmp2->next;
     }
 
-    //free heap memory
     general_free(&actions, &things, &places, &moments, &frasi);
     return 0;
 }

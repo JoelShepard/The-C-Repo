@@ -1,21 +1,13 @@
-/* max_min_med.c - C source file. */
+// max_min_med.c - Calcolo statistiche (max, min, media)
 
-#include <stdio.h>  // Per printf, scanf
+#include <stdio.h>
 
-/* *
-================================================================
-FUNZIONE PRINCIPALE - CALCOLO STATISTICHE
-================================================================
- */
 int main() {
 
     int a, b, c, d, e, f;
-    
-    // Variabili per i calcoli
-    int max, tmp, tmp2 = 0, min;  // max/min e contatori temporanei
-    float media;                   // Media aritmetica (precisione float)
+    int max, tmp, tmp2 = 0, min;
+    float media;
 
-    // FASE 1: ACQUISIZIONE DEI 6 NUMERI
     printf("Scegli valori interi positivi: ");
     scanf("%d", &a);
     scanf("%d", &b);
@@ -29,18 +21,13 @@ int main() {
         return 0;
     }
 
-    
-    // FASE 3: CALCOLO DELLA MEDIA ARITMETICA
-    media = (a + b + c + d + e + f) / 6.0f;  // Divisione float per precisione
+    media = (a + b + c + d + e + f) / 6.0f;
     printf("\nla media è:%f\n", media);
 
-    // FASE 4: RICERCA DEL VALORE MASSIMO
-    // Algoritmo: parte dalla somma totale e decrementa fino a trovare un match
-    // Note: algoritmo inefficiente O(somma) invece di semplice confronto O(1)
-    tmp = a + b + c + d + e + f;  // Inizia dalla somma totale
-    
+    // NOTA: Algoritmo O(somma) invece di O(1) - inefficiente
+    tmp = a + b + c + d + e + f;
+
     while (tmp >= a && tmp >= b && tmp >= c && tmp >= d && tmp >= e && tmp >= f) {
-        // Controlla se il valore corrente corrisponde a uno dei numeri inseriti
         if (tmp == a || tmp == b || tmp == c || tmp == d || tmp == e || tmp == f) {
             max = tmp;
             break;
@@ -49,11 +36,7 @@ int main() {
     }
     printf("il massimo è:%d\n", max);
 
-    // FASE 5: RICERCA DEL VALORE MINIMO
-    // Algoritmo: parte da zero e increments fino a trovare un match
-    // Note: simile approccio inefficiente per il minimo
     while (tmp2 <= a && tmp2 <= b && tmp2 <= c && tmp2 <= d && tmp2 <= e && tmp2 <= f) {
-        // Controlla se il valore corrente corrisponde a uno dei numeri inseriti
         if (tmp2 == a || tmp2 == b || tmp2 == c || tmp2 == d || tmp2 == e || tmp2 == f) {
             min = tmp2;
             break;
@@ -61,6 +44,6 @@ int main() {
         tmp2++;
     }
     printf("il minimo è:%d\n", min);
-    
+
     return 0;
 }

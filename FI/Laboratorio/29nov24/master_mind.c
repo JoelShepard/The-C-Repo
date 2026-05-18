@@ -1,3 +1,5 @@
+// master_mind.c - Gioco Mastermind
+
 #include<stdio.h>
 #include<string.h>
 #include<time.h>

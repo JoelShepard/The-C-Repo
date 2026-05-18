@@ -1,27 +1,17 @@
-/* odd_matrix_csv.c - C source file. */
+// odd_matrix_csv.c - Lettura matrice da CSV, estrazione dispari, salvataggio
 
 #include <stdio.h>
-#define N 3  // Size della matrix quadrata
+#define N 3
 
-/* 
-Function principale del programma
-Gestisce la lettura, elaborazione e salvataggio delle matrices
- */
 int main(){
     FILE *mycsv, *oddcsv;
-    int mat1[N][N], mat2[N][N] = {0}, i=0,j=0,k=0,l=0;  // Matrici e variabili di controllo
+    int mat1[N][N], mat2[N][N] = {0}, i=0,j=0,k=0,l=0;
 
-    // SECTION 1: LETTURA MATRICE DA FILE CSV
-    
-    mycsv = fopen("matrice.txt", "r");  // Apertura file in modalità lettura
-
-    // Controllo errori apertura file
+    mycsv = fopen("matrice.txt", "r");
     if(mycsv == NULL){
         printf("Il file non è stato aperto correttamente."); return 0;
     }
 
-    // Lettura matrix dal file CSV
-    // Formato atteso: numero,numero,numero per ogni row
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){
             if(fscanf(mycsv, "%d,", &mat1[i][j]) != 1) {
@@ -30,20 +20,12 @@ int main(){
             }
         }
     }
-
     fclose(mycsv);
 
-    
-    // WARNING: Questo algoritmo ha diversi bug!
-    // - La logica di incremento di k e l non è corretta
-    // - Può causare accesso fuori dai limiti dell'array
-    // - L'assegnazione viene fatta due volte
-    
+    // WARNING: Algoritmo con bug (logica indici errata, possibile accesso fuori limiti)
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){
-            // Controllo se il numero è dispari
             if (mat1[i][j] % 2 != 0){
-                // BUG: logica di riempimento errata
                 if(l==N){
                     k++;
                     l=0;
@@ -55,13 +37,10 @@ int main(){
         }
     }
 
-    // SECTION 3: VISUALIZZAZIONE RISULTATI
-    
-    // ERRORE: dice "numeri pari" ma mostra tutta la matrix
     printf("Matrice numeri pari:\n");
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){
-        printf("%d  ", mat1[i][j]);
+            printf("%d  ", mat1[i][j]);
         }
         printf("\n");
     }
@@ -69,28 +48,23 @@ int main(){
     printf("Matrice numeri dispari:\n");
     for(i=0; i<N; i++){
         for(j=0; j<N; j++){
-        printf("%d  ", mat2[i][j]);
+            printf("%d  ", mat2[i][j]);
         }
         printf("\n");
     }
 
-    // SECTION 4: SALVATAGGIO SU FILE CSV
-    
     oddcsv = fopen("matrice_dispari.txt", "w");
-    
-    // Controllo errori apertura file
     if(oddcsv == NULL){
         printf("Il file  non è stato aperto correttamente."); return 0;
     }
 
-    // Salvataggio matrix dispari in formato CSV
     for (i=0; i<N; i++) {
         for (j=0; j<N; j++) {
-            fprintf(oddcsv, "%d,", mat2[i][j]);  // Scrittura con separatore virgola
+            fprintf(oddcsv, "%d,", mat2[i][j]);
         }
-        fprintf(oddcsv, "\n");  // Nuova row per ogni row della matrix
+        fprintf(oddcsv, "\n");
     }
     fclose(oddcsv);
 
-    return 0;  // Terminazione normale del programma
+    return 0;
 }

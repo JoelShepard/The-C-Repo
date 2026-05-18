@@ -1,8 +1,7 @@
-/* q4.c - C source file. */
+// q4.c - Liste concatenate
 #include <stdio.h>
 #include <stdlib.h>
 
-// Definizione della struttura per la lista
 typedef struct Nodo {
     int valore;
     struct Nodo* prossimo;
@@ -10,7 +9,6 @@ typedef struct Nodo {
 
 typedef Nodo* Lista;
 
-// Function per creare un nuovo nodo
 Nodo* creaNodo(int valore) {
     Nodo* nuovoNodo = (Nodo*)malloc(sizeof(Nodo));
     if (nuovoNodo == NULL) {
@@ -22,7 +20,6 @@ Nodo* creaNodo(int valore) {
     return nuovoNodo;
 }
 
-// Function per addsre un elemento alla lista
 Lista aggiungiElemento(Lista testa, int valore) {
     Nodo* nuovoNodo = creaNodo(valore);
     if (testa == NULL) {
@@ -36,7 +33,6 @@ Lista aggiungiElemento(Lista testa, int valore) {
     return testa;
 }
 
-// Function per printsre la lista
 void stampaLista(Lista testa) {
     Nodo* temp = testa;
     while (temp != NULL) {
@@ -49,7 +45,7 @@ void stampaLista(Lista testa) {
 
 Lista ListaMaggioriDiTuttiISuccessori(Lista testa) {
     if (testa == NULL || testa->prossimo == NULL) {
-        return testa; // Lista vuota o con un solo elemento
+        return testa;
     }
 
     Nodo* corrente = testa;
@@ -91,7 +87,6 @@ Lista ListaMaggioriDiTuttiISuccessori(Lista testa) {
 int main() {
     Lista lista = NULL;
 
-    // Creazione della lista di esempio: 3 -> 32 -> 4 -> 6 -> 3 -> 20 -> 17 -> 2 -> 17 -> 9 -> 7 -> 1
     int valori[] = {3, 32, 4, 6, 3, 20, 17, 2, 17, 9, 7, 1};
     int n = sizeof(valori) / sizeof(valori[0]);
 

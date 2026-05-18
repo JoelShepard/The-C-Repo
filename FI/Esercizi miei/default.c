@@ -1,15 +1,11 @@
-/* default.c - C source file. */
+// default.c - Configurazione output immediato
 
 #include <stdio.h>
 
-/* *
-Function principale con configurazione per output immediato
- */
 int main() {
-   // Utile quando si lavora su piattaforme mobile o ambienti specifici
+   // Disabilita buffering stdout per ambienti mobile
    setbuf(stdout, NULL);
    
-   // Prints messaggio di prova
    printf("Hello, World!");
    
    return 0;

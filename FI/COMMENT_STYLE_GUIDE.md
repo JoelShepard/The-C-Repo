@@ -1,370 +1,266 @@
-# Comment Style Guide - FI Folder
+# Linee Guida Complete - FI Folder
 
-## Philosophy
+## Filosofia Generale
 
-Comments should be **light, purposeful, and non-invasive**. The code itself should be the primary documentation. Comments should only explain *why* something is done, not *what* is being done.
-
-**Principle**: If code logic is unclear, improve the code—don't add comments to explain bad code.
+Il codice dovrebbe essere **leggibile, auto-documentante e manutenibile**. I commenti devono spiegare *perché* si fa qualcosa, non *cosa* si sta facendo. Se il codice non è chiaro, migliorate il codice — non aggiungete commenti per spiegare codice oscuro.
 
 ---
 
-## Comment Types & Usage
+## 1. Stile dei Commenti
 
-### 1. File Headers ✅
-Use a minimal file header only if helpful:
-
-```c
-/* temperature.c - Temperature statistics analyzer */
-#include <stdio.h>
-```
-
-**Guidelines:**
-- Single-line format preferred
-- Include filename and brief purpose
-- Don't repeat the filename
-- Optional for very simple files
-
-### 2. Function Documentation ✅ (Minimal)
-For **public functions or non-obvious behavior**:
+### 1.1 File Header
+Header minimale, solo se utile:
 
 ```c
-// Returns dynamically allocated reversed string
-char* reverseString(char *str){
-    // implementation
-}
-
-// Finds max element using linear search (not optimal for large arrays)
-int findMax(int *arr, int size){
-    // implementation
-}
+// temperature.c - Analisi statistiche temperature
 ```
 
-**Guidelines:**
-- Keep to 1-2 lines above the function
-- Explain what it returns or its non-obvious behavior
-- Don't document parameters that are obvious from the function name
-- Don't explain obvious return types
+### 1.2 Commenti alle Funzioni
+Spiegare solo comportamento non ovvio o valore di ritorno:
 
-### 3. Algorithm/Logic Comments ✅
-For **non-obvious algorithms or tricky code**:
+```c
+// Ritorna stringa invertita (memoria allocata dinamicamente)
+char* invertiStringa(char *str) { ... }
+
+// Ricerca lineare: non ottimale per array grandi
+int findMax(int *arr, int size) { ... }
+```
+
+### 1.3 Commenti a Logiche Complesse
+Spiegare il *ragionamento*, non i singoli passi:
 
 ```c
 // Circular right shift: a → c, b → a, c → b
-a2 = b;
-b2 = c;
-c2 = a;
+a2 = b; b2 = c; c2 = a;
 
-// Handle 9 → 0 wrap-around for digit increment
-if (digit == 9) {
-    digit = 0;
-}
-
-// Case-insensitive palindrome check
-char* upper = toUppercase(str);
+// Gestione wrap-around 9→0 per incremento cifra
+if (digit == 9) digit = 0;
 ```
 
-**Guidelines:**
-- Explain the *why* or the *trick*
-- Don't explain obvious operations
-- Use on lines before the relevant code
-- Be concise (one line when possible)
-
-### 4. Edge Cases & Important Notes ✅
-For **constraints, assumptions, or gotchas**:
+### 1.4 Edge Case e Note
+Segnalare limitazioni, bug noti, TODO:
 
 ```c
-// Handle newline added by fgets
-word[strlen(word) - 1] = '\0';
+// Rimuove newline aggiunto da fgets
+word[strlen(word)-1] = '\0';
 
-// Simplified check: doesn't handle case or spacing differences
-if(same_letter == strlen(word2) || same_letter == strlen(word1)){ 
-    printf("Anagrams\n");
-}
+// BUG: non gestisce case o spazi
+if (same_letter == strlen(word)) { ... }
 
-// TODO: Optimize with hash table for O(n) instead of O(n²)
+// TODO: Ottimizzare con hash table (O(n) invece di O(n²))
 ```
 
-**Guidelines:**
-- Use for actual issues or missing features
-- Be specific about the limitation
-- Only add TODO/FIXME for genuine future improvements
-
----
-
-## What NOT to Comment
-
-### ❌ Don't Comment Obvious Code
+### 1.5 Cosa NON Commentare Mai
 
 ```c
-// WRONG:
-x = x + 1;  // Increment x
-i = 0;      // Set i to zero
-printf("Hello\n");  // Print hello message
+// ❌ SBAGLIATO:
+x = x + 1;  // Incrementa x
+for (i=0; i<n; i++) {  // Loop
+if (x > 0) {  // Controlla se x > 0
 
-// RIGHT:
+// ✅ GIUSTO:
 x++;
-i = 0;
-printf("Hello\n");
+for (i=0; i<n; i++) { ... }
+if (x > 0) { ... }
 ```
 
-### ❌ Don't Use Section Markers
+### 1.6 Sezioni/Intestazioni (NO)
+Niente `=== SEZIONE ===`, `--- VARIABILI ---`. Il codice deve essere auto-esplicativo.
+
+---
+
+## 2. Convenzioni di Codice
+
+### 2.1 Nomenclatura
+| Cosa | Convenzione | Esempio |
+|------|-------------|---------|
+| Variabili | snake_case | `tempo_medio`, `num_studenti` |
+| Funzioni | camelCase o snake_case | `calcolaMedia()`, `find_max()` |
+| Costanti/Macro | UPPER_SNAKE_CASE | `MAX_STUDENTI`, `NUM_GIORNI` |
+| Struct | PascalCase o snake_case | `DataNascita`, `punto_geo` |
+| Typedef | PascalCase o _t | `Coordinata`, `exam_t` |
+
+### 2.2 Indentazione e Spaziatura
+- Usare **spazi** (non tab), 4 spazi per livello
+- One True Brace Style (OTBS): `{` sulla stessa riga
+- Spazio dopo `if`, `while`, `for`, prima di `{`
+- Operatori binari con spazi attorno: `a + b`, non `a+b`
 
 ```c
-// WRONG:
-// === VARIABLES ===
-// === INPUT ===
-// === OUTPUT ===
-// === PROCESSING ===
-
-// RIGHT:
-// Just write the code without markers
-```
-
-### ❌ Don't Over-Document Simple Functions
-
-```c
-// WRONG:
-/*
- * Adds two numbers
- * 
- * Parameters:
- *   a - First number
- *   b - Second number
- * 
- * Returns:
- *   Sum of a and b
- */
-int add(int a, int b){
-    return a + b;
-}
-
-// RIGHT:
-int add(int a, int b){
-    return a + b;
+// ✅ Corretto
+for (int i = 0; i < n; i++) {
+    if (x > 0) {
+        y = a + b;
+    }
 }
 ```
 
-### ❌ Don't Comment Control Flow
+### 2.3 Dichiarazioni
+- Una variabile per riga (dichiarazioni semplici)
+- Inizializzare sempre le variabili
+- Dichiarare le variabili nel blocco più interno possibile
+- Dichiarare i puntatori come `tipo* nome` (asterisco vicino al tipo)
 
 ```c
-// WRONG:
-if (x > 0) {  // Check if x is positive
-    doSomething();
-}
+int somma = 0;
+float media = 0.0f;
+int* puntatore = NULL;
+```
 
-for (i = 0; i < n; i++) {  // Loop from 0 to n-1
-    process(arr[i]);
-}
+### 2.4 Strutture e Typedef
+```c
+typedef struct {
+    int x;
+    int y;
+} Punto;
+```
 
-// RIGHT:
-if (x > 0) {
-    doSomething();
-}
+### 2.5 Funzioni
+- Lunghezza massima: ~30-40 righe (se più lunga, refactor)
+- Una funzione = una responsabilità
+- Return type sulla stessa riga del nome
 
-for (i = 0; i < n; i++) {
-    process(arr[i]);
+```c
+float calcolaMedia(int array[], int size) {
+    float somma = 0.0f;
+    for (int i = 0; i < size; i++) {
+        somma += array[i];
+    }
+    return somma / size;
 }
 ```
 
 ---
 
-## Comment Style Rules
+## 3. Best Practice di Programmazione C
 
-### 1. **Single-Line Comments** (`//`)
-- Preferred for most comments
-- Place before the relevant code
-- Use for brief explanations
-
-```c
-// Handles wrap-around: 9 becomes 0
-if (digit == 9) digit = 0;
-```
-
-### 2. **Multi-Line Comments** (`/* */`)
-- Use for file headers only
-- Avoid for function documentation
-- Keep brief
+### 3.1 Gestione Memoria
+- **Sempre** abbinare `malloc`/`calloc` con `free`
+- Controllare sempre che `malloc` non ritorni `NULL`
+- Quando possibile, preferire stack a heap
+- In funzioni che allocano memoria, documentare la responsabilità del free
 
 ```c
-/* q2.c - Recursive digit increment program */
-```
-
-### 3. **Spacing**
-- One space after `//`
-- Don't over-comment
-- Leave 1 blank line between comment block and next code section
-
-```c
-// Good spacing and minimal comments
-int main() {
-    float temps[7];
-    
-    // Read temperatures
-    for (int i = 0; i < 7; i++) {
-        scanf("%f", &temps[i]);
+int* creaArray(int size) {
+    int* arr = malloc(sizeof(int) * size);
+    if (arr == NULL) {
+        fprintf(stderr, "Errore allocazione memoria\n");
+        exit(EXIT_FAILURE);
     }
-    
-    // Calculate average
-    // implementation...
+    return arr;
 }
+// Nota: il chiamante deve fare free()
 ```
 
-### 4. **Language**
-- Use English for consistency
-- Be concise and direct
-- Avoid redundancy
+### 3.2 Gestione File
+- Controllare sempre che `fopen` non ritorni `NULL`
+- Chiudere sempre i file con `fclose`
+- Non chiamare `fclose` su un puntatore NULL
+
+```c
+FILE* f = fopen("file.txt", "r");
+if (f == NULL) {
+    perror("Errore apertura file");
+    return -1;
+}
+// ... operazioni ...
+fclose(f);
+```
+
+### 3.3 Gestione Stringhe
+- Usare `fgets` invece di `scanf` per stringhe (sicurezza)
+- Usare `strncpy` invece di `strcpy` (buffer overflow)
+- *Sempre* verificare la lunghezza prima di copiare
+- Rimuovere il `\n` di `fgets` con: `str[strcspn(str, "\n")] = '\0'`
+
+### 3.4 Uso di `scanf`
+- Controllare il valore di ritorno (`scanf` ritorna numero di match)
+- Non usare `%s` senza limitatore (`%19s` su buffer da 20)
+- `scanf` lascia `\n` nel buffer — fare attenzione con `fgets` successivi
+
+### 3.5 Validazione Input
+**Sempre** validare l'input dell'utente. Mai fidarsi dell'utente.
+
+### 3.6 Array e Limiti
+- Mai superare i limiti dell'array (C non controlla i bounds)
+- Usare `#define` o `const` per dimensioni array
+- Array multidimensionali: specificare sempre la seconda dimensione nei parametri
 
 ---
 
-## Examples: Before & After
+## 4. Pattern da Seguire
 
-### Example 1: Over-Commented
-**BEFORE:**
+### 4.1 Divisione in Funzioni
+Non mettere tutto in `main()`. Dividere in funzioni piccole e testabili.
+
+### 4.2 Puntatori
+- Passare struct grandi per riferimento invece che per valore
+- Documentare quando una funzione modifica i parametri tramite puntatore
+- Usare `const` per parametri che non devono essere modificati
+
+### 4.3 Ricorsione
+- Sempre includere un caso base
+- Assicurarsi che le chiamate ricorsive convergano al caso base
+- Considerare lo stack overflow per ricorsione troppo profonda
+
+### 4.4 Allocazione Dinamica di Array 2D
 ```c
-/* *
-Function principale per l'analisi delle temperature settimanali
-Calcola media, massimo, minimo e mostra un istogramma
- */
-int main() {
-    // === DICHIARAZIONE VARIABILI ===
-    float temperature[NUMGIORNI];
-    float sum=0.0, avg, max=0.0, min=__FLT_MAX__;  // Variabili per calcoli
-    
-    // === INPUT DELLE STRINGHE ===
-    for (i = 0; i < NUMGIORNI; i++){
-        // Leggi temperatura
-        scanf("%f", &temperature[i]);
-    }
-    
-    // === CALCOLO MEDIA ===
-    for (i = 0; i < NUMGIORNI; i++){
-        // Accumula valori
-        sum = sum + temperature[i];
-    }
-    avg = sum / NUMGIORNI;  // Calcola media
+int** matrix = malloc(sizeof(int*) * righe);
+for (int i = 0; i < righe; i++) {
+    matrix[i] = malloc(sizeof(int) * colonne);
 }
-```
-
-**AFTER:**
-```c
-int main() {
-    float temperature[NUMGIORNI];
-    float sum=0.0, avg, max=0.0, min=__FLT_MAX__;
-    
-    for (i = 0; i < NUMGIORNI; i++){
-        scanf("%f", &temperature[i]);
-    }
-    
-    for (i = 0; i < NUMGIORNI; i++){
-        sum = sum + temperature[i];
-    }
-    avg = sum / NUMGIORNI;
-}
-```
-
-### Example 2: Meaningful Comments Added
-**BEFORE:**
-```c
-int isPalindromo(char *str){
-    int len=strlen(str);
-    int lenpos=len-1;
-    char* betterstr = toUppercase(str);
-    // ... complex logic ...
-}
-```
-
-**AFTER:**
-```c
-// Checks if string is palindrome (case-insensitive)
-int isPalindromo(char *str){
-    int len=strlen(str);
-    int lenpos=len-1;
-    char* betterstr = toUppercase(str);  // Need case-insensitive comparison
-    // ... complex logic ...
-}
-```
-
-### Example 3: Algorithm Documentation
-**BEFORE:**
-```c
-a2 = b;  // Il nuovo valore di 'a' diventa l'ex valore di 'b'
-b2 = c;  // Il nuovo valore di 'b' diventa l'ex valore di 'c'
-c2 = a;  // Il nuovo valore di 'c' diventa l'ex valore di 'a'
-```
-
-**AFTER:**
-```c
-// Circular right shift: a → c, b → a, c → b
-a2 = b;
-b2 = c;
-c2 = a;
+// Deallocazione:
+for (int i = 0; i < righe; i++) free(matrix[i]);
+free(matrix);
 ```
 
 ---
 
-## Quick Reference Checklist
+## 5. Errori Comuni da Evitare (Rilevati nei Codici Esistenti)
 
-When adding a comment, ask yourself:
-
-- [ ] Does this comment explain *why*, not *what*?
-- [ ] Would a better variable name eliminate this comment?
-- [ ] Is the code unclear, or is the comment just obvious?
-- [ ] Does this add real value to understanding?
-- [ ] Can I remove this and the code still be clear?
-
-If you answered **NO** to any of these, **consider removing the comment**.
-
----
-
-## Common Patterns
-
-### ✅ Good Comment Examples
-```c
-// Remove newline added by fgets
-word[strlen(word) - 1] = '\0';
-
-// Simplified anagram check: doesn't handle case or spacing
-if(same_letters == strlen(word)){
-    printf("Anagrams\n");
-}
-
-// Wrap 9 → 0 for digit increment
-if (digit == 9) digit = 0;
-
-// Use uppercase for case-insensitive comparison
-char *upper = toUppercase(str);
-
-// TODO: Optimize with hash table (currently O(n²))
-```
-
-### ❌ Bad Comment Examples
-```c
-// Set x to 0
-x = 0;
-
-// Loop through array
-for (i = 0; i < n; i++) {
-
-// Check if i equals N
-if (i == N) {
-
-// Print the result
-printf("%d\n", result);
-
-// CASE BASE
-if (n == 0) {
-```
+| Errore | Dove | Come Risolvere |
+|--------|------|----------------|
+| `int mat[][]` come parametro | q3 labirinto | `int mat[N][M]` o `int (*mat)[M]` |
+| `scanf("%d", a)` invece di `&a` | shift_wrong | Usare `&a` per variabili semplici |
+| Chiamate multiple a funzione che alloca | custom_lib_program | Salvare risultato in variabile |
+| `fclose(NULL)` | hotel_da_incubo | Controllare NULL prima di chiudere |
+| Memory leak | christmas.c | Aggiungere `free()` per ogni `malloc()` |
+| `a[14][23]` fuori range | strings.c | Controllare dimensioni array |
+| Bug in `count_check` (typo `row`→`rows`) | christmas.c, 2_labirinto.c | Correggere nome variabile |
+| Bug condizione base `strcmpRec` | q2 28-08-2023 | `*s1 == '\0' \|\| *s2 == '\0'` |
+| Duplicazione codice | tic_tac_toe.c | Creare funzione per stampa griglia |
+| Algoritmi inefficienti (O(somma)) | max_min_med.c | Usare confronti semplici |
+| Variabili globali | hotel_da_incubo.c, types.c | Passare parametri o usare variabili locali |
 
 ---
 
-## Summary
+## 6. Checklist per la Revisione
 
-**The Goal**: Clean, readable code with **minimal, purposeful comments**.
+Prima di considerare un programma "completo":
 
-- **Comment less, code better**
-- **Explain why, not what**
-- **No section markers or decorative comments**
-- **Keep comments brief and to the point**
-- **Remove obvious comments entirely**
+- [ ] Il codice compila senza warning (`gcc -Wall -Wextra`)
+- [ ] Non ci sono memory leak
+- [ ] Tutti i file sono chiusi dopo l'uso
+- [ ] L'input è validato
+- [ ] I nomi di variabili/funzioni sono descrittivi
+- [ ] Non ci sono commenti ovvi o superflui
+- [ ] I commenti spiegano *perché*, non *cosa*
+- [ ] Le funzioni sono corte e con una singola responsabilità
+- [ ] Non c'è codice duplicato (DRY: Don't Repeat Yourself)
+- [ ] Le costanti magiche sono definite con `#define`
+- [ ] I puntatori sono controllati per `NULL` prima del dereferenziamento
 
-Your code should read like prose—comments should enhance understanding, not clutter it.
+---
+
+## 7. Riepilogo Rapido
+
+| Cosa | Regola |
+|------|--------|
+| Commenti | Spiega *perché*, non *cosa* |
+| Nomi | Descrittivi e consistenti |
+| Funzioni | Una responsabilità, corta |
+| Memoria | malloc → free, controlla NULL |
+| File | fopen → fclose, controlla NULL |
+| Input | Sempre validato |
+| Array | Mai superare i limiti |
+| DRY | Non ripetere codice |

@@ -1,3 +1,5 @@
+// bubble_sort.c - Bubble sort e merge di due array
+
 #include <stdio.h>
 #define N 3
 

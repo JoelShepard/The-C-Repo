@@ -1,15 +1,12 @@
-/* exe1.1.c - C source file. */
+// exe1.1.c - Ordinamento array di interi
 
 #include <stdio.h>
 
-#define DEFAULT_DIM 100  // Size massima dell'array
+#define DEFAULT_DIM 100
 
-/* *
-Function principale che implementa l'ordinamento di un array di interi
- */
 int main(){
-    int myarray[DEFAULT_DIM];           // Array per memorizzare i numeri
-    int i=0, j=0, tmp1=0, tmp2=0;      // Indici e variabili temporanee per scambio
+    int myarray[DEFAULT_DIM];
+    int i=0, j=0, tmp1=0, tmp2=0;
     int size=0;
 
     printf("Inserisci la quantità di numeri da ordinare:");
@@ -24,8 +21,7 @@ int main(){
         scanf("%d", &myarray[i]);    
     }
 
-    // Implementazione ibrida tra selection sort e bubble sort
-    // NOTA: Algoritmo inefficiente - dovrebbe essere ottimizzato
+    // NOTA: Algoritmo inefficiente (ibrido selection/bubble sort)
     for (i = 0; i < size; i++){
         for (j = 1; j < size; j++){
             if (myarray[i] > myarray[j]){
@@ -45,5 +41,3 @@ int main(){
     
     return 0;
 }
-
-// Note originale: "prova a sistemare" - L'algoritmo può essere ottimizzato

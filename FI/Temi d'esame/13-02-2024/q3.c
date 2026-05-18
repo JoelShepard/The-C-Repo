@@ -1,4 +1,4 @@
-/* q3.c - C source file. */
+// q3.c - Minuti lavorati
 #include <stdio.h>
 #include <string.h>
 

@@ -1,12 +1,11 @@
-/* mcd_gpt.c - C source file. */
+// mcd_gpt.c - MCD per ricerca esaustiva
 
 #include <stdio.h>
 
 int main() {
-
     int num1, num2;
-    int mcd = 1;                          // MCD inizializzato a 1 (sempre divisore)
-    int i = 1;                            // Contatore per testare i divisori
+    int mcd = 1;
+    int i = 1;
 
     printf("Inserire il primo numero: ");
     scanf("%d", &num1);
@@ -18,12 +17,9 @@ int main() {
         return 1;
     }
 
-    // ALGORITMO MCD: ricerca esaustiva di tutti i divisori comuni
-    // Continua finché i non supera il minimo tra i due numeri
     while (i <= num1 && i <= num2) {
-        // VERIFICA DIVISIBILITÀ: i deve dividere entrambi i numeri
         if (num1 % i == 0 && num2 % i == 0) {
-            mcd = i;                      // Aggiorna il MCD: i è un divisore comune
+            mcd = i;
         }
         i++;
     }
@@ -33,10 +29,4 @@ int main() {
     return 0;
 }
 
-/* 
-Note tecniche:
-- Questo algoritmo è semplice ma non efficiente per numeri grandi
-- L'algoritmo di Euclide sarebbe più efficiente: O(log(min(num1, num2)))
-- Il risultato è sempre corretto per numeri positivi
-- Il MCD di due numeri è sempre >= 1 (il numero 1 divide sempre tutto)
- */
+// Nota: O(n) - l'algoritmo di Euclide sarebbe O(log(min(num1, num2)))

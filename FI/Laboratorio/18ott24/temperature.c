@@ -1,17 +1,13 @@
-/* temperature.c - C source file. */
+// temperature.c - Analisi statistiche temperature settimanali
 
 #include <stdio.h>
 #include <limits.h>
 
-#define NUMGIORNI 7  // Numero di giorni della settimana
+#define NUMGIORNI 7
 
-/* *
-Function principale per l'analisi delle temperature settimanali
-Calcola media, massimo, minimo e mostra un istogramma
- */
 int main() {
     float temperature[NUMGIORNI];
-    float sum=0.0, avg, max=0.0, min=__FLT_MAX__;  // Variabili per calcoli statistici
+    float sum=0.0, avg, max=0.0, min=__FLT_MAX__;
     int i=0, col=0, j=0;
 
     for (i = 0; i < NUMGIORNI; i++){
@@ -20,7 +16,7 @@ int main() {
     }
     
     for (i = 0; i < NUMGIORNI; i++){
-        sum = (float) sum + temperature[i];  // Cast esplicito per chiarezza
+        sum = (float) sum + temperature[i];
     }
     
     avg = (float) sum / NUMGIORNI;
@@ -46,9 +42,8 @@ int main() {
     for (i = 0; i < NUMGIORNI; i++){
         printf("\n%6d\t%11.1f\t", col+=1, temperature[i]);
         
-        // Crea istogramma con asterischi per temperature > 34°C
+        // Un asterisco per ogni grado sopra 34 gradi
         if (temperature[i]>34){
-            // Un asterisco per ogni grado sopra i 34°C
             for (j = 0; j < (int)temperature[i]-34; j++){
                 printf("*");
             }

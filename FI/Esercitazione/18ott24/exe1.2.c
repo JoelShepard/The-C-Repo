@@ -1,15 +1,12 @@
-/* exe1.2.c - C source file. */
+// exe1.2.c - Elimina duplicati consecutivi e calcola media
 
 #include <stdio.h>
 
-#define DEF_DIM 128  // Size massima dell'array
+#define DEF_DIM 128
 
-/* *
-Function principale che elimina duplicati consecutivi e calcola la media
- */
 int main(){
-    int myarray[DEF_DIM];       // Array per memorizzare i numeri
-    int size=0, sum=0, count=0, i=0;  // Size, somma, counter e indice
+    int myarray[DEF_DIM];
+    int size=0, sum=0, count=0, i=0;
     float average=0.0;
 
     printf("Inserisci la quantità di numeri da lavorare:");
@@ -27,9 +24,7 @@ int main(){
 
     for (i = 0; i < size; i++)
     {
-        // Conta l'elemento solo se:
-        // - È il primo elemento (i == 0) OPPURE
-        // - È diverso dall'elemento precedente
+        // Ignora duplicati consecutivi
         if (i == 0 || myarray[i] != myarray[i-1]) {
             sum += myarray[i];
             count++;
@@ -37,7 +32,7 @@ int main(){
     }
     
     if (count > 0) {
-        average = (float) sum / count;  // Cast per divisione in virgola mobile
+        average = (float) sum / count;
         printf("La tua media è: %f\n", average);
     } else {
         printf("Nessun elemento valido per calcolare la media.\n");

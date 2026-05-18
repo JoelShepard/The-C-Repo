@@ -1,4 +1,4 @@
-/* 2o_q2.c - C source file. */
+// 2o_q2.c - Merge ricorsivo
 
 #include <stdio.h>
 
@@ -7,36 +7,31 @@ void order(int a[], int b[], int size_a, int size_b, int c[]) {
         return;
     }
 
-    // === CASO: PRIMO ARRAY ESAURITO ===
     if (size_a == 0) {
-        *c = *b;  // Copia elemento dal secondo array
+        *c = *b;
         order(a, b+1, size_a, size_b-1, c+1);
         return;
     }
 
-    // === CASO: SECONDO ARRAY ESAURITO ===
     if (size_b == 0) {
-        *c = *a;  // Copia elemento dal primo array
+        *c = *a;
         order(a+1, b, size_a-1, size_b, c+1);
         return;
     }
 
     if (*a < *b) {
-        *c = *a;  // Elemento del primo array è minore
+        *c = *a;
         order(a+1, b, size_a-1, size_b, c+1);
     } else {
-        *c = *b;  // Elemento del secondo array è minore o uguale
+        *c = *b;
         order(a, b+1, size_a, size_b-1, c+1);
     }
 }
 
-/* *
-Function principale - test dell'algoritmo di merge ricorsivo
- */
 int main(){
-    int a[]={1,2};              // Primo array ordinato (2 elementi)
-    int b[]={3,5,9,11,14};      // Secondo array ordinato (5 elementi) 
-    int c[7]={0};               // Array risultante (7 elementi totali)
+    int a[]={1,2};
+    int b[]={3,5,9,11,14};
+    int c[7]={0};
 
     order(a, b, 2, 5, c);
     

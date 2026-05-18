@@ -1,25 +1,21 @@
-/* exam_scores.c - C source file. */
+// exam_scores.c - Registrazione esiti d'esame su file binario
 
 #include <stdio.h>
 #include <string.h>
 
-#define NLEN 14                           // Lunghezza massima per il cognome
-#define N 5                               // Numero di candidati da registrare
+#define NLEN 14
+#define N 5
 
-/* *
-Struttura per rappresentare il risultato di un esame
- */
 typedef struct {
     char name[NLEN];
-    int code;                             // Numero di matricola universitaria
+    int code;
     int score;
 } exam;
 
 int main(){
-    FILE * mydb;                          // Puntatore al file di database
+    FILE * mydb;
     int i = 0;
-    exam allexams[N];                     // Array per memorizzare tutti gli esami
-
+    exam allexams[N];
 
     printf("=== SISTEMA REGISTRAZIONE ESITI D'ESAME ===\n");
     printf("Inserimento dati per %d candidati\n\n", N);
@@ -31,7 +27,6 @@ int main(){
         return 1;
     }
 
-    // CICLO ACQUISIZIONE: raccolta dati per ogni candidato
     while (i < N){
         printf("--- CANDIDATO %d di %d ---\n", i+1, N);
         
@@ -45,22 +40,18 @@ int main(){
 
         printf("Inserisci il voto del candidato %d (0-30): ", i+1);
         scanf("%d", &allexams[i].score);
-        fprintf(mydb, "%d", allexams[i].score);     // Ultimo campo senza virgola
+        fprintf(mydb, "%d", allexams[i].score);
 
-        // FINE RIGA: newline per separare i record
         fprintf(mydb, "\n");
         
-        // CONFERMA: feedback per l'utente
         printf("✓ Dati salvati: %s (Matr: %d) - Voto: %d\n\n", 
                allexams[i].name, allexams[i].code, allexams[i].score);
         
         i++;
     }
     
-    // CHIUSURA FILE: finalizzazione del salvataggio
     fclose(mydb);
     
-    // MESSAGGIO FINALE: conferma completamento
     printf("=== REGISTRAZIONE COMPLETATA ===\n");
     printf("Tutti i %d esiti sono stati salvati nel file 'esiti.bin'\n", N);
     printf("Formato: cognome,matricola,voto\n");
